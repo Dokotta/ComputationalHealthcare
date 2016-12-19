@@ -635,6 +635,216 @@ class Aggregate(object):
     def ParseFromString(self,s):
         self.obj.ParseFromString(s)
 
+
+class DPAggregate(object):
+    """
+    Differential Privacy aggregation
+    """
+    int_types = set(['ageh','yearh','losh'])
+
+    def __init__(self,mini=False):
+        self.obj = stat.AGG()
+        self.count = None
+        self.base = None
+        self.compute_mode = False
+        self.charges_num = None
+        self.charges_den = None
+        self.counter = None
+        self.counter_hospitals = None
+        self.min_count = None
+        self.min_subset = None
+        self.min_hospital =  None
+        self.mini = mini
+        self.policy = None
+
+
+    def init_compute(self,key,dataset,policy):
+        self.count = 0
+        self.compute_mode = True
+        self.policy = policy
+        self.obj.policy.CopyFrom(policy.obj)
+        self.obj.key = key
+        self.obj.dataset = dataset
+        self.base = float(policy.base)
+        self.min_count = policy.min_count
+        self.min_subset = policy.min_subset
+        self.min_hospital =  policy.min_hospital
+        self.counter = defaultdict(int)
+        self.counter_hospitals = defaultdict(set)
+        self.charges_num = 0
+        self.charges_den = 0
+
+
+    def add_k(self,k,facility):
+        self.counter[k] += 1
+        if not(self.counter_hospitals[k] is None):
+            self.counter_hospitals[k].add(facility)
+            if len(self.counter_hospitals[k]) > self.min_hospital:
+                self.counter_hospitals[k] = None
+
+
+    def add(self,visit):
+        self.count += 1
+        if visit.charge >= 0:
+            self.charges_num += int(visit.charge)
+            self.charges_den += 1
+
+        for k in get_attributes(visit):
+            self.add_k(k,visit.facility)
+        for k in [('ageh',visit.age),('agedh',self.discrete_age(visit.age)),('yearh',visit.year),('losh',visit.los),('fachilityh',visit.facility)]:
+                self.add_k(k,visit.facility)
+
+        if not self.mini:
+            for field,codes in [('exh',visit.exs),('dx',visit.dxs),('dx_poa',visit.poas),('dx_prim',[visit.primary_diagnosis,]),('drgh',[visit.drg,])]:
+                for code in codes:
+                    self.add_k((field,code),visit.facility)
+            for field,codes in [('primary_prh',[visit.primary_procedure]),('prh',visit.prs)]:
+                for code in codes:
+                    self.add_k((field,code.pcode),visit.facility)
+
+
+    def pause_compute(self):
+        data = {}
+        data['count'] = self.count
+        data['base'] = self.obj.policy.base
+        data['key'] = self.obj.key
+        data['dataset'] = self.obj.dataset
+        data['min_count'] = self.min_count
+        data['min_hospital'] = self.min_hospital
+        data['policy'] = repr(self.policy)
+        data['counter'] = self.counter
+        data['counter_hospitals'] = self.counter_hospitals
+        data['charges_num'] = self.charges_num
+        data['charges_den'] = self.charges_den
+        return data
+
+    def resume_compute(self,data):
+        if self.compute_mode:
+            if 'policy' not in data:
+                data['policy'] = repr(Policy()) # if policy is missing use default policy
+            temp_policy = Policy(s=data['policy'])
+            if self.policy is None:
+                self.policy = temp_policy
+                self.obj.policy.CopyFrom(temp_policy.obj)
+            if self.policy == temp_policy:
+                self.count += data["count"]
+                self.charges_num += data['charges_num']
+                self.charges_den += data['charges_den']
+                for k,v in data['counter'].iteritems():
+                    self.counter[k] += v
+                for k,v in data['counter_hospitals'].iteritems():
+                    if self.counter_hospitals[k] is None:
+                        self.counter_hospitals[k] = None
+                    elif v is None:
+                        self.counter_hospitals[k] = None
+                    else:
+                        self.counter_hospitals[k] = self.counter_hospitals[k].union(v)
+                        if len(self.counter_hospitals[k]) > self.min_hospital:
+                            self.counter_hospitals[k] = None
+
+
+    def discrete_age(self,age):
+        return int(20*math.floor(age/20.0))
+
+    def compute_stats(self,entries,allow_negatives = False):
+        expanded = []
+        numerator = 0.0
+        for k in sorted(entries.keys()):
+            if k >= 0 or allow_negatives:
+                v = entries[k]
+                expanded.extend([k]*v)
+                numerator += k*v
+        return numerator/float(len(expanded)),percentile(expanded, percent=0.5),percentile(expanded, percent=0.25),percentile(expanded, percent=0.75)
+
+    def end_compute(self):
+        if self.count > self.min_count and self.count > self.min_subset:
+            self.obj.mini = self.mini
+            self.obj.count = self.compute_count(self.count)
+            if self.charges_den > self.min_count:
+                self.obj.charges_num = self.charges_num
+                self.obj.charges_den = self.charges_den
+            combined_dx = defaultdict(lambda :{'primary':0,'poa':0,'all':0})
+            int_histogram = defaultdict(dict)
+            for k,v in self.counter.iteritems():
+                if type(k) is tuple:
+                    try:
+                        if k[0] == 'losh' or k[0] == 'ageh':
+                            int_histogram[k[0]][k[1]] = v
+                    except:
+                        raise ValueError,k
+                if v > self.min_count and self.counter_hospitals[k] is None:
+                    if type(k) is int:
+                        # try:
+                        temp = self.obj.__getattribute__(enums.INTMAP[k]).add()
+                        temp.k = k
+                        temp.v = self.compute_count(v)
+                        # except:
+                        #     raise ValueError,(k,v,schema.INTMAP)
+                    elif not k[0].startswith('dx') and k[0] not in Aggregate.int_types:
+                        temp = self.obj.__getattribute__(k[0]).add()
+                        temp.k = k[1]
+                        temp.v = self.compute_count(v)
+                    elif k[0] == 'dx_prim':
+                        combined_dx[k[1]]['primary'] = self.compute_count(v)
+                    elif k[0] == 'dx_poa':
+                        combined_dx[k[1]]['poa'] = self.compute_count(v)
+                    elif k[0] == 'dx':
+                        combined_dx[k[1]]['all'] = self.compute_count(v)
+            for k,v in int_histogram.iteritems():
+                mean,median,fq,tq = compute_stats(v)
+                self.obj.__getattribute__(k).median = int(round(median))
+                self.obj.__getattribute__(k).mean = round(mean,2)
+                self.obj.__getattribute__(k).fq = int(round(fq))
+                self.obj.__getattribute__(k).tq = int(round(tq))
+                for value,c in v.iteritems():
+                    if value >= 0 and c > self.min_count:
+                        temp = self.obj.__getattribute__(k).h.add()
+                        temp.k = value
+                        temp.v = self.compute_count(v)
+            for k,v in combined_dx.iteritems():
+                temp = self.obj.dxh.add()
+                temp.k = k
+                temp.primary = v['primary']
+                temp.poa = v['poa']
+                temp.all = v['all']
+            return True
+        else:
+            return False
+
+    def compute_dp_count(self,v):
+        raise NotImplementedError
+
+    def age_plot(self):
+        """
+        Helper function for generating plots
+        :return:
+        """
+        return age_plot(self.obj)
+
+
+    def los_plot(self):
+        """
+        Helper function for generating plots
+        :return:
+        """
+        return los_plot(self.obj)
+
+    def export(self,sep="\t"):
+        """
+        Export aggregate to CSV
+        """
+        return export(self.obj,sep)
+
+    def __str__(self):
+        return self.obj.__str__()
+
+    def __repr__(self):
+        return self.obj.SerializeToString()
+
+    def ParseFromString(self,s):
+        self.obj.ParseFromString(s)
+
+
 def export(ag,sep="\t"):
     lines = [sep.join(["count",str(ag.count)]),]
     lines.append("")

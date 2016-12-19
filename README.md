@@ -1,8 +1,18 @@
 # Computational Healthcare Library 
-This repository contains Computational Healthcare library (chlib), the underlying library used in [Computational Healthcare](http://www.computationalhealthcare.com/). 
-Computational Healthcare library is designed to allow computer scientists to use large healthcare claims databases. Using chlib you can easily load & process large healthcare databases with millions of patients. 
+The goal of Computational Healthcare Library is to help computer scientists do high impact healthcare research 
+by providing a simple interface to large publicly available healthcare datasets.
 
-## Analyze up to 200 Million visits & 70 Million patients
+With Computational Healthcare library you can:
+
+- Load & analyze data from up to 200 Million visits & 70 Million patients
+- Specify aggregation strategies and compute aggregate statistics in a privacy preserving manner   
+- Build embedding models, perform transfer learning, predict rehospitalizations/revisits using TensorFlow 
+- Benchmark results against baseline algorithms trained on publicly available datasets
+- In future it can be used for testing Differential Privacy algorithms for computing aggregate statistics & privacy preserving Machine Learning   
+
+Computational Healthcare library (chlib) is the underlying library used for building [Computational Healthcare](http://www.computationalhealthcare.com/).
+
+## Supported datasets
 
 Currently we support following three databases:
 
@@ -10,8 +20,10 @@ Currently we support following three databases:
    
  2. [HCUP Nationwide Readmission database for 2013](https://www.hcup-us.ahrq.gov/nrdoverview.jsp): This database contains de-identified inpatients visits during 2013 & 14. Unlike Texas database all inpatient visits are associated with a patient identifier and its possible to track patient through multiple visits.
  
- 3. [HCUP State Inpatient, ED & SASD database](http://www.hcup-us.ahrq.gov/sidoverview.jsp): This is one of the largest logitudinal database of medical claims in the world. Acquiring this database typically takes several weeks and can cost few 100$ to ~10,000$ depending number of states/years/types. We currently support data from California, Florida & New York. If you are interested in using Computational Healthcare with this dataset please contact us.
-          
+ 3. [HCUP State Inpatient, ED & SASD database](http://www.hcup-us.ahrq.gov/sidoverview.jsp): This is one of the largest longitudinal database of medical claims in the world. Acquiring this database typically takes several weeks and can cost few 100$ to ~10,000$ depending number of states/years/types. We currently support data from California, Florida & New York. If you are interested in using Computational Healthcare with this dataset please contact us.
+
+__Adding a new dataset to Computational Healthcare is a simple process. In near future we plan to extend support to databases in OHDSI format.__
+           
 **Please note that this repository does not contains any data, nor do we provide any data. You should acquire the datasets on your own 
   from AHRQ and/or other state agencies.**         
 
