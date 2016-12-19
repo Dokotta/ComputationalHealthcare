@@ -178,7 +178,6 @@ Against medical advice
  
 2. [Analyzing long term outcomes of Ventriculostomy in pediatric patients](blog/ventriculostomy.ipynb)
 
-3. [Exploring OHDSI common data model, comparison with Computational Healthcare (currently writing)](blog/ohdsi.ipynb)
 
 ## Issues & Bugs
 To minimize chances of visit/patient level information leaking via Exceptions messages or Traceback, we have not enabled
