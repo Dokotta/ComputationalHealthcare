@@ -107,3 +107,4 @@ logs/cpp*
 /docker/NRD_2013_Core.CSV
 /config.json
 /blog/ML/
+/chlib/ml/data/*.txt.gz
