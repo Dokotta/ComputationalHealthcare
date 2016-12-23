@@ -8,7 +8,7 @@ from multiprocessing import Pool
 from collections import defaultdict,namedtuple
 CPP = os.path.abspath(os.path.join(os.path.dirname(__file__),'../cppcode/bin/Debug/cpp'))
 import extractor
-# from .. import aggregate_visits,aggregate_patients,aggregate_edges
+from .. import aggregate_visits,aggregate_patients,aggregate_edges
 
 CountTuple = namedtuple('CountTuple','state year linked vtype ctype code count')
 
@@ -612,18 +612,17 @@ class Data(object):
             max_year = max(self.years)
         else:
             max_year = max(self.years)+1
-        # if self.aggregate_visits:
-        #     aggregate_visits.aggregate_events(code, E.get_inpatient_visits(code), self.identifier, self.result_dir,reduce_mode_mini=False)
-        # if self.aggregate_readmits:
-        #     unlinked_nodes, nodes, edges = E.get_readmit_nodes_edges(code)
-        #     aggregate_edges.readmits.aggregate_readmits(code, unlinked_nodes, nodes, edges, self.identifier, self.result_dir,max_year)
-        # if self.aggregate_revisits:
-        #     subsets = E.get_revisit_nodes_edges(code)
-        #     for k, v in subsets.iteritems():
-        #         aggregate_edges.revisits.aggregate_revisits(k, v['unlinked_nodes'], v['nodes'], v['edges'], self.identifier, self.result_dir, max_year)
-        # if self.aggregate_patients:
-        #     aggregate_patients.aggregate_patients(code,E.get_patients(code),self.identifier,self.result_dir,self.patients)
-        raise NotImplementedError
+        if self.aggregate_visits:
+            aggregate_visits.aggregate_events(code, E.get_inpatient_visits(code), self.identifier, self.result_dir,reduce_mode_mini=False)
+        if self.aggregate_readmits:
+            unlinked_nodes, nodes, edges = E.get_readmit_nodes_edges(code)
+            aggregate_edges.readmits.aggregate_readmits(code, unlinked_nodes, nodes, edges, self.identifier, self.result_dir,max_year)
+        if self.aggregate_revisits:
+            subsets = E.get_revisit_nodes_edges(code)
+            for k, v in subsets.iteritems():
+                aggregate_edges.revisits.aggregate_revisits(k, v['unlinked_nodes'], v['nodes'], v['edges'], self.identifier, self.result_dir, max_year)
+        if self.aggregate_patients:
+            aggregate_patients.aggregate_patients(code,E.get_patients(code),self.identifier,self.result_dir,self.patients)
 
     def pre_compute(self):
         """
