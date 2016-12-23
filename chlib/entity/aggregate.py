@@ -742,7 +742,6 @@ class DPAggregate(object):
                         if len(self.counter_hospitals[k]) > self.min_hospital:
                             self.counter_hospitals[k] = None
 
-
     def discrete_age(self,age):
         return int(20*math.floor(age/20.0))
 
