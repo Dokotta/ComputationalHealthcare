@@ -229,6 +229,8 @@ class Node(object):
              self.obj.ktype = pn3_pb2.N3_CPT
         elif key.startswith('P'):
              self.obj.ktype = pn3_pb2.N3_ICDPR
+        else:
+            raise NotImplementedError,key
         self.key = key
         self.obj.key = self.key
         self.obj.linked = linked

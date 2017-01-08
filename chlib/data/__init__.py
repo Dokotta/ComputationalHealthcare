@@ -1,4 +1,4 @@
-import glob,plyvel,gzip,time,os,subprocess,json,logging,tempfile,sys,shutil
+import glob,gzip,time,os,subprocess,json,logging,tempfile,sys,shutil
 from .. import formats
 import pprint
 from ..entity import stream_pb
@@ -10,6 +10,11 @@ CPP = os.path.abspath(os.path.join(os.path.dirname(__file__),'../cppcode/bin/Deb
 import extractor
 from .. import aggregate_visits,aggregate_patients,aggregate_edges
 
+try:
+    import plyvel
+except ImportError:
+    logging.warning("Could not import plyvel")
+    plyvel = None
 CountTuple = namedtuple('CountTuple','state year linked vtype ctype code count')
 
 
@@ -371,6 +376,8 @@ class Data(object):
             self.prepare_hcupnrd(test,db,workers)
         elif self.identifier == 'TX':
             self.prepare_tx(test,db,workers)
+        elif self.identifier == 'SYNTH':
+            self.prepare_synth(test,db,workers)
         else:
             raise NotImplementedError,"{}".format(self.identifier)
         db.close()
@@ -424,6 +431,33 @@ class Data(object):
             res = workers.map(formats.hcupca.process_buffer_hcup, line_buffer)
             formats.hcupca.finalize_hcup(res, unlinked, state, db)
             logging.info("finished {} with {}".format(fname, i))
+
+
+    def prepare_synth(self,test,db,workers):
+        i = 0
+        for fname in glob.glob(self.raw_dir + "*.gz"):
+            start = time.time()
+            unlinked = False
+            if "unlinked" in fname:
+                unlinked = True
+            state = fname.split("/")[-1].split('.')[-2]
+            fh = gzip.open(fname)
+            logging.info("starting {} with {} and {}".format(fname, state, unlinked))
+            line_buffer = []
+            for i, line in enumerate(fh):
+                line_buffer.append(line)
+                if len(line_buffer) == 2000:
+                    res = workers.map(formats.synth.process_buffer_synth, line_buffer)
+                    formats.synth.finalize_synth(res, unlinked, state, db)
+                    line_buffer = []
+                if (i + 1) % 10 ** 4 == 0:
+                    end = time.time()
+                    logging.info("processing {} {} with {} in {} seconds".format(state,fname, i, round(end - start, 2)))
+                    start = time.time()
+            res = workers.map(formats.synth.process_buffer_synth, line_buffer)
+            formats.synth.finalize_synth(res, unlinked, state, db)
+            logging.info("finished {} with {}".format(fname, i))
+
 
     def prepare_hcupnrd(self, test,db,workers):
         i = 0
@@ -605,15 +639,15 @@ class Data(object):
             logging.warning(
                 "Root Directory {} does not exists and thus no sub directories were created".format(self.base_dir))
 
-    def process_code(self,code):
+    def process_code(self,code,reduce_mode_mini=False):
         E = extractor.Extractor([code, ], self)
         E.extract()
         if len(self.years) > 1:
             max_year = max(self.years)
         else:
             max_year = max(self.years)+1
-        if self.aggregate_visits:
-            aggregate_visits.aggregate_events(code, E.get_inpatient_visits(code), self.identifier, self.result_dir,reduce_mode_mini=False)
+        if self.aggregate_visits and not code.startswith('C'):
+            aggregate_visits.aggregate_events(code, E.get_inpatient_visits(code), self.identifier, self.result_dir,reduce_mode_mini=reduce_mode_mini)
         if self.aggregate_readmits:
             unlinked_nodes, nodes, edges = E.get_readmit_nodes_edges(code)
             aggregate_edges.readmits.aggregate_readmits(code, unlinked_nodes, nodes, edges, self.identifier, self.result_dir,max_year)

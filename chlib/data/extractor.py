@@ -115,11 +115,11 @@ class Extractor(object):
             subsets[subcode]['nodes'] = [self.visits[pv] for pv in self.rv_nodes[code] if self.visits[pv].vtype == AS]
             subsets[subcode]['edges'] = [VisitEdge(self.visits[pvi], self.visits[pvs]) for pvi, pvs in self.rv_edges[code] if self.visits[pvi].vtype == AS]
         elif code.startswith('C'):
-            subcode = 'N3PR_ED_{}'.format(code)
+            subcode = 'N3C_ED_{}'.format(code)
             subsets[subcode]['unlinked_nodes'] = [self.visits[pv] for pv in self.rv_nodes_un[code] if self.visits[pv].vtype == ED]
             subsets[subcode]['nodes'] = [self.visits[pv] for pv in self.rv_nodes[code] if self.visits[pv].vtype == ED]
             subsets[subcode]['edges'] = [VisitEdge(self.visits[pvi], self.visits[pvs]) for pvi, pvs in self.rv_edges[code] if self.visits[pvi].vtype == ED]
-            subcode = 'N3PR_AS_{}'.format(code)
+            subcode = 'N3C_AS_{}'.format(code)
             subsets[subcode]['unlinked_nodes'] = [self.visits[pv] for pv in self.rv_nodes_un[code] if self.visits[pv].vtype == AS]
             subsets[subcode]['nodes'] = [self.visits[pv] for pv in self.rv_nodes[code] if self.visits[pv].vtype == AS]
             subsets[subcode]['edges'] = [VisitEdge(self.visits[pvi], self.visits[pvs]) for pvi, pvs in self.rv_edges[code] if self.visits[pvi].vtype == AS]
