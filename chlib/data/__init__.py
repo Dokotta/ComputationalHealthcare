@@ -432,32 +432,52 @@ class Data(object):
             formats.hcupca.finalize_hcup(res, unlinked, state, db)
             logging.info("finished {} with {}".format(fname, i))
 
-
     def prepare_synth(self,test,db,workers):
         i = 0
         for fname in glob.glob(self.raw_dir + "*.gz"):
-            start = time.time()
-            unlinked = False
-            if "unlinked" in fname:
-                unlinked = True
-            state = fname.split("/")[-1].split('.')[-2]
-            fh = gzip.open(fname)
-            logging.info("starting {} with {} and {}".format(fname, state, unlinked))
-            line_buffer = []
-            for i, line in enumerate(fh):
-                line_buffer.append(line)
-                if len(line_buffer) == 2000:
-                    res = workers.map(formats.synth.process_buffer_synth, line_buffer)
-                    formats.synth.finalize_synth(res, unlinked, state, db)
-                    line_buffer = []
-                if (i + 1) % 10 ** 4 == 0:
-                    end = time.time()
-                    logging.info("processing {} {} with {} in {} seconds".format(state,fname, i, round(end - start, 2)))
-                    start = time.time()
-            res = workers.map(formats.synth.process_buffer_synth, line_buffer)
-            formats.synth.finalize_synth(res, unlinked, state, db)
-            logging.info("finished {} with {}".format(fname, i))
-
+            if not ('_tab' in fname):
+                start = time.time()
+                unlinked = False
+                if "unlinked" in fname:
+                    unlinked = True
+                state = fname.split("/")[-1].split('.')[-2]
+                fh = gzip.open(fname)
+                logging.info("starting {} with {} and {}".format(fname, state, unlinked))
+                line_buffer = []
+                for i, line in enumerate(fh):
+                    line_buffer.append(line)
+                    if len(line_buffer) == 2000:
+                        res = workers.map(formats.synth.process_buffer_synth, line_buffer)
+                        formats.synth.finalize_synth(res, unlinked, state, db)
+                        line_buffer = []
+                    if (i + 1) % 10 ** 4 == 0:
+                        end = time.time()
+                        logging.info("processing {} {} with {} in {} seconds".format(state,fname, i, round(end - start, 2)))
+                        start = time.time()
+                res = workers.map(formats.synth.process_buffer_synth, line_buffer)
+                formats.synth.finalize_synth(res, unlinked, state, db)
+                logging.info("finished {} with {}".format(fname, i))
+            else:
+                quarter, year = fname.split("SYNTH_base")[1].split('_')[0].split('q')
+                logging.info((quarter, year))
+                fh = gzip.open(fname)
+                line_buffer = []
+                start = time.time()
+                for i, line in enumerate(fh):
+                    if i > 0:
+                        line = "\t".join([quarter, year, line])
+                        line_buffer.append(line)
+                        if len(line_buffer) == 40000:
+                            res = workers.map(formats.synth.fsynth.process_buffer_synth, line_buffer)
+                            formats.synth.fsynth.finalize_synth(res, db)
+                            line_buffer = []
+                        if (i + 1) % 10 ** 5 == 0:
+                            end = time.time()
+                            logging.info("processing {} with {} in {} seconds".format(fname, i, round(end - start, 2)))
+                            start = time.time()
+                res = workers.map(formats.synth.fsynth.process_buffer_synth, line_buffer)
+                formats.synth.fsynth.finalize_synth(res, db)
+                logging.info("finished {} with {}".format(fname, i))
 
     def prepare_hcupnrd(self, test,db,workers):
         i = 0

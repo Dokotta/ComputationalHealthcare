@@ -50,6 +50,10 @@ class N3Coder(codes.Coder):
                 return super(N3Coder,self).__getitem__(item.split('N3CPT_AS_')[1])
             elif item.startswith('N3CPT_ED'):
                 return super(N3Coder,self).__getitem__(item.split('N3CPT_ED_')[1])
+            elif item.startswith('N3C_AS'):
+                return super(N3Coder,self).__getitem__(item.split('N3C_AS_')[1])
+            elif item.startswith('N3C_ED'):
+                return super(N3Coder,self).__getitem__(item.split('N3C_ED_')[1])
             elif item.startswith('N3DX_IP'):
                 return super(N3Coder,self).__getitem__(item.split('N3DX_IP_')[1])
             elif item.startswith('N3DX_ED'):

@@ -7,7 +7,7 @@ http://www.hcup-us.ahrq.gov/db/tools/HCUP_Formats.txt
 http://www.hcup-us.ahrq.gov/db/tools/I9_Formats.TXT
 http://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html
 """
-import gzip,json
+import gzip,json,os
 from collections import defaultdict
 from ..entity.enums import STRINGS
 
