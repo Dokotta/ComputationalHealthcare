@@ -49,6 +49,8 @@ RUN pip install --upgrade pip \
                           django-filter \
                           "celery==3.1.23" \
                           "django-celery==3.1.17" \
+                          "dj-database-url==0.4.0" \
+                          "whitenoise==2.0.6" \
                           raven \
                           psycopg2 \
                           requests \
