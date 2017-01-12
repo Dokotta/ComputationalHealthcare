@@ -10,8 +10,7 @@ http://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html
 import gzip,json,os
 from collections import defaultdict
 from ..entity.enums import STRINGS
-
-BASE_URL = "/Code"
+HEROKU = 'DATABASE_URL' in os.environ # not very elegant find an elegant way of doing this
 
 
 class Coder(dict):
@@ -86,21 +85,24 @@ class Coder(dict):
             return STRINGS.get(item,"String for enum {} undefined".format(item))
         else:
             if item.startswith('D') or item.startswith('DG') or item.startswith('C') or item.startswith('P') or item.startswith('EE'):
-                try:
-                    if item.startswith('EE'):
-                        item = item.replace('EE','DE')
-                    occur_modifier = ""
-                    if '+' in item or '_' in item:
-                        item,occur = item.replace('_','+').split('+')
-                        if occur == '2':
-                            occur_modifier = ' 2nd '
-                        elif occur == '3':
-                            occur_modifier = ' 3rd '
-                        else:
-                         occur_modifier = ' '+occur+'th '
-                    return Coder.CODES_LONG[item]+occur_modifier
-                except KeyError:
-                    return "Description not found for "+item
+                if item.startswith('C') and HEROKU:
+                    return "Due to AMA Copyright we cannot show you description for CPT code {}".format(item[1:])
+                else:
+                    try:
+                        if item.startswith('EE'):
+                            item = item.replace('EE','DE')
+                        occur_modifier = ""
+                        if '+' in item or '_' in item:
+                            item,occur = item.replace('_','+').split('+')
+                            if occur == '2':
+                                occur_modifier = ' 2nd '
+                            elif occur == '3':
+                                occur_modifier = ' 3rd '
+                            else:
+                             occur_modifier = ' '+occur+'th '
+                        return Coder.CODES_LONG[item]+occur_modifier
+                    except KeyError:
+                        return "Description not found for "+item
             else:
                 return item + " (no associated string found)"
                 # raise ValueError,item

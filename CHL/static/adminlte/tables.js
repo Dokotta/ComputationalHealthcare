@@ -6,12 +6,10 @@
 function InitializeTables(){
     $('.dataTables-proto_file_table').dataTable({
         responsive: true,
-        "dom": 'T<"clear">lfrtip',
         "order": [[ 3, "desc" ]],
     });
     $('.dataTables-split_file_table').dataTable({
         responsive: true,
-        "dom": 'T<"clear">lfrtip',
         "order": [[ 4, "desc" ]],
     });
     $('.dataTables-home').dataTable({
@@ -28,15 +26,12 @@ function InitializeTables(){
     });
     $('.dataTables-full').dataTable({
         responsive: true,
-        "dom": 'T<"clear">lfrtip',
     });
     $('.dataTables-subset').dataTable({
         responsive: true,
-        "dom": 'T<"clear">lfrtip',
         "order": [[ 0, "asc" ]],
     });
     $('.dataTables-non-export').dataTable({
         "bFilter": false,
-        "dom": 'T<"clear">lfrtip',
     });
 }

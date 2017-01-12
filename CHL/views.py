@@ -29,10 +29,22 @@ from django.shortcuts import render
 # Create your views here.
 
 
-
 def app(request):
     context = {}
+    context['payload'] = {}
+    payload = {
+        'coder':codes.Coder(),
+        'enums':[(k,vstr,vval) for k,v in enums.__dict__.iteritems() if type(v) is google.protobuf.internal.enum_type_wrapper.EnumTypeWrapper for vstr,vval in v.items()],
+        'config':file('config.json').read()
+    }
+    context['payload'] = payload
     return render(request, 'app.html',context,using='jtlte')
+
+
+def codelist(request):
+    coder = codes.Coder()
+    return JsonResponse([(coder.prefix_inverse[coder.CODE_PREFIX[k]],k,v[-1]) for k,v in coder.CODES_ALL.iteritems()],safe=False)
+
 
 def get_patient(db,patient_id):
     """
