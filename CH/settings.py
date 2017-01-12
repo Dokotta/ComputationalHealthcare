@@ -155,7 +155,3 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-
-
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage'
-
