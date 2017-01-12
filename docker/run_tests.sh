@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -xe
-./start.sh
+./start_container.sh.sh
 ./prepare_nrd.sh
 ./start_ui.sh &
-sleep 50
