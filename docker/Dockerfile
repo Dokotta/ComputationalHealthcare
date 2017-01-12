@@ -84,7 +84,7 @@ RUN unzip /root/data/CH.zip -d /root/data/
 ARG CACHE_DATE=not_a_date
 RUN  git clone https://github.com/akshayubhat/ComputationalHealthcare /root/ComputationalHealthcare
 WORKDIR "/root/ComputationalHealthcare"
-COPY start_django_docker.sh start_server.sh
+COPY container_scripts/start_django_docker.sh start_server.sh
 RUN fab compile_protocols
 RUN fab compile_cpp_code
 VOLUME  ["/root/data", "/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql","/data/log", "/data/mnesia"]
