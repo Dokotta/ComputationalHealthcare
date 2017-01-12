@@ -57,7 +57,28 @@ RUN pip install --upgrade pip \
                           boto3 \
                           protobuf \
                           humanize
+RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+RUN apt-get update && apt-get install -y python-software-properties software-properties-common postgresql-9.4 postgresql-client-9.4 postgresql-contrib-9.4
+USER postgres
+RUN /etc/init.d/postgresql start &&\
+    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
+    psql --command "CREATE USER chpguser WITH PASSWORD 'chpgdb';ALTER ROLE chpguser SET client_encoding TO 'utf8';ALTER ROLE chpguser SET default_transaction_isolation TO 'read committed';ALTER ROLE chpguser SET timezone TO 'UTC';" &&\
+    createdb -O docker docker &&\
+    createdb -O chpguser chpglocal &&\
+    psql --command "GRANT ALL PRIVILEGES ON DATABASE chpglocal TO chpguser;"
+RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.4/main/pg_hba.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
 USER root
+RUN wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | apt-key add - && \
+  echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list && \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y rabbitmq-server && \
+  rm -rf /var/lib/apt/lists/* && \
+  rabbitmq-plugins enable rabbitmq_management && \
+  echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
+ENV RABBITMQ_LOG_BASE /data/log
+ENV RABBITMQ_MNESIA_BASE /data/mnesia
 COPY CH.zip /root/data/CH.zip
 RUN unzip /root/data/CH.zip -d /root/data/
 ARG CACHE_DATE=not_a_date
@@ -65,5 +86,7 @@ RUN  git clone https://github.com/akshayubhat/ComputationalHealthcare /root/Comp
 WORKDIR "/root/ComputationalHealthcare"
 RUN fab compile_protocols
 RUN fab compile_cpp_code
-VOLUME  ["/root/data"]
+VOLUME  ["/root/data", "/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql","/data/log", "/data/mnesia"]
+USER postgres
+CMD ["/usr/lib/postgresql/9.4/bin/postgres", "-D", "/var/lib/postgresql/9.4/main", "-c", "config_file=/etc/postgresql/9.4/main/postgresql.conf"]
 
