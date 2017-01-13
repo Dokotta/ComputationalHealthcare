@@ -22,5 +22,5 @@ issues on github repo. If you find any bugs, make sure that your bug report/ques
 For more information, comments or if you plan on citing Computational Healthcare library please contact Akshay Bhat at aub3@cornell.edu.
  
 #### Copyright
-Copyright Cornell University 2016; All rights reserved;
+Copyright Cornell University 2017; All rights reserved;
 Please contact us for more information.
