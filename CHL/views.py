@@ -7,25 +7,15 @@ from django.shortcuts import redirect
 from django.views.generic import ListView,DetailView
 from django.utils.decorators import method_decorator
 from django.db.models import Q
-import boto3,requests,json,humanize,base64
+import boto3,requests,json,humanize,base64,urllib
 from collections import defaultdict
-from chlib import aggregate_visits as N1
-from chlib.aggregate_edges import readmits as N2
-from chlib.aggregate_edges import revisits as N3
-from chlib import aggregate_patients as N4
-from chlib.entity import presentation
-from chlib.entity.enums import STRINGS
+from chlib.entity import aggregate
 from chlib import codes
 from chlib.entity import enums
-from django.template.defaulttags import register
 from chlib.entity.visit import Patient
 import google
 import tasks
-import os,logging
-import boto3,botocore
-from boto3.session import Session
 from django.shortcuts import render
-
 # Create your views here.
 
 
@@ -85,3 +75,29 @@ def patient_viewer(request):
         payload['patient'] = {'patient_id':patient_id,'db':db,'data':str(temp),'raw_string':raw_string}
     context = {'payload':payload}
     return render(request,'patient_viewer.html', context=context, using='jtlte')
+
+@login_required
+def aggregate_visits_viewer(request):
+    path = urllib.unquote(base64.decodestring(request.GET.get('q')))
+    entry = aggregate.Aggregate()
+    entry.ParseFromString(file(path).read())
+    context = {'payload':
+        {
+        'entry': entry.obj,
+        'humanize': humanize,
+        'Coder': codes.Coder(),
+        'path': path,
+        'los_plot_data': json.dumps(entry.los_plot()),
+        'age_plot_data': json.dumps(entry.age_plot())
+        }
+    }
+    return render(request,'aggregate_visits_viewer.html', context=context, using='jtlte')
+
+
+@login_required
+def aggregate_patients_viewer(request):
+    path = urllib.unquote(base64.decodestring(request.GET.get('q')))
+    entry = aggregate.Aggregate()
+    entry.ParseFromString(file(path).read())
+    context = {'payload':{'entry':entry.obj,'humanize':humanize,'Coder':codes.Coder(),'path':path}}
+    return render(request,'aggregate_patients_viewer.html', context=context, using='jtlte')

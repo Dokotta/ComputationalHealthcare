@@ -9,6 +9,9 @@ import json
 from visit import get_attributes
 from collections import defaultdict
 import functools
+import base64
+import urllib
+import tempfile
 from ..codes import Coder
 
 
@@ -430,8 +433,6 @@ class PAggregate(object):
         return self.obj.SerializeToString()
 
 
-
-
 class Aggregate(object):
     int_types = set(['ageh','yearh','losh'])
 
@@ -467,14 +468,12 @@ class Aggregate(object):
         self.charges_num = 0
         self.charges_den = 0
 
-
     def add_k(self,k,facility):
         self.counter[k] += 1
         if not(self.counter_hospitals[k] is None):
             self.counter_hospitals[k].add(facility)
             if len(self.counter_hospitals[k]) > self.min_hospital:
                 self.counter_hospitals[k] = None
-
 
     def add(self,visit):
         self.count += 1
@@ -494,7 +493,6 @@ class Aggregate(object):
             for field,codes in [('primary_prh',[visit.primary_procedure]),('prh',visit.prs)]:
                 for code in codes:
                     self.add_k((field,code.pcode),visit.facility)
-
 
     def pause_compute(self):
         data = {}
@@ -604,14 +602,12 @@ class Aggregate(object):
         else:
             return False
 
-
     def age_plot(self):
         """
         Helper function for generating plots
         :return:
         """
         return age_plot(self.obj)
-
 
     def los_plot(self):
         """
@@ -635,6 +631,20 @@ class Aggregate(object):
     def ParseFromString(self,s):
         self.obj.ParseFromString(s)
 
+    def visualize(self,host='0.0.0.0',port=8111,prefix=""):
+        """
+        :param host: 127.0.0.1, localhost, etc.
+        :param port: 8000,8111 etc.
+        :param prefix: empty or local/ if using dev version
+        :return:
+        """
+        _,path = tempfile.mkstemp()
+        fh = open(path,'w')
+        fh.write(self.__repr__())
+        fh.close()
+        return "http://{}:{}/{}aggregate_visits_viewer?q={}".format(host,port,prefix,urllib.quote(base64.b64encode(path)))
+
+
 
 class DPAggregate(object):
     """
@@ -656,6 +666,7 @@ class DPAggregate(object):
         self.min_hospital =  None
         self.mini = mini
         self.policy = None
+        raise NotImplementedError
 
 
     def init_compute(self,key,dataset,policy):

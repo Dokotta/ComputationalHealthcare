@@ -13,16 +13,8 @@
         </div>
     </div>
     <div class="box m-b">
-        <div class="box-header">
+        <div class="box-header with-border">
             <h5>{{ table_title }}</h5>
-            <div class="ibox-tools">
-                <a data-toggle="modal" data-target="#table_modal_{{field_name}}" href="#">
-                    <i class="fa fa-question"></i>
-                </a>
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-            </div>
         </div>
         <div class="box-body">
             <table class="table table-striped table-hover m-clear dataTables-dict">
@@ -60,16 +52,8 @@
         </div>
     </div>
     <div class="box m-b">
-        <div class="box-header">
+        <div class="box-header with-border">
             <h5>{{ table_title }}</h5>
-            <div class="ibox-tools">
-                <a data-toggle="modal" data-target="#table_modal_{{field_name}}" href="#">
-                    <i class="fa fa-question"></i>
-                </a>
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-            </div>
         </div>
         <div class="box-body">
             <table class="table table-striped table-hover m-clear dataTables-dict">
@@ -107,16 +91,8 @@
         </div>
     </div>
     <div class="box m-b">
-        <div class="box-header">
+        <div class="box-header with-border">
             <h5>{{ table_title }}</h5>
-            <div class="ibox-tools">
-                <a data-toggle="modal" data-target="#table_modal_{{field_name}}" href="#">
-                    <i class="fa fa-question"></i>
-                </a>
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-            </div>
         </div>
         <div class="box-body">
             <table class="table table-striped table-hover m-clear dataTables-dict">
@@ -201,7 +177,7 @@
 
 {% macro exclusion_table(table_title,exdict) -%}
     <div class="box m-b">
-        <div class="box-header">
+        <div class="box-header with-border">
             <h5>{{ table_title }}</h5>
         </div>
         <div class="box-body">
@@ -331,16 +307,8 @@
         </div>
     </div>
     <div class="box m-b">
-        <div class="box-header">
+        <div class="box-header with-border">
             <h5>{{ table_title }}</h5>
-            <div class="ibox-tools">
-                <a data-toggle="modal" data-target="#dict_table_modal_{{field_name}}" href="#">
-                    <i class="fa fa-question"></i>
-                </a>
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-            </div>
         </div>
         <div class="box-body">
             <table class="table table-striped table-hover dataTables-dict">
@@ -368,17 +336,9 @@
 {%- endmacro %}
 
 {% macro compare_procedures(left_count,right_count,left_data,right_data,coder,combiner) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>Procedure Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -395,8 +355,8 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                    <td class="tdv"> {{ (100.0*k.1.0/left_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.1/right_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.0/left_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.1/right_count)|round(2) }} %</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -407,17 +367,9 @@
 
 
 {% macro combined_procedures(num_count,den_count,initial_data,sub_data,denominator_data,coder,combiner) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>Procedure Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -435,9 +387,9 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                    <td class="tdv"> {{ (100.0*k.1.0/num_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.1/num_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.2/den_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.0/num_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.1/num_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.2/den_count)|round(2) }} %</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -447,17 +399,9 @@
 {%- endmacro %}
 
 {% macro combined_drg(num_count,den_count,initial_data,sub_data,denominator_data,coder,combiner) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>DRG Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -475,9 +419,9 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                    <td class="tdv"> {{ (100.0*k.1.0/num_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.1/num_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.2/den_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.0/num_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.1/num_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.2/den_count)|round(2) }} %</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -487,17 +431,9 @@
 {%- endmacro %}
 
 {% macro combined_dx(num_count,den_count,initial_data,sub_data,denominator_data,coder,combiner_dx) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>Diagnosis Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -518,12 +454,12 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                <td class="tdv"> {{ (100.0*k.1.0.0/num_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.1.0/num_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.2.0/den_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.0.2/num_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.1.2/num_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.2.2/den_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.0.0/num_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.1.0/num_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.2.0/den_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.0.2/num_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.1.2/num_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.2.2/den_count)|round(2) }}%</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -533,17 +469,9 @@
 {%- endmacro %}
 
 {% macro compare_dx(left_count,right_count,left_data,right_data,coder,combiner_dx) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>Diagnosis Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -562,10 +490,10 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                <td class="tdv"> {{ (100.0*k.1.0.0/left_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.1.0/right_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.0.2/left_count)|round(2) }}%</td>
-                <td class="tdv"> {{ (100.0*k.1.1.2/right_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.0.0/left_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.1.0/right_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.0.2/left_count)|round(2) }}%</td>
+                <td class="text-right"> {{ (100.0*k.1.1.2/right_count)|round(2) }}%</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -576,17 +504,9 @@
 
 
 {% macro compare_ex(left_count,right_count,left_data,right_data,coder,combiner) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>External Causes Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -603,8 +523,8 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                    <td class="tdv"> {{ (100.0*k.1.0/left_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.1/right_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.0/left_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.1/right_count)|round(2) }} %</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -614,17 +534,9 @@
 {%- endmacro %}
 
 {% macro combined_ex(num_count,den_count,initial_data,sub_data,denominator_data,coder,combiner) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>External Causes Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -642,9 +554,9 @@
             <tr>
                 <td> {{ k.0 }}</td>
                 <td> {{ coder[k.0] }}</td>
-                    <td class="tdv"> {{ (100.0*k.1.0/num_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.1/num_count)|round(2) }} %</td>
-                    <td class="tdv"> {{ (100.0*k.1.2/den_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.0/num_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.1/num_count)|round(2) }} %</td>
+                    <td class="text-right"> {{ (100.0*k.1.2/den_count)|round(2) }} %</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -689,14 +601,14 @@
         <tr>
             <td>Count</td>
             {% for l in subset_table.columns  %}
-                <td class="tdv">{{subset_table.data[l]['count']}}</td>
+                <td class="text-right">{{subset_table.data[l]['count']}}</td>
             {% endfor %}
         </tr>
         {% for r in subset_table.rows  %}
         <tr>
             <td> {{ r.0 }} : {{ coder[r.1] }} </td>
             {% for l in subset_table.columns  %}
-                <td class="tdv">{{subset_table.data[l][r.1]}}%</td>
+                <td class="text-right">{{subset_table.data[l][r.1]}}%</td>
             {% endfor %}
         </tr>
         {% endfor %}
@@ -780,17 +692,9 @@
 
 
 {% macro procedures(data,coder) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>Procedure Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -806,7 +710,7 @@
             <tr>
                 <td> {{ k.k }}</td>
                 <td> {{ coder[k.k] }}</td>
-                <td class="tdv"> {{ k.v }}</td>
+                <td class="text-right"> {{ k.v }}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -819,14 +723,9 @@
 
 
 {% macro drg(data,coder) -%}
-    <div class="ibox">
-            <div class="box-header">
+    <div class="box">
+            <div class="box-header with-border">
                 <h5>DRG Distribution</h5>
-                <div class="ibox-tools">
-                    <a class="collapse-link">
-                        <i class="fa fa-chevron-up"></i>
-                    </a>
-                </div>
             </div>
             <div class="box-body">
                 <table class="table  dataTables-full">
@@ -842,7 +741,7 @@
                     <tr>
                         <td> {{ k.k }}</td>
                         <td> {{ coder[k.k] }}</td>
-                        <td class="tdv"> {{ k.v }}</td>
+                        <td class="text-right"> {{ k.v }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -853,17 +752,9 @@
 
 
 {% macro dx(data,coder) -%}
-<div class="ibox">
-    <div class="box-header">
+<div class="box">
+    <div class="box-header with-border">
         <h5>Diagnosis Distribution</h5>
-        <div class="ibox-tools">
-            <a data-toggle="modal" data-target="#myModal" href="#">
-                <i class="fa fa-question"></i>
-            </a>
-            <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-            </a>
-        </div>
     </div>
     <div class="box-body">
         <table class="table  dataTables-full">
@@ -881,9 +772,9 @@
             <tr>
                 <td> {{ k.k }}</td>
                 <td> {{ coder[k.k] }}</td>
-                <td class="tdv"> {{ k.primary }}</td>
-                <td class="tdv"> {{ k.poa }}</td>
-                <td class="tdv"> {{ k.all }}</td>
+                <td class="text-right"> {{ k.primary }}</td>
+                <td class="text-right"> {{ k.poa }}</td>
+                <td class="text-right"> {{ k.all }}</td>
             </tr>
             {% endfor %}
             </tbody>
@@ -893,17 +784,9 @@
 {%- endmacro %}
 
 {% macro ex(data,coder) -%}
-<div class="ibox">
-        <div class="box-header">
+<div class="box">
+        <div class="box-header with-border">
             <h5>External Causes Distribution</h5>
-            <div class="ibox-tools">
-                <a data-toggle="modal" data-target="#myModal" href="#">
-                    <i class="fa fa-question"></i>
-                </a>
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-            </div>
         </div>
         <div class="box-body">
             <table class="table  dataTables-full">
@@ -919,7 +802,7 @@
                 <tr>
                     <td> {{ k.k }}</td>
                     <td> {{ coder[k.k] }}</td>
-                    <td class="tdv"> {{ k.v }}</td>
+                    <td class="text-right"> {{ k.v }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
