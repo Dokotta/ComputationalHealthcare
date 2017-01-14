@@ -12,7 +12,7 @@ With Computational Healthcare library you can:
 - In future it can be used for testing Differential Privacy algorithms for computing aggregate statistics & privacy preserving Machine Learning
  
 **Please note that this repository does not contains any data, nor do we provide any data. You should acquire the datasets 
-on your own from AHRQ and/or other state agencies.**
+on your own from AHRQ or other state agencies.**
  
 #### Copyright
 Copyright Cornell University 2017; All rights reserved; Please contact us for more information.
