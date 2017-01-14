@@ -76,7 +76,6 @@ def patient_viewer(request):
     context = {'payload':payload}
     return render(request,'patient_viewer.html', context=context, using='jtlte')
 
-@login_required
 def aggregate_visits_viewer(request):
     path = urllib.unquote(base64.decodestring(request.GET.get('q')))
     entry = aggregate.Aggregate()
@@ -94,7 +93,6 @@ def aggregate_visits_viewer(request):
     return render(request,'aggregate_visits_viewer.html', context=context, using='jtlte')
 
 
-@login_required
 def aggregate_patients_viewer(request):
     path = urllib.unquote(base64.decodestring(request.GET.get('q')))
     entry = aggregate.Aggregate()
