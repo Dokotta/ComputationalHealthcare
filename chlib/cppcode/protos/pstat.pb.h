@@ -38,6 +38,7 @@ void protobuf_ShutdownFile_pstat_2eproto();
 class PAGG;
 class PSubsets;
 class VisitDeltaHist;
+class EdgeHist;
 class AGG;
 class Policy;
 class IntHist;
@@ -133,118 +134,229 @@ class PAGG : public ::google::protobuf::Message {
   inline ::std::string* release_dataset();
   inline void set_allocated_dataset(::std::string* dataset);
 
-  // required bool linked = 3;
-  inline bool has_linked() const;
-  inline void clear_linked();
-  static const int kLinkedFieldNumber = 3;
-  inline bool linked() const;
-  inline void set_linked(bool value);
-
-  // required bool unlinked = 4;
-  inline bool has_unlinked() const;
-  inline void clear_unlinked();
-  static const int kUnlinkedFieldNumber = 4;
-  inline bool unlinked() const;
-  inline void set_unlinked(bool value);
-
-  // required int32 patient_count = 6;
-  inline bool has_patient_count() const;
-  inline void clear_patient_count();
-  static const int kPatientCountFieldNumber = 6;
-  inline ::google::protobuf::int32 patient_count() const;
-  inline void set_patient_count(::google::protobuf::int32 value);
-
-  // required int32 visit_count = 7;
-  inline bool has_visit_count() const;
-  inline void clear_visit_count();
-  static const int kVisitCountFieldNumber = 7;
-  inline ::google::protobuf::int32 visit_count() const;
-  inline void set_visit_count(::google::protobuf::int32 value);
-
-  // required int32 linked_count = 8;
-  inline bool has_linked_count() const;
-  inline void clear_linked_count();
-  static const int kLinkedCountFieldNumber = 8;
-  inline ::google::protobuf::int32 linked_count() const;
-  inline void set_linked_count(::google::protobuf::int32 value);
-
-  // required int32 unlinked_count = 9;
-  inline bool has_unlinked_count() const;
-  inline void clear_unlinked_count();
-  static const int kUnlinkedCountFieldNumber = 9;
-  inline ::google::protobuf::int32 unlinked_count() const;
-  inline void set_unlinked_count(::google::protobuf::int32 value);
-
-  // repeated .comphealth.PSubsets subsets = 10;
-  inline int subsets_size() const;
-  inline void clear_subsets();
-  static const int kSubsetsFieldNumber = 10;
-  inline const ::comphealth::PSubsets& subsets(int index) const;
-  inline ::comphealth::PSubsets* mutable_subsets(int index);
-  inline ::comphealth::PSubsets* add_subsets();
-  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::PSubsets >&
-      subsets() const;
-  inline ::google::protobuf::RepeatedPtrField< ::comphealth::PSubsets >*
-      mutable_subsets();
-
-  // repeated .comphealth.VisitDeltaHist delta_hist = 11;
-  inline int delta_hist_size() const;
-  inline void clear_delta_hist();
-  static const int kDeltaHistFieldNumber = 11;
-  inline const ::comphealth::VisitDeltaHist& delta_hist(int index) const;
-  inline ::comphealth::VisitDeltaHist* mutable_delta_hist(int index);
-  inline ::comphealth::VisitDeltaHist* add_delta_hist();
-  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
-      delta_hist() const;
-  inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
-      mutable_delta_hist();
-
-  // repeated .comphealth.VisitDeltaHist delta_error_hist = 13;
-  inline int delta_error_hist_size() const;
-  inline void clear_delta_error_hist();
-  static const int kDeltaErrorHistFieldNumber = 13;
-  inline const ::comphealth::VisitDeltaHist& delta_error_hist(int index) const;
-  inline ::comphealth::VisitDeltaHist* mutable_delta_error_hist(int index);
-  inline ::comphealth::VisitDeltaHist* add_delta_error_hist();
-  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
-      delta_error_hist() const;
-  inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
-      mutable_delta_error_hist();
-
-  // repeated .comphealth.EtypeCountHist count_hist = 12;
-  inline int count_hist_size() const;
-  inline void clear_count_hist();
-  static const int kCountHistFieldNumber = 12;
-  inline const ::comphealth::EtypeCountHist& count_hist(int index) const;
-  inline ::comphealth::EtypeCountHist* mutable_count_hist(int index);
-  inline ::comphealth::EtypeCountHist* add_count_hist();
-  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeCountHist >&
-      count_hist() const;
-  inline ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeCountHist >*
-      mutable_count_hist();
-
-  // optional int32 edge_count = 14;
-  inline bool has_edge_count() const;
-  inline void clear_edge_count();
-  static const int kEdgeCountFieldNumber = 14;
-  inline ::google::protobuf::int32 edge_count() const;
-  inline void set_edge_count(::google::protobuf::int32 value);
-
-  // optional int32 negative_delta_count = 15;
-  inline bool has_negative_delta_count() const;
-  inline void clear_negative_delta_count();
-  static const int kNegativeDeltaCountFieldNumber = 15;
-  inline ::google::protobuf::int32 negative_delta_count() const;
-  inline void set_negative_delta_count(::google::protobuf::int32 value);
-
-  // required .comphealth.Policy policy = 16;
+  // required .comphealth.Policy policy = 3;
   inline bool has_policy() const;
   inline void clear_policy();
-  static const int kPolicyFieldNumber = 16;
+  static const int kPolicyFieldNumber = 3;
   inline const ::comphealth::Policy& policy() const;
   inline ::comphealth::Policy* mutable_policy();
   inline ::comphealth::Policy* release_policy();
   inline void set_allocated_policy(::comphealth::Policy* policy);
+
+  // required int32 patient_count = 4;
+  inline bool has_patient_count() const;
+  inline void clear_patient_count();
+  static const int kPatientCountFieldNumber = 4;
+  inline ::google::protobuf::int32 patient_count() const;
+  inline void set_patient_count(::google::protobuf::int32 value);
+
+  // optional int32 negative_delta_count = 9;
+  inline bool has_negative_delta_count() const;
+  inline void clear_negative_delta_count();
+  static const int kNegativeDeltaCountFieldNumber = 9;
+  inline ::google::protobuf::int32 negative_delta_count() const;
+  inline void set_negative_delta_count(::google::protobuf::int32 value);
+
+  // repeated .comphealth.EtypeHist vtypeh = 6;
+  inline int vtypeh_size() const;
+  inline void clear_vtypeh();
+  static const int kVtypehFieldNumber = 6;
+  inline const ::comphealth::EtypeHist& vtypeh(int index) const;
+  inline ::comphealth::EtypeHist* mutable_vtypeh(int index);
+  inline ::comphealth::EtypeHist* add_vtypeh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeHist >&
+      vtypeh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeHist >*
+      mutable_vtypeh();
+
+  // repeated .comphealth.EdgeHist edgeh = 24;
+  inline int edgeh_size() const;
+  inline void clear_edgeh();
+  static const int kEdgehFieldNumber = 24;
+  inline const ::comphealth::EdgeHist& edgeh(int index) const;
+  inline ::comphealth::EdgeHist* mutable_edgeh(int index);
+  inline ::comphealth::EdgeHist* add_edgeh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::EdgeHist >&
+      edgeh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::EdgeHist >*
+      mutable_edgeh();
+
+  // repeated .comphealth.VisitDeltaHist deltah = 7;
+  inline int deltah_size() const;
+  inline void clear_deltah();
+  static const int kDeltahFieldNumber = 7;
+  inline const ::comphealth::VisitDeltaHist& deltah(int index) const;
+  inline ::comphealth::VisitDeltaHist* mutable_deltah(int index);
+  inline ::comphealth::VisitDeltaHist* add_deltah();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
+      deltah() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
+      mutable_deltah();
+
+  // repeated .comphealth.VisitDeltaHist detaerrorh = 8;
+  inline int detaerrorh_size() const;
+  inline void clear_detaerrorh();
+  static const int kDetaerrorhFieldNumber = 8;
+  inline const ::comphealth::VisitDeltaHist& detaerrorh(int index) const;
+  inline ::comphealth::VisitDeltaHist* mutable_detaerrorh(int index);
+  inline ::comphealth::VisitDeltaHist* add_detaerrorh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
+      detaerrorh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
+      mutable_detaerrorh();
+
+  // optional .comphealth.IntHist ageh = 11;
+  inline bool has_ageh() const;
+  inline void clear_ageh();
+  static const int kAgehFieldNumber = 11;
+  inline const ::comphealth::IntHist& ageh() const;
+  inline ::comphealth::IntHist* mutable_ageh();
+  inline ::comphealth::IntHist* release_ageh();
+  inline void set_allocated_ageh(::comphealth::IntHist* ageh);
+
+  // repeated .comphealth.SexHist sexh = 12;
+  inline int sexh_size() const;
+  inline void clear_sexh();
+  static const int kSexhFieldNumber = 12;
+  inline const ::comphealth::SexHist& sexh(int index) const;
+  inline ::comphealth::SexHist* mutable_sexh(int index);
+  inline ::comphealth::SexHist* add_sexh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::SexHist >&
+      sexh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::SexHist >*
+      mutable_sexh();
+
+  // repeated .comphealth.RaceHist raceh = 13;
+  inline int raceh_size() const;
+  inline void clear_raceh();
+  static const int kRacehFieldNumber = 13;
+  inline const ::comphealth::RaceHist& raceh(int index) const;
+  inline ::comphealth::RaceHist* mutable_raceh(int index);
+  inline ::comphealth::RaceHist* add_raceh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::RaceHist >&
+      raceh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::RaceHist >*
+      mutable_raceh();
+
+  // repeated .comphealth.DeathHist deathh = 25;
+  inline int deathh_size() const;
+  inline void clear_deathh();
+  static const int kDeathhFieldNumber = 25;
+  inline const ::comphealth::DeathHist& deathh(int index) const;
+  inline ::comphealth::DeathHist* mutable_deathh(int index);
+  inline ::comphealth::DeathHist* add_deathh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::DeathHist >&
+      deathh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::DeathHist >*
+      mutable_deathh();
+
+  // repeated .comphealth.PayerHist payerh = 14;
+  inline int payerh_size() const;
+  inline void clear_payerh();
+  static const int kPayerhFieldNumber = 14;
+  inline const ::comphealth::PayerHist& payerh(int index) const;
+  inline ::comphealth::PayerHist* mutable_payerh(int index);
+  inline ::comphealth::PayerHist* add_payerh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::PayerHist >&
+      payerh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::PayerHist >*
+      mutable_payerh();
+
+  // repeated .comphealth.DispositionHist disph = 23;
+  inline int disph_size() const;
+  inline void clear_disph();
+  static const int kDisphFieldNumber = 23;
+  inline const ::comphealth::DispositionHist& disph(int index) const;
+  inline ::comphealth::DispositionHist* mutable_disph(int index);
+  inline ::comphealth::DispositionHist* add_disph();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::DispositionHist >&
+      disph() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::DispositionHist >*
+      mutable_disph();
+
+  // repeated .comphealth.KVI dxh = 15;
+  inline int dxh_size() const;
+  inline void clear_dxh();
+  static const int kDxhFieldNumber = 15;
+  inline const ::comphealth::KVI& dxh(int index) const;
+  inline ::comphealth::KVI* mutable_dxh(int index);
+  inline ::comphealth::KVI* add_dxh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+      dxh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+      mutable_dxh();
+
+  // repeated .comphealth.KVI pdxh = 16;
+  inline int pdxh_size() const;
+  inline void clear_pdxh();
+  static const int kPdxhFieldNumber = 16;
+  inline const ::comphealth::KVI& pdxh(int index) const;
+  inline ::comphealth::KVI* mutable_pdxh(int index);
+  inline ::comphealth::KVI* add_pdxh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+      pdxh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+      mutable_pdxh();
+
+  // repeated .comphealth.KVI prh = 17;
+  inline int prh_size() const;
+  inline void clear_prh();
+  static const int kPrhFieldNumber = 17;
+  inline const ::comphealth::KVI& prh(int index) const;
+  inline ::comphealth::KVI* mutable_prh(int index);
+  inline ::comphealth::KVI* add_prh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+      prh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+      mutable_prh();
+
+  // repeated .comphealth.KVI exh = 18;
+  inline int exh_size() const;
+  inline void clear_exh();
+  static const int kExhFieldNumber = 18;
+  inline const ::comphealth::KVI& exh(int index) const;
+  inline ::comphealth::KVI* mutable_exh(int index);
+  inline ::comphealth::KVI* add_exh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+      exh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+      mutable_exh();
+
+  // repeated .comphealth.KVI drgh = 19;
+  inline int drgh_size() const;
+  inline void clear_drgh();
+  static const int kDrghFieldNumber = 19;
+  inline const ::comphealth::KVI& drgh(int index) const;
+  inline ::comphealth::KVI* mutable_drgh(int index);
+  inline ::comphealth::KVI* add_drgh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+      drgh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+      mutable_drgh();
+
+  // repeated .comphealth.KVII agedh = 21;
+  inline int agedh_size() const;
+  inline void clear_agedh();
+  static const int kAgedhFieldNumber = 21;
+  inline const ::comphealth::KVII& agedh(int index) const;
+  inline ::comphealth::KVII* mutable_agedh(int index);
+  inline ::comphealth::KVII* add_agedh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >&
+      agedh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >*
+      mutable_agedh();
+
+  // repeated .comphealth.KVII yearh = 22;
+  inline int yearh_size() const;
+  inline void clear_yearh();
+  static const int kYearhFieldNumber = 22;
+  inline const ::comphealth::KVII& yearh(int index) const;
+  inline ::comphealth::KVII* mutable_yearh(int index);
+  inline ::comphealth::KVII* add_yearh();
+  inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >&
+      yearh() const;
+  inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >*
+      mutable_yearh();
 
   // @@protoc_insertion_point(class_scope:comphealth.PAGG)
  private:
@@ -252,24 +364,14 @@ class PAGG : public ::google::protobuf::Message {
   inline void clear_has_key();
   inline void set_has_dataset();
   inline void clear_has_dataset();
-  inline void set_has_linked();
-  inline void clear_has_linked();
-  inline void set_has_unlinked();
-  inline void clear_has_unlinked();
-  inline void set_has_patient_count();
-  inline void clear_has_patient_count();
-  inline void set_has_visit_count();
-  inline void clear_has_visit_count();
-  inline void set_has_linked_count();
-  inline void clear_has_linked_count();
-  inline void set_has_unlinked_count();
-  inline void clear_has_unlinked_count();
-  inline void set_has_edge_count();
-  inline void clear_has_edge_count();
-  inline void set_has_negative_delta_count();
-  inline void clear_has_negative_delta_count();
   inline void set_has_policy();
   inline void clear_has_policy();
+  inline void set_has_patient_count();
+  inline void clear_has_patient_count();
+  inline void set_has_negative_delta_count();
+  inline void clear_has_negative_delta_count();
+  inline void set_has_ageh();
+  inline void clear_has_ageh();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
@@ -277,19 +379,26 @@ class PAGG : public ::google::protobuf::Message {
   mutable int _cached_size_;
   ::std::string* key_;
   ::std::string* dataset_;
-  bool linked_;
-  bool unlinked_;
-  ::google::protobuf::int32 patient_count_;
-  ::google::protobuf::int32 visit_count_;
-  ::google::protobuf::int32 linked_count_;
-  ::google::protobuf::RepeatedPtrField< ::comphealth::PSubsets > subsets_;
-  ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist > delta_hist_;
-  ::google::protobuf::int32 unlinked_count_;
-  ::google::protobuf::int32 edge_count_;
-  ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist > delta_error_hist_;
-  ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeCountHist > count_hist_;
   ::comphealth::Policy* policy_;
+  ::google::protobuf::int32 patient_count_;
   ::google::protobuf::int32 negative_delta_count_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeHist > vtypeh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::EdgeHist > edgeh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist > deltah_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist > detaerrorh_;
+  ::comphealth::IntHist* ageh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::SexHist > sexh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::RaceHist > raceh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::DeathHist > deathh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::PayerHist > payerh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::DispositionHist > disph_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVI > dxh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVI > pdxh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVI > prh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVI > exh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVI > drgh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVII > agedh_;
+  ::google::protobuf::RepeatedPtrField< ::comphealth::KVII > yearh_;
   friend void  protobuf_AddDesc_pstat_2eproto();
   friend void protobuf_AssignDesc_pstat_2eproto();
   friend void protobuf_ShutdownFile_pstat_2eproto();
@@ -521,6 +630,105 @@ class VisitDeltaHist : public ::google::protobuf::Message {
 
   void InitAsDefaultInstance();
   static VisitDeltaHist* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class EdgeHist : public ::google::protobuf::Message {
+ public:
+  EdgeHist();
+  virtual ~EdgeHist();
+
+  EdgeHist(const EdgeHist& from);
+
+  inline EdgeHist& operator=(const EdgeHist& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const EdgeHist& default_instance();
+
+  void Swap(EdgeHist* other);
+
+  // implements Message ----------------------------------------------
+
+  EdgeHist* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const EdgeHist& from);
+  void MergeFrom(const EdgeHist& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required .comphealth.ETYPE initial = 1;
+  inline bool has_initial() const;
+  inline void clear_initial();
+  static const int kInitialFieldNumber = 1;
+  inline ::comphealth::ETYPE initial() const;
+  inline void set_initial(::comphealth::ETYPE value);
+
+  // required .comphealth.ETYPE sub = 2;
+  inline bool has_sub() const;
+  inline void clear_sub();
+  static const int kSubFieldNumber = 2;
+  inline ::comphealth::ETYPE sub() const;
+  inline void set_sub(::comphealth::ETYPE value);
+
+  // required int32 v = 4;
+  inline bool has_v() const;
+  inline void clear_v();
+  static const int kVFieldNumber = 4;
+  inline ::google::protobuf::int32 v() const;
+  inline void set_v(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:comphealth.EdgeHist)
+ private:
+  inline void set_has_initial();
+  inline void clear_has_initial();
+  inline void set_has_sub();
+  inline void clear_has_sub();
+  inline void set_has_v();
+  inline void clear_has_v();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  int initial_;
+  int sub_;
+  ::google::protobuf::int32 v_;
+  friend void  protobuf_AddDesc_pstat_2eproto();
+  friend void protobuf_AssignDesc_pstat_2eproto();
+  friend void protobuf_ShutdownFile_pstat_2eproto();
+
+  void InitAsDefaultInstance();
+  static EdgeHist* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -2615,327 +2823,15 @@ inline void PAGG::set_allocated_dataset(::std::string* dataset) {
   // @@protoc_insertion_point(field_set_allocated:comphealth.PAGG.dataset)
 }
 
-// required bool linked = 3;
-inline bool PAGG::has_linked() const {
+// required .comphealth.Policy policy = 3;
+inline bool PAGG::has_policy() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }
-inline void PAGG::set_has_linked() {
+inline void PAGG::set_has_policy() {
   _has_bits_[0] |= 0x00000004u;
 }
-inline void PAGG::clear_has_linked() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-inline void PAGG::clear_linked() {
-  linked_ = false;
-  clear_has_linked();
-}
-inline bool PAGG::linked() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.linked)
-  return linked_;
-}
-inline void PAGG::set_linked(bool value) {
-  set_has_linked();
-  linked_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.linked)
-}
-
-// required bool unlinked = 4;
-inline bool PAGG::has_unlinked() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-inline void PAGG::set_has_unlinked() {
-  _has_bits_[0] |= 0x00000008u;
-}
-inline void PAGG::clear_has_unlinked() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-inline void PAGG::clear_unlinked() {
-  unlinked_ = false;
-  clear_has_unlinked();
-}
-inline bool PAGG::unlinked() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.unlinked)
-  return unlinked_;
-}
-inline void PAGG::set_unlinked(bool value) {
-  set_has_unlinked();
-  unlinked_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.unlinked)
-}
-
-// required int32 patient_count = 6;
-inline bool PAGG::has_patient_count() const {
-  return (_has_bits_[0] & 0x00000010u) != 0;
-}
-inline void PAGG::set_has_patient_count() {
-  _has_bits_[0] |= 0x00000010u;
-}
-inline void PAGG::clear_has_patient_count() {
-  _has_bits_[0] &= ~0x00000010u;
-}
-inline void PAGG::clear_patient_count() {
-  patient_count_ = 0;
-  clear_has_patient_count();
-}
-inline ::google::protobuf::int32 PAGG::patient_count() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.patient_count)
-  return patient_count_;
-}
-inline void PAGG::set_patient_count(::google::protobuf::int32 value) {
-  set_has_patient_count();
-  patient_count_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.patient_count)
-}
-
-// required int32 visit_count = 7;
-inline bool PAGG::has_visit_count() const {
-  return (_has_bits_[0] & 0x00000020u) != 0;
-}
-inline void PAGG::set_has_visit_count() {
-  _has_bits_[0] |= 0x00000020u;
-}
-inline void PAGG::clear_has_visit_count() {
-  _has_bits_[0] &= ~0x00000020u;
-}
-inline void PAGG::clear_visit_count() {
-  visit_count_ = 0;
-  clear_has_visit_count();
-}
-inline ::google::protobuf::int32 PAGG::visit_count() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.visit_count)
-  return visit_count_;
-}
-inline void PAGG::set_visit_count(::google::protobuf::int32 value) {
-  set_has_visit_count();
-  visit_count_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.visit_count)
-}
-
-// required int32 linked_count = 8;
-inline bool PAGG::has_linked_count() const {
-  return (_has_bits_[0] & 0x00000040u) != 0;
-}
-inline void PAGG::set_has_linked_count() {
-  _has_bits_[0] |= 0x00000040u;
-}
-inline void PAGG::clear_has_linked_count() {
-  _has_bits_[0] &= ~0x00000040u;
-}
-inline void PAGG::clear_linked_count() {
-  linked_count_ = 0;
-  clear_has_linked_count();
-}
-inline ::google::protobuf::int32 PAGG::linked_count() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.linked_count)
-  return linked_count_;
-}
-inline void PAGG::set_linked_count(::google::protobuf::int32 value) {
-  set_has_linked_count();
-  linked_count_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.linked_count)
-}
-
-// required int32 unlinked_count = 9;
-inline bool PAGG::has_unlinked_count() const {
-  return (_has_bits_[0] & 0x00000080u) != 0;
-}
-inline void PAGG::set_has_unlinked_count() {
-  _has_bits_[0] |= 0x00000080u;
-}
-inline void PAGG::clear_has_unlinked_count() {
-  _has_bits_[0] &= ~0x00000080u;
-}
-inline void PAGG::clear_unlinked_count() {
-  unlinked_count_ = 0;
-  clear_has_unlinked_count();
-}
-inline ::google::protobuf::int32 PAGG::unlinked_count() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.unlinked_count)
-  return unlinked_count_;
-}
-inline void PAGG::set_unlinked_count(::google::protobuf::int32 value) {
-  set_has_unlinked_count();
-  unlinked_count_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.unlinked_count)
-}
-
-// repeated .comphealth.PSubsets subsets = 10;
-inline int PAGG::subsets_size() const {
-  return subsets_.size();
-}
-inline void PAGG::clear_subsets() {
-  subsets_.Clear();
-}
-inline const ::comphealth::PSubsets& PAGG::subsets(int index) const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.subsets)
-  return subsets_.Get(index);
-}
-inline ::comphealth::PSubsets* PAGG::mutable_subsets(int index) {
-  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.subsets)
-  return subsets_.Mutable(index);
-}
-inline ::comphealth::PSubsets* PAGG::add_subsets() {
-  // @@protoc_insertion_point(field_add:comphealth.PAGG.subsets)
-  return subsets_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::comphealth::PSubsets >&
-PAGG::subsets() const {
-  // @@protoc_insertion_point(field_list:comphealth.PAGG.subsets)
-  return subsets_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::comphealth::PSubsets >*
-PAGG::mutable_subsets() {
-  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.subsets)
-  return &subsets_;
-}
-
-// repeated .comphealth.VisitDeltaHist delta_hist = 11;
-inline int PAGG::delta_hist_size() const {
-  return delta_hist_.size();
-}
-inline void PAGG::clear_delta_hist() {
-  delta_hist_.Clear();
-}
-inline const ::comphealth::VisitDeltaHist& PAGG::delta_hist(int index) const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.delta_hist)
-  return delta_hist_.Get(index);
-}
-inline ::comphealth::VisitDeltaHist* PAGG::mutable_delta_hist(int index) {
-  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.delta_hist)
-  return delta_hist_.Mutable(index);
-}
-inline ::comphealth::VisitDeltaHist* PAGG::add_delta_hist() {
-  // @@protoc_insertion_point(field_add:comphealth.PAGG.delta_hist)
-  return delta_hist_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
-PAGG::delta_hist() const {
-  // @@protoc_insertion_point(field_list:comphealth.PAGG.delta_hist)
-  return delta_hist_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
-PAGG::mutable_delta_hist() {
-  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.delta_hist)
-  return &delta_hist_;
-}
-
-// repeated .comphealth.VisitDeltaHist delta_error_hist = 13;
-inline int PAGG::delta_error_hist_size() const {
-  return delta_error_hist_.size();
-}
-inline void PAGG::clear_delta_error_hist() {
-  delta_error_hist_.Clear();
-}
-inline const ::comphealth::VisitDeltaHist& PAGG::delta_error_hist(int index) const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.delta_error_hist)
-  return delta_error_hist_.Get(index);
-}
-inline ::comphealth::VisitDeltaHist* PAGG::mutable_delta_error_hist(int index) {
-  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.delta_error_hist)
-  return delta_error_hist_.Mutable(index);
-}
-inline ::comphealth::VisitDeltaHist* PAGG::add_delta_error_hist() {
-  // @@protoc_insertion_point(field_add:comphealth.PAGG.delta_error_hist)
-  return delta_error_hist_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
-PAGG::delta_error_hist() const {
-  // @@protoc_insertion_point(field_list:comphealth.PAGG.delta_error_hist)
-  return delta_error_hist_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
-PAGG::mutable_delta_error_hist() {
-  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.delta_error_hist)
-  return &delta_error_hist_;
-}
-
-// repeated .comphealth.EtypeCountHist count_hist = 12;
-inline int PAGG::count_hist_size() const {
-  return count_hist_.size();
-}
-inline void PAGG::clear_count_hist() {
-  count_hist_.Clear();
-}
-inline const ::comphealth::EtypeCountHist& PAGG::count_hist(int index) const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.count_hist)
-  return count_hist_.Get(index);
-}
-inline ::comphealth::EtypeCountHist* PAGG::mutable_count_hist(int index) {
-  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.count_hist)
-  return count_hist_.Mutable(index);
-}
-inline ::comphealth::EtypeCountHist* PAGG::add_count_hist() {
-  // @@protoc_insertion_point(field_add:comphealth.PAGG.count_hist)
-  return count_hist_.Add();
-}
-inline const ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeCountHist >&
-PAGG::count_hist() const {
-  // @@protoc_insertion_point(field_list:comphealth.PAGG.count_hist)
-  return count_hist_;
-}
-inline ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeCountHist >*
-PAGG::mutable_count_hist() {
-  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.count_hist)
-  return &count_hist_;
-}
-
-// optional int32 edge_count = 14;
-inline bool PAGG::has_edge_count() const {
-  return (_has_bits_[0] & 0x00001000u) != 0;
-}
-inline void PAGG::set_has_edge_count() {
-  _has_bits_[0] |= 0x00001000u;
-}
-inline void PAGG::clear_has_edge_count() {
-  _has_bits_[0] &= ~0x00001000u;
-}
-inline void PAGG::clear_edge_count() {
-  edge_count_ = 0;
-  clear_has_edge_count();
-}
-inline ::google::protobuf::int32 PAGG::edge_count() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.edge_count)
-  return edge_count_;
-}
-inline void PAGG::set_edge_count(::google::protobuf::int32 value) {
-  set_has_edge_count();
-  edge_count_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.edge_count)
-}
-
-// optional int32 negative_delta_count = 15;
-inline bool PAGG::has_negative_delta_count() const {
-  return (_has_bits_[0] & 0x00002000u) != 0;
-}
-inline void PAGG::set_has_negative_delta_count() {
-  _has_bits_[0] |= 0x00002000u;
-}
-inline void PAGG::clear_has_negative_delta_count() {
-  _has_bits_[0] &= ~0x00002000u;
-}
-inline void PAGG::clear_negative_delta_count() {
-  negative_delta_count_ = 0;
-  clear_has_negative_delta_count();
-}
-inline ::google::protobuf::int32 PAGG::negative_delta_count() const {
-  // @@protoc_insertion_point(field_get:comphealth.PAGG.negative_delta_count)
-  return negative_delta_count_;
-}
-inline void PAGG::set_negative_delta_count(::google::protobuf::int32 value) {
-  set_has_negative_delta_count();
-  negative_delta_count_ = value;
-  // @@protoc_insertion_point(field_set:comphealth.PAGG.negative_delta_count)
-}
-
-// required .comphealth.Policy policy = 16;
-inline bool PAGG::has_policy() const {
-  return (_has_bits_[0] & 0x00004000u) != 0;
-}
-inline void PAGG::set_has_policy() {
-  _has_bits_[0] |= 0x00004000u;
-}
 inline void PAGG::clear_has_policy() {
-  _has_bits_[0] &= ~0x00004000u;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void PAGG::clear_policy() {
   if (policy_ != NULL) policy_->::comphealth::Policy::Clear();
@@ -2966,6 +2862,575 @@ inline void PAGG::set_allocated_policy(::comphealth::Policy* policy) {
     clear_has_policy();
   }
   // @@protoc_insertion_point(field_set_allocated:comphealth.PAGG.policy)
+}
+
+// required int32 patient_count = 4;
+inline bool PAGG::has_patient_count() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void PAGG::set_has_patient_count() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void PAGG::clear_has_patient_count() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void PAGG::clear_patient_count() {
+  patient_count_ = 0;
+  clear_has_patient_count();
+}
+inline ::google::protobuf::int32 PAGG::patient_count() const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.patient_count)
+  return patient_count_;
+}
+inline void PAGG::set_patient_count(::google::protobuf::int32 value) {
+  set_has_patient_count();
+  patient_count_ = value;
+  // @@protoc_insertion_point(field_set:comphealth.PAGG.patient_count)
+}
+
+// optional int32 negative_delta_count = 9;
+inline bool PAGG::has_negative_delta_count() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void PAGG::set_has_negative_delta_count() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void PAGG::clear_has_negative_delta_count() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void PAGG::clear_negative_delta_count() {
+  negative_delta_count_ = 0;
+  clear_has_negative_delta_count();
+}
+inline ::google::protobuf::int32 PAGG::negative_delta_count() const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.negative_delta_count)
+  return negative_delta_count_;
+}
+inline void PAGG::set_negative_delta_count(::google::protobuf::int32 value) {
+  set_has_negative_delta_count();
+  negative_delta_count_ = value;
+  // @@protoc_insertion_point(field_set:comphealth.PAGG.negative_delta_count)
+}
+
+// repeated .comphealth.EtypeHist vtypeh = 6;
+inline int PAGG::vtypeh_size() const {
+  return vtypeh_.size();
+}
+inline void PAGG::clear_vtypeh() {
+  vtypeh_.Clear();
+}
+inline const ::comphealth::EtypeHist& PAGG::vtypeh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.vtypeh)
+  return vtypeh_.Get(index);
+}
+inline ::comphealth::EtypeHist* PAGG::mutable_vtypeh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.vtypeh)
+  return vtypeh_.Mutable(index);
+}
+inline ::comphealth::EtypeHist* PAGG::add_vtypeh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.vtypeh)
+  return vtypeh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeHist >&
+PAGG::vtypeh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.vtypeh)
+  return vtypeh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::EtypeHist >*
+PAGG::mutable_vtypeh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.vtypeh)
+  return &vtypeh_;
+}
+
+// repeated .comphealth.EdgeHist edgeh = 24;
+inline int PAGG::edgeh_size() const {
+  return edgeh_.size();
+}
+inline void PAGG::clear_edgeh() {
+  edgeh_.Clear();
+}
+inline const ::comphealth::EdgeHist& PAGG::edgeh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.edgeh)
+  return edgeh_.Get(index);
+}
+inline ::comphealth::EdgeHist* PAGG::mutable_edgeh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.edgeh)
+  return edgeh_.Mutable(index);
+}
+inline ::comphealth::EdgeHist* PAGG::add_edgeh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.edgeh)
+  return edgeh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::EdgeHist >&
+PAGG::edgeh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.edgeh)
+  return edgeh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::EdgeHist >*
+PAGG::mutable_edgeh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.edgeh)
+  return &edgeh_;
+}
+
+// repeated .comphealth.VisitDeltaHist deltah = 7;
+inline int PAGG::deltah_size() const {
+  return deltah_.size();
+}
+inline void PAGG::clear_deltah() {
+  deltah_.Clear();
+}
+inline const ::comphealth::VisitDeltaHist& PAGG::deltah(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.deltah)
+  return deltah_.Get(index);
+}
+inline ::comphealth::VisitDeltaHist* PAGG::mutable_deltah(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.deltah)
+  return deltah_.Mutable(index);
+}
+inline ::comphealth::VisitDeltaHist* PAGG::add_deltah() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.deltah)
+  return deltah_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
+PAGG::deltah() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.deltah)
+  return deltah_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
+PAGG::mutable_deltah() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.deltah)
+  return &deltah_;
+}
+
+// repeated .comphealth.VisitDeltaHist detaerrorh = 8;
+inline int PAGG::detaerrorh_size() const {
+  return detaerrorh_.size();
+}
+inline void PAGG::clear_detaerrorh() {
+  detaerrorh_.Clear();
+}
+inline const ::comphealth::VisitDeltaHist& PAGG::detaerrorh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.detaerrorh)
+  return detaerrorh_.Get(index);
+}
+inline ::comphealth::VisitDeltaHist* PAGG::mutable_detaerrorh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.detaerrorh)
+  return detaerrorh_.Mutable(index);
+}
+inline ::comphealth::VisitDeltaHist* PAGG::add_detaerrorh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.detaerrorh)
+  return detaerrorh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >&
+PAGG::detaerrorh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.detaerrorh)
+  return detaerrorh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::VisitDeltaHist >*
+PAGG::mutable_detaerrorh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.detaerrorh)
+  return &detaerrorh_;
+}
+
+// optional .comphealth.IntHist ageh = 11;
+inline bool PAGG::has_ageh() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void PAGG::set_has_ageh() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void PAGG::clear_has_ageh() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void PAGG::clear_ageh() {
+  if (ageh_ != NULL) ageh_->::comphealth::IntHist::Clear();
+  clear_has_ageh();
+}
+inline const ::comphealth::IntHist& PAGG::ageh() const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.ageh)
+  return ageh_ != NULL ? *ageh_ : *default_instance_->ageh_;
+}
+inline ::comphealth::IntHist* PAGG::mutable_ageh() {
+  set_has_ageh();
+  if (ageh_ == NULL) ageh_ = new ::comphealth::IntHist;
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.ageh)
+  return ageh_;
+}
+inline ::comphealth::IntHist* PAGG::release_ageh() {
+  clear_has_ageh();
+  ::comphealth::IntHist* temp = ageh_;
+  ageh_ = NULL;
+  return temp;
+}
+inline void PAGG::set_allocated_ageh(::comphealth::IntHist* ageh) {
+  delete ageh_;
+  ageh_ = ageh;
+  if (ageh) {
+    set_has_ageh();
+  } else {
+    clear_has_ageh();
+  }
+  // @@protoc_insertion_point(field_set_allocated:comphealth.PAGG.ageh)
+}
+
+// repeated .comphealth.SexHist sexh = 12;
+inline int PAGG::sexh_size() const {
+  return sexh_.size();
+}
+inline void PAGG::clear_sexh() {
+  sexh_.Clear();
+}
+inline const ::comphealth::SexHist& PAGG::sexh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.sexh)
+  return sexh_.Get(index);
+}
+inline ::comphealth::SexHist* PAGG::mutable_sexh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.sexh)
+  return sexh_.Mutable(index);
+}
+inline ::comphealth::SexHist* PAGG::add_sexh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.sexh)
+  return sexh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::SexHist >&
+PAGG::sexh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.sexh)
+  return sexh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::SexHist >*
+PAGG::mutable_sexh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.sexh)
+  return &sexh_;
+}
+
+// repeated .comphealth.RaceHist raceh = 13;
+inline int PAGG::raceh_size() const {
+  return raceh_.size();
+}
+inline void PAGG::clear_raceh() {
+  raceh_.Clear();
+}
+inline const ::comphealth::RaceHist& PAGG::raceh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.raceh)
+  return raceh_.Get(index);
+}
+inline ::comphealth::RaceHist* PAGG::mutable_raceh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.raceh)
+  return raceh_.Mutable(index);
+}
+inline ::comphealth::RaceHist* PAGG::add_raceh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.raceh)
+  return raceh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::RaceHist >&
+PAGG::raceh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.raceh)
+  return raceh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::RaceHist >*
+PAGG::mutable_raceh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.raceh)
+  return &raceh_;
+}
+
+// repeated .comphealth.DeathHist deathh = 25;
+inline int PAGG::deathh_size() const {
+  return deathh_.size();
+}
+inline void PAGG::clear_deathh() {
+  deathh_.Clear();
+}
+inline const ::comphealth::DeathHist& PAGG::deathh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.deathh)
+  return deathh_.Get(index);
+}
+inline ::comphealth::DeathHist* PAGG::mutable_deathh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.deathh)
+  return deathh_.Mutable(index);
+}
+inline ::comphealth::DeathHist* PAGG::add_deathh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.deathh)
+  return deathh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::DeathHist >&
+PAGG::deathh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.deathh)
+  return deathh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::DeathHist >*
+PAGG::mutable_deathh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.deathh)
+  return &deathh_;
+}
+
+// repeated .comphealth.PayerHist payerh = 14;
+inline int PAGG::payerh_size() const {
+  return payerh_.size();
+}
+inline void PAGG::clear_payerh() {
+  payerh_.Clear();
+}
+inline const ::comphealth::PayerHist& PAGG::payerh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.payerh)
+  return payerh_.Get(index);
+}
+inline ::comphealth::PayerHist* PAGG::mutable_payerh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.payerh)
+  return payerh_.Mutable(index);
+}
+inline ::comphealth::PayerHist* PAGG::add_payerh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.payerh)
+  return payerh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::PayerHist >&
+PAGG::payerh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.payerh)
+  return payerh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::PayerHist >*
+PAGG::mutable_payerh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.payerh)
+  return &payerh_;
+}
+
+// repeated .comphealth.DispositionHist disph = 23;
+inline int PAGG::disph_size() const {
+  return disph_.size();
+}
+inline void PAGG::clear_disph() {
+  disph_.Clear();
+}
+inline const ::comphealth::DispositionHist& PAGG::disph(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.disph)
+  return disph_.Get(index);
+}
+inline ::comphealth::DispositionHist* PAGG::mutable_disph(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.disph)
+  return disph_.Mutable(index);
+}
+inline ::comphealth::DispositionHist* PAGG::add_disph() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.disph)
+  return disph_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::DispositionHist >&
+PAGG::disph() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.disph)
+  return disph_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::DispositionHist >*
+PAGG::mutable_disph() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.disph)
+  return &disph_;
+}
+
+// repeated .comphealth.KVI dxh = 15;
+inline int PAGG::dxh_size() const {
+  return dxh_.size();
+}
+inline void PAGG::clear_dxh() {
+  dxh_.Clear();
+}
+inline const ::comphealth::KVI& PAGG::dxh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.dxh)
+  return dxh_.Get(index);
+}
+inline ::comphealth::KVI* PAGG::mutable_dxh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.dxh)
+  return dxh_.Mutable(index);
+}
+inline ::comphealth::KVI* PAGG::add_dxh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.dxh)
+  return dxh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+PAGG::dxh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.dxh)
+  return dxh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+PAGG::mutable_dxh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.dxh)
+  return &dxh_;
+}
+
+// repeated .comphealth.KVI pdxh = 16;
+inline int PAGG::pdxh_size() const {
+  return pdxh_.size();
+}
+inline void PAGG::clear_pdxh() {
+  pdxh_.Clear();
+}
+inline const ::comphealth::KVI& PAGG::pdxh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.pdxh)
+  return pdxh_.Get(index);
+}
+inline ::comphealth::KVI* PAGG::mutable_pdxh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.pdxh)
+  return pdxh_.Mutable(index);
+}
+inline ::comphealth::KVI* PAGG::add_pdxh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.pdxh)
+  return pdxh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+PAGG::pdxh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.pdxh)
+  return pdxh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+PAGG::mutable_pdxh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.pdxh)
+  return &pdxh_;
+}
+
+// repeated .comphealth.KVI prh = 17;
+inline int PAGG::prh_size() const {
+  return prh_.size();
+}
+inline void PAGG::clear_prh() {
+  prh_.Clear();
+}
+inline const ::comphealth::KVI& PAGG::prh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.prh)
+  return prh_.Get(index);
+}
+inline ::comphealth::KVI* PAGG::mutable_prh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.prh)
+  return prh_.Mutable(index);
+}
+inline ::comphealth::KVI* PAGG::add_prh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.prh)
+  return prh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+PAGG::prh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.prh)
+  return prh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+PAGG::mutable_prh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.prh)
+  return &prh_;
+}
+
+// repeated .comphealth.KVI exh = 18;
+inline int PAGG::exh_size() const {
+  return exh_.size();
+}
+inline void PAGG::clear_exh() {
+  exh_.Clear();
+}
+inline const ::comphealth::KVI& PAGG::exh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.exh)
+  return exh_.Get(index);
+}
+inline ::comphealth::KVI* PAGG::mutable_exh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.exh)
+  return exh_.Mutable(index);
+}
+inline ::comphealth::KVI* PAGG::add_exh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.exh)
+  return exh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+PAGG::exh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.exh)
+  return exh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+PAGG::mutable_exh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.exh)
+  return &exh_;
+}
+
+// repeated .comphealth.KVI drgh = 19;
+inline int PAGG::drgh_size() const {
+  return drgh_.size();
+}
+inline void PAGG::clear_drgh() {
+  drgh_.Clear();
+}
+inline const ::comphealth::KVI& PAGG::drgh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.drgh)
+  return drgh_.Get(index);
+}
+inline ::comphealth::KVI* PAGG::mutable_drgh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.drgh)
+  return drgh_.Mutable(index);
+}
+inline ::comphealth::KVI* PAGG::add_drgh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.drgh)
+  return drgh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >&
+PAGG::drgh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.drgh)
+  return drgh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVI >*
+PAGG::mutable_drgh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.drgh)
+  return &drgh_;
+}
+
+// repeated .comphealth.KVII agedh = 21;
+inline int PAGG::agedh_size() const {
+  return agedh_.size();
+}
+inline void PAGG::clear_agedh() {
+  agedh_.Clear();
+}
+inline const ::comphealth::KVII& PAGG::agedh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.agedh)
+  return agedh_.Get(index);
+}
+inline ::comphealth::KVII* PAGG::mutable_agedh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.agedh)
+  return agedh_.Mutable(index);
+}
+inline ::comphealth::KVII* PAGG::add_agedh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.agedh)
+  return agedh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >&
+PAGG::agedh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.agedh)
+  return agedh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >*
+PAGG::mutable_agedh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.agedh)
+  return &agedh_;
+}
+
+// repeated .comphealth.KVII yearh = 22;
+inline int PAGG::yearh_size() const {
+  return yearh_.size();
+}
+inline void PAGG::clear_yearh() {
+  yearh_.Clear();
+}
+inline const ::comphealth::KVII& PAGG::yearh(int index) const {
+  // @@protoc_insertion_point(field_get:comphealth.PAGG.yearh)
+  return yearh_.Get(index);
+}
+inline ::comphealth::KVII* PAGG::mutable_yearh(int index) {
+  // @@protoc_insertion_point(field_mutable:comphealth.PAGG.yearh)
+  return yearh_.Mutable(index);
+}
+inline ::comphealth::KVII* PAGG::add_yearh() {
+  // @@protoc_insertion_point(field_add:comphealth.PAGG.yearh)
+  return yearh_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >&
+PAGG::yearh() const {
+  // @@protoc_insertion_point(field_list:comphealth.PAGG.yearh)
+  return yearh_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::comphealth::KVII >*
+PAGG::mutable_yearh() {
+  // @@protoc_insertion_point(field_mutable_list:comphealth.PAGG.yearh)
+  return &yearh_;
 }
 
 // -------------------------------------------------------------------
@@ -3238,6 +3703,84 @@ inline void VisitDeltaHist::set_v(::google::protobuf::int32 value) {
   set_has_v();
   v_ = value;
   // @@protoc_insertion_point(field_set:comphealth.VisitDeltaHist.v)
+}
+
+// -------------------------------------------------------------------
+
+// EdgeHist
+
+// required .comphealth.ETYPE initial = 1;
+inline bool EdgeHist::has_initial() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void EdgeHist::set_has_initial() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void EdgeHist::clear_has_initial() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void EdgeHist::clear_initial() {
+  initial_ = 0;
+  clear_has_initial();
+}
+inline ::comphealth::ETYPE EdgeHist::initial() const {
+  // @@protoc_insertion_point(field_get:comphealth.EdgeHist.initial)
+  return static_cast< ::comphealth::ETYPE >(initial_);
+}
+inline void EdgeHist::set_initial(::comphealth::ETYPE value) {
+  assert(::comphealth::ETYPE_IsValid(value));
+  set_has_initial();
+  initial_ = value;
+  // @@protoc_insertion_point(field_set:comphealth.EdgeHist.initial)
+}
+
+// required .comphealth.ETYPE sub = 2;
+inline bool EdgeHist::has_sub() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void EdgeHist::set_has_sub() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void EdgeHist::clear_has_sub() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void EdgeHist::clear_sub() {
+  sub_ = 0;
+  clear_has_sub();
+}
+inline ::comphealth::ETYPE EdgeHist::sub() const {
+  // @@protoc_insertion_point(field_get:comphealth.EdgeHist.sub)
+  return static_cast< ::comphealth::ETYPE >(sub_);
+}
+inline void EdgeHist::set_sub(::comphealth::ETYPE value) {
+  assert(::comphealth::ETYPE_IsValid(value));
+  set_has_sub();
+  sub_ = value;
+  // @@protoc_insertion_point(field_set:comphealth.EdgeHist.sub)
+}
+
+// required int32 v = 4;
+inline bool EdgeHist::has_v() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void EdgeHist::set_has_v() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void EdgeHist::clear_has_v() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void EdgeHist::clear_v() {
+  v_ = 0;
+  clear_has_v();
+}
+inline ::google::protobuf::int32 EdgeHist::v() const {
+  // @@protoc_insertion_point(field_get:comphealth.EdgeHist.v)
+  return v_;
+}
+inline void EdgeHist::set_v(::google::protobuf::int32 value) {
+  set_has_v();
+  v_ = value;
+  // @@protoc_insertion_point(field_set:comphealth.EdgeHist.v)
 }
 
 // -------------------------------------------------------------------

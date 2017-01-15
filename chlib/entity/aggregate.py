@@ -214,7 +214,7 @@ def subset():
     return Aggregate()
 
 class Policy(object):
-    def __init__(self,base=20,min_count=60,min_hospital=5,min_subset=200,s=None):
+    def __init__(self,base=20,min_count=20,min_hospital=5,min_subset=200,s=None):
         self.obj = stat.Policy()
         if s:
             self.obj.min_count,self.obj.min_hospital,self.obj.base,self.obj.min_subset = eval(s)
@@ -261,20 +261,29 @@ def process_exclusions(ex_counter,policy):
 
 
 
-class PAggregate(object):
+class PatientAggregate(object):
     """
     required string key = 1;
     optional string dataset = 2;
-    required bool linked = 3;
-    required bool unlinked = 4;
-    required int32 patient_count = 6;
-    required int32 visit_count = 7;
-    required int32 linked_count = 8;
-    required int32 unlinked_count = 9;
-    repeated PSubsets subsets = 10;
-    repeated VisitDeltaHist delta_hist = 11;
-    repeated VisitDeltaHist delta_error_hist = 11;
-    repeated EtypeCountHist count_hist = 12;
+    required Policy policy = 3;
+    required int32 patient_count = 4;
+    required int32 visit_count = 5;
+    repeated EtypeCountHist count_hist = 6;
+    repeated VisitDeltaHist delta_hist = 7;
+    repeated VisitDeltaHist delta_error_hist = 8;
+    optional int32 negative_delta_count = 9;
+    optional IntHist ageh = 11;
+    repeated SexHist sexh = 12;
+    repeated RaceHist raceh = 13;
+    repeated PayerHist payerh = 14;
+    repeated DXI dxh = 15;
+    repeated KVI primary_prh = 16;
+    repeated KVI prh = 17;
+    repeated KVI exh = 18;
+    repeated KVI drgh = 19;
+    repeated PZipHist pziph = 20;
+    repeated KVII agedh = 21;
+    repeated KVII yearh = 22;
     """
     def __init__(self):
         self.obj = stat.PAGG()
@@ -285,152 +294,242 @@ class PAggregate(object):
         self.subsets = defaultdict(subset)
         self.policy = None
 
-    def init_compute(self,key,dataset,policy,linked=True,unlinked=True):
+    def init_compute(self,key,dataset,policy):
         self.compute_mode = True
-        self.linked_count = 0
-        self.unlinked_count = 0
         self.patient_count = 0
-        self.visit_count = 0
-        self.edge_count = 0
         self.negative_delta_count = 0
         self.obj.key = key
         self.obj.dataset = dataset
-        self.obj.linked = linked
-        self.obj.unlinked = unlinked
         self.obj.policy.CopyFrom(policy.obj)
         self.base = policy.base
         self.min_count = policy.min_count
         self.min_hospital = policy.min_hospital
         self.vtype_hist = defaultdict(int)
+        self.etype_hist = defaultdict(int)
         self.delta_hist = defaultdict(int)
         self.delta_error_hist = defaultdict(int)
         self.policy = policy
-        for k,v in enums.ETYPE.items():
-            if self.obj.linked:
-                self.subsets[(True,v)].init_compute(key,"linked visit type "+k+" "+dataset,policy)
-            if self.obj.unlinked:
-                self.subsets[(False,v)].init_compute(key,"unlinked visit type "+k+" "+dataset,policy)
+        self.counter = defaultdict(int)
+        self.hospital_counter = defaultdict(set)
+        self.age_hist = defaultdict(int)
+        self.dx_hist = defaultdict(int)
+        self.pr_hist = defaultdict(int)
+        self.ex_hist = defaultdict(int)
+        self.disp_hist = defaultdict(int)
+        self.race_hist = defaultdict(int)
+        self.payer_hist = defaultdict(int)
+        self.sex_hist = defaultdict(int)
+        self.aged_hist = defaultdict(int)
+        self.death_hist = defaultdict(int)
 
     def add_patient(self,p):
-        if p.patient_key and not p.patient_key.startswith('-'):
-            linked = True
-            self.patient_count += 1
-            self.linked_count += len(p.visits)
-            self.visit_count += len(p.visits)
+        if not p.linked:
+            raise NotImplementedError
         else:
-            linked = False
-            self.unlinked_count += 1
-            self.visit_count += 1
-        tempcounter = defaultdict(int)
-        for i,v in enumerate(p.visits):
-            tempcounter[v.vtype] += 1
-            self.subsets[(linked,v.vtype)].add(v)
-            if i+1 != len(p.visits):
-                self.edge_count += 1
-                n = p.visits[i+1]
-                delta = n.day - (v.day + v.los)
-                if delta>=0 :
-                    self.delta_hist[(v.vtype,n.vtype,delta)] += 1
-                else:
-                    self.negative_delta_count += 1
-                    if delta == -1:
-                        self.delta_error_hist[(v.vtype,n.vtype,-1)] += 1
+            self.patient_count += 1
+            payer = set()
+            race = set()
+            dxs = set()
+            prs = set()
+            exs = set()
+            dispositions = set()
+            age = None
+            sex = None
+            dead = False
+            for i,v in enumerate(p.visits):
+                self.vtype_hist[v.vtype] += 1
+                if i == 0:
+                    age = v.age
+                    sex = v.sex
+                if v.death == enums.DEAD:
+                    dead = True
+                payer.add(v.payer)
+                race.add(v.race)
+                dispositions.add(v.disposition)
+                for dx in v.dxs:
+                    dxs.add(dx)
+                for pr in v.prs:
+                    prs.add(pr.pcode)
+                for ex in v.dxs:
+                    exs.add(ex)
+                self.vtype_hist[v.vtype] += 1
+                if i+1 != len(p.visits):
+                    nextv = p.visits[i+1]
+                    delta = nextv.day - (v.day + v.los)
+                    self.etype_hist[(v.vtype,nextv.vtype)] += 1
+                    if delta>=0 :
+                        self.delta_hist[(v.vtype,nextv.vtype,delta)] += 1
                     else:
-                        self.delta_error_hist[(v.vtype,n.vtype,-2)] += 1
-        self.vtype_hist[(linked,tempcounter[enums.IP],tempcounter[enums.ED],tempcounter[enums.AS])] += 1
+                        self.negative_delta_count += 1
+            if dead:
+                self.death_hist[enums.DEAD] += 1
+            else:
+                self.death_hist[enums.ALIVE] += 1
+            self.age_hist[age] += 1
+            self.aged_hist[self.discrete_age(age)] += 1
+            self.sex_hist[sex] += 1
+            for r in race:
+                self.race_hist[r] += 1
+            for p in payer:
+                self.payer_hist[p] += 1
+            for r in race:
+                self.race_hist[r] += 1
+            for d in dxs:
+                self.dx_hist[d] += 1
+            for e in exs:
+                self.ex_hist[e] += 1
+            for p in prs:
+                self.pr_hist[p] += 1
+            for dh in dispositions:
+                self.disp_hist[dh] += 1
 
     def end_compute(self):
-        if self.visit_count > self.min_count:
-            self.obj.patient_count = self.patient_count
-            self.obj.linked_count = self.linked_count
-            self.obj.unlinked_count = self.unlinked_count
-            self.obj.visit_count = self.visit_count
-            self.obj.edge_count = self.edge_count
-            self.obj.negative_delta_count = self.negative_delta_count
-            for k,v in self.vtype_hist.iteritems():
-                if v >= self.min_count:
-                    temp = self.obj.count_hist.add()
-                    temp.linked = k[0]
-                    temp.ip = k[1]
-                    temp.ed = k[2]
-                    temp.asg = k[3]
+        if self.patient_count > self.min_count:
+            self.obj.patient_count = int(self.base*int(math.floor(self.patient_count/float(self.base)))) if self.patient_count > self.min_count else 0
+            self.obj.negative_delta_count = int(self.base*int(math.floor(self.negative_delta_count/float(self.base)))) if self.negative_delta_count > self.min_count else 0
+            for vt,v in self.vtype_hist.iteritems():
+                if v:
+                    temp = self.obj.vtypeh.add()
+                    temp.k = vt
+                    temp.v = v
+
+            for d,v in self.dx_hist.iteritems():
+                v = int(self.base * int(math.floor(v / float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.dxh.add()
+                    temp.k = d
+                    temp.v = v
+            for p,v in self.pr_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.prh.add()
+                    temp.k = p
+                    temp.v = v
+            for e,v in self.ex_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.exh.add()
+                    temp.k = e
+                    temp.v = v
+            for s,v in self.sex_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.sexh.add()
+                    temp.k = s
+                    temp.v = v
+            for r,v in self.race_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.raceh.add()
+                    temp.k = r
+                    temp.v = v
+            for p,v in self.payer_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.payerh.add()
+                    temp.k = p
+                    temp.v = v
+            for a,v in self.aged_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.agedh.add()
+                    temp.k = a
+                    temp.v = v
+            for d,v in self.death_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.deathh.add()
+                    temp.k = d
+                    temp.v = v
+            for dh,v in self.disp_hist.iteritems():
+                v = int(self.base*int(math.floor(v/float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.disph.add()
+                    temp.k = dh
                     temp.v = v
             for k,v in self.delta_hist.iteritems():
-                if v >= self.min_count:
-                    temp = self.obj.delta_hist.add()
+                v = int(self.base * int(math.floor(v / float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.deltah.add()
                     temp.initial = k[0]
                     temp.sub = k[1]
                     temp.delta = k[2]
+                    temp.v = v
+            for k,v in self.etype_hist.iteritems():
+                v = int(self.base * int(math.floor(v / float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.edgeh.add()
+                    temp.initial = k[0]
+                    temp.sub = k[1]
                     temp.v = v
             for k,v in self.delta_error_hist.iteritems():
-                if v >= self.min_count:
-                    temp = self.obj.delta_error_hist.add()
+                v = int(self.base * int(math.floor(v / float(self.base)))) if v > self.min_count else 0
+                if v:
+                    temp = self.obj.deltaerrorh.add()
                     temp.initial = k[0]
                     temp.sub = k[1]
                     temp.delta = k[2]
                     temp.v = v
-            for k,v in self.subsets.iteritems():
-                if v.end_compute():
-                    temp = self.obj.subsets.add()
-                    temp.linked = k[0]
-                    temp.vtype = k[1]
-                    temp.subset.CopyFrom(v.obj)
+            mean,median,fq,tq = compute_stats(self.age_hist)
+            self.obj.ageh.median = int(round(median))
+            self.obj.ageh.mean = round(mean,2)
+            self.obj.ageh.fq = int(round(fq))
+            self.obj.ageh.tq = int(round(tq))
+            for value,c in self.age_hist.iteritems():
+                if value >= 0 and c > self.min_count:
+                    temp = self.obj.ageh.h.add()
+                    temp.k = value
+                    temp.v = int(self.base*int(math.floor(c/float(self.base)))) if c > self.min_count else 0
             return True
         else:
             return False
 
-    def pause_compute(self):
-        data = {}
-        data['linked'] = self.obj.linked
-        data['unlinked'] = self.obj.unlinked
-        data['linked_count'] = self.linked_count
-        data['patient_count'] = self.patient_count
-        data['unlinked_count'] = self.unlinked_count
-        data['visit_count'] = self.visit_count
-        data['key'] = self.obj.key
-        data['dataset'] = self.obj.dataset
-        data['policy'] = repr(self.policy)
-        data['vtype_hist'] = self.vtype_hist
-        data['delta_hist'] = self.delta_hist
-        data['delta_error_hist'] = self.delta_error_hist
-        data['edge_count'] = self.edge_count
-        data['negative_delta_count'] = self.negative_delta_count
-        data['subsets'] = {}
-        for k,v in self.subsets.iteritems():
-            data['subsets'][repr(k)] = v.pause_compute()
-        return data
-
-
-
-    def resume_compute(self,data):
-        if self.policy is None and self.base is None and self.min_count is None and self.min_hospital is None:
-            self.policy = Policy(s=data['policy'])
-            self.init_compute(data['key'],data['dataset'],self.policy,data['linked'],data['unlinked'])
-        if self.policy == Policy(s=data['policy']):
-            self.linked_count += data['linked_count']
-            self.unlinked_count += data['unlinked_count']
-            self.patient_count += data['patient_count']
-            self.visit_count += data['visit_count']
-            self.edge_count += data['edge_count']
-            self.negative_delta_count += data['negative_delta_count']
-
-            for k,v in data['delta_hist'].iteritems():
-                self.delta_hist[k] += v
-            for k,v in data['delta_error_hist'].iteritems():
-                self.delta_error_hist[k] += v
-            for k,v in data['vtype_hist'].iteritems():
-                self.vtype_hist[k] += v
-            for k,v in data['subsets'].iteritems():
-                self.subsets[eval(k)].obj.policy.CopyFrom(self.policy.obj)
-                self.subsets[eval(k)].resume_compute(v)
-        else:
-            raise ValueError,str((self.obj.policy.base,data['base'],self.obj.min_count,data['min_count'],self.obj.min_hospital,data['min_hospital']))
+    def compute_stats(self,entries,allow_negatives = False):
+        expanded = []
+        numerator = 0.0
+        for k in sorted(entries.keys()):
+            if k >= 0 or allow_negatives:
+                v = entries[k]
+                expanded.extend([k]*v)
+                numerator += k*v
+        return numerator/float(len(expanded)),percentile(expanded, percent=0.5),percentile(expanded, percent=0.25),percentile(expanded, percent=0.75)
 
     def ParseFromString(self,s):
         self.obj.ParseFromString(s)
 
     def SerializeToString(self):
         return self.obj.SerializeToString()
+
+    def __str__(self):
+        return self.obj.__str__()
+
+    def __repr__(self):
+        return self.obj.SerializeToString()
+
+    def visualize(self, host='0.0.0.0', port=8111, prefix=""):
+        """
+        :param host: 127.0.0.1, localhost, etc.
+        :param port: 8000,8111 etc.
+        :param prefix: empty or local/ if using dev version
+        :return:
+        """
+        _, path = tempfile.mkstemp()
+        fh = open(path, 'w')
+        fh.write(self.__repr__())
+        fh.close()
+        return "http://{}:{}/{}aggregate_patients_viewer?q={}".format(host, port, prefix,
+                                                                    urllib.quote(base64.b64encode(path)))
+
+    def discrete_age(self, age):
+        return int(20 * math.floor(age / 20.0))
+
+
+    def age_plot(self):
+        """
+        Helper function for generating plots
+        :return:
+        """
+        return age_plot(self.obj)
 
 
 class Aggregate(object):

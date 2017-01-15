@@ -20,7 +20,7 @@ import pvisit_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='pstat.proto',
   package='comphealth',
-  serialized_pb=_b('\n\x0bpstat.proto\x12\ncomphealth\x1a\x0cpenums.proto\x1a\x0cpvisit.proto\"\xb3\x03\n\x04PAGG\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x61taset\x18\x02 \x01(\t\x12\x0e\n\x06linked\x18\x03 \x02(\x08\x12\x10\n\x08unlinked\x18\x04 \x02(\x08\x12\x15\n\rpatient_count\x18\x06 \x02(\x05\x12\x13\n\x0bvisit_count\x18\x07 \x02(\x05\x12\x14\n\x0clinked_count\x18\x08 \x02(\x05\x12\x16\n\x0eunlinked_count\x18\t \x02(\x05\x12%\n\x07subsets\x18\n \x03(\x0b\x32\x14.comphealth.PSubsets\x12.\n\ndelta_hist\x18\x0b \x03(\x0b\x32\x1a.comphealth.VisitDeltaHist\x12\x34\n\x10\x64\x65lta_error_hist\x18\r \x03(\x0b\x32\x1a.comphealth.VisitDeltaHist\x12.\n\ncount_hist\x18\x0c \x03(\x0b\x32\x1a.comphealth.EtypeCountHist\x12\x12\n\nedge_count\x18\x0e \x01(\x05\x12\x1c\n\x14negative_delta_count\x18\x0f \x01(\x05\x12\"\n\x06policy\x18\x10 \x02(\x0b\x32\x12.comphealth.Policy\"h\n\x08PSubsets\x12\x0e\n\x06linked\x18\x01 \x02(\x08\x12 \n\x05vtype\x18\x02 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\x1f\n\x06subset\x18\x03 \x02(\x0b\x32\x0f.comphealth.AGG\x12\t\n\x01k\x18\x04 \x01(\t\"n\n\x0eVisitDeltaHist\x12\"\n\x07initial\x18\x01 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\x1e\n\x03sub\x18\x02 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\r\n\x05\x64\x65lta\x18\x03 \x02(\x05\x12\t\n\x01v\x18\x04 \x02(\x05\"\xac\x06\n\x03\x41GG\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x13\n\x04mini\x18\x1a \x02(\x08:\x05\x66\x61lse\x12\x10\n\x05\x63ount\x18\x02 \x01(\x05:\x01\x30\x12\"\n\x06policy\x18! \x02(\x0b\x32\x12.comphealth.Policy\x12\x13\n\x0b\x63harges_num\x18\x1f \x01(\x03\x12\x13\n\x0b\x63harges_den\x18  \x01(\x03\x12!\n\x04\x61geh\x18\x03 \x01(\x0b\x32\x13.comphealth.IntHist\x12!\n\x04sexh\x18\x04 \x03(\x0b\x32\x13.comphealth.SexHist\x12#\n\x05raceh\x18\x05 \x03(\x0b\x32\x14.comphealth.RaceHist\x12\'\n\x07sourceh\x18\x06 \x03(\x0b\x32\x16.comphealth.SourceHist\x12*\n\x05\x64isph\x18\x07 \x03(\x0b\x32\x1b.comphealth.DispositionHist\x12%\n\x06payerh\x18\x08 \x03(\x0b\x32\x15.comphealth.PayerHist\x12%\n\x06\x64\x65\x61thh\x18\t \x03(\x0b\x32\x15.comphealth.DeathHist\x12\x1c\n\x03\x64xh\x18\n \x03(\x0b\x32\x0f.comphealth.DXI\x12$\n\x0bprimary_prh\x18\x0b \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1c\n\x03prh\x18\r \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1c\n\x03\x65xh\x18\x0e \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1d\n\x04\x64rgh\x18\x0f \x03(\x0b\x32\x0f.comphealth.KVI\x12!\n\x04losh\x18\x10 \x01(\x0b\x32\x13.comphealth.IntHist\x12!\n\x04\x64nrh\x18\x12 \x03(\x0b\x32\x13.comphealth.DNRHist\x12#\n\x05pziph\x18\x13 \x03(\x0b\x32\x14.comphealth.PZipHist\x12\x1f\n\x05\x61gedh\x18\x15 \x03(\x0b\x32\x10.comphealth.KVII\x12\x1f\n\x05yearh\x18\x16 \x03(\x0b\x32\x10.comphealth.KVII\x12%\n\x06vtypeh\x18\x17 \x03(\x0b\x32\x15.comphealth.EtypeHist\x12\x11\n\tfacilityh\x18\x18 \x03(\t\x12\x0f\n\x07\x64\x61taset\x18\x19 \x01(\t\"S\n\x06Policy\x12\x11\n\tmin_count\x18\x01 \x02(\x05\x12\x14\n\x0cmin_hospital\x18\x02 \x02(\x05\x12\x0c\n\x04\x62\x61se\x18\x03 \x02(\x05\x12\x12\n\nmin_subset\x18\x04 \x02(\x05\"\\\n\x07IntHist\x12\x1b\n\x01h\x18\x01 \x03(\x0b\x32\x10.comphealth.KVII\x12\x0e\n\x06median\x18\x02 \x01(\x05\x12\n\n\x02\x66q\x18\x03 \x01(\x05\x12\n\n\x02tq\x18\x04 \x01(\x05\x12\x0c\n\x04mean\x18\x05 \x01(\x02\"\'\n\x04KVII\x12\t\n\x01k\x18\x01 \x02(\x05\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"Q\n\x03\x44XI\x12\t\n\x01k\x18\x01 \x02(\t\x12\x0f\n\x07primary\x18\x02 \x01(\x05\x12\x0b\n\x03poa\x18\x03 \x01(\x05\x12\x0b\n\x03\x61ll\x18\x04 \x01(\x05\x12\t\n\x01\x63\x18\x05 \x01(\t\x12\t\n\x01s\x18\x06 \x01(\t\"K\n\x0f\x44ispositionHist\x12\"\n\x01k\x18\x01 \x02(\x0e\x32\x17.comphealth.DISPOSITION\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"?\n\tEtypeHist\x12\x1c\n\x01k\x18\x01 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"P\n\x0e\x45typeCountHist\x12\x0e\n\x06linked\x18\x05 \x02(\x08\x12\n\n\x02ip\x18\x01 \x02(\x05\x12\n\n\x02\x65\x64\x18\x02 \x02(\x05\x12\x0b\n\x03\x61sg\x18\x03 \x02(\x05\x12\t\n\x01v\x18\x04 \x02(\x05\"A\n\nSourceHist\x12\x1d\n\x01k\x18\x01 \x02(\x0e\x32\x12.comphealth.SOURCE\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"?\n\tPayerHist\x12\x1c\n\x01k\x18\x01 \x02(\x0e\x32\x11.comphealth.PAYER\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"=\n\x08RaceHist\x12\x1b\n\x01k\x18\x01 \x02(\x0e\x32\x10.comphealth.RACE\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"?\n\tDeathHist\x12\x1c\n\x01k\x18\x01 \x02(\x0e\x32\x11.comphealth.DEATH\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\";\n\x07SexHist\x12\x1a\n\x01k\x18\x01 \x02(\x0e\x32\x0f.comphealth.SEX\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\";\n\x07\x44NRHist\x12\x1a\n\x01k\x18\x01 \x02(\x0e\x32\x0f.comphealth.DNR\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"=\n\x08PZipHist\x12\x1b\n\x01k\x18\x01 \x02(\x0e\x32\x10.comphealth.PZIP\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t')
+  serialized_pb=_b('\n\x0bpstat.proto\x12\ncomphealth\x1a\x0cpenums.proto\x1a\x0cpvisit.proto\"\xe4\x05\n\x04PAGG\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x0f\n\x07\x64\x61taset\x18\x02 \x01(\t\x12\"\n\x06policy\x18\x03 \x02(\x0b\x32\x12.comphealth.Policy\x12\x15\n\rpatient_count\x18\x04 \x02(\x05\x12\x1c\n\x14negative_delta_count\x18\t \x01(\x05\x12%\n\x06vtypeh\x18\x06 \x03(\x0b\x32\x15.comphealth.EtypeHist\x12#\n\x05\x65\x64geh\x18\x18 \x03(\x0b\x32\x14.comphealth.EdgeHist\x12*\n\x06\x64\x65ltah\x18\x07 \x03(\x0b\x32\x1a.comphealth.VisitDeltaHist\x12.\n\ndetaerrorh\x18\x08 \x03(\x0b\x32\x1a.comphealth.VisitDeltaHist\x12!\n\x04\x61geh\x18\x0b \x01(\x0b\x32\x13.comphealth.IntHist\x12!\n\x04sexh\x18\x0c \x03(\x0b\x32\x13.comphealth.SexHist\x12#\n\x05raceh\x18\r \x03(\x0b\x32\x14.comphealth.RaceHist\x12%\n\x06\x64\x65\x61thh\x18\x19 \x03(\x0b\x32\x15.comphealth.DeathHist\x12%\n\x06payerh\x18\x0e \x03(\x0b\x32\x15.comphealth.PayerHist\x12*\n\x05\x64isph\x18\x17 \x03(\x0b\x32\x1b.comphealth.DispositionHist\x12\x1c\n\x03\x64xh\x18\x0f \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1d\n\x04pdxh\x18\x10 \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1c\n\x03prh\x18\x11 \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1c\n\x03\x65xh\x18\x12 \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1d\n\x04\x64rgh\x18\x13 \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1f\n\x05\x61gedh\x18\x15 \x03(\x0b\x32\x10.comphealth.KVII\x12\x1f\n\x05yearh\x18\x16 \x03(\x0b\x32\x10.comphealth.KVII\"h\n\x08PSubsets\x12\x0e\n\x06linked\x18\x01 \x02(\x08\x12 \n\x05vtype\x18\x02 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\x1f\n\x06subset\x18\x03 \x02(\x0b\x32\x0f.comphealth.AGG\x12\t\n\x01k\x18\x04 \x01(\t\"n\n\x0eVisitDeltaHist\x12\"\n\x07initial\x18\x01 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\x1e\n\x03sub\x18\x02 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\r\n\x05\x64\x65lta\x18\x03 \x02(\x05\x12\t\n\x01v\x18\x04 \x02(\x05\"Y\n\x08\x45\x64geHist\x12\"\n\x07initial\x18\x01 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\x1e\n\x03sub\x18\x02 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\t\n\x01v\x18\x04 \x02(\x05\"\xac\x06\n\x03\x41GG\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\x13\n\x04mini\x18\x1a \x02(\x08:\x05\x66\x61lse\x12\x10\n\x05\x63ount\x18\x02 \x01(\x05:\x01\x30\x12\"\n\x06policy\x18! \x02(\x0b\x32\x12.comphealth.Policy\x12\x13\n\x0b\x63harges_num\x18\x1f \x01(\x03\x12\x13\n\x0b\x63harges_den\x18  \x01(\x03\x12!\n\x04\x61geh\x18\x03 \x01(\x0b\x32\x13.comphealth.IntHist\x12!\n\x04sexh\x18\x04 \x03(\x0b\x32\x13.comphealth.SexHist\x12#\n\x05raceh\x18\x05 \x03(\x0b\x32\x14.comphealth.RaceHist\x12\'\n\x07sourceh\x18\x06 \x03(\x0b\x32\x16.comphealth.SourceHist\x12*\n\x05\x64isph\x18\x07 \x03(\x0b\x32\x1b.comphealth.DispositionHist\x12%\n\x06payerh\x18\x08 \x03(\x0b\x32\x15.comphealth.PayerHist\x12%\n\x06\x64\x65\x61thh\x18\t \x03(\x0b\x32\x15.comphealth.DeathHist\x12\x1c\n\x03\x64xh\x18\n \x03(\x0b\x32\x0f.comphealth.DXI\x12$\n\x0bprimary_prh\x18\x0b \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1c\n\x03prh\x18\r \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1c\n\x03\x65xh\x18\x0e \x03(\x0b\x32\x0f.comphealth.KVI\x12\x1d\n\x04\x64rgh\x18\x0f \x03(\x0b\x32\x0f.comphealth.KVI\x12!\n\x04losh\x18\x10 \x01(\x0b\x32\x13.comphealth.IntHist\x12!\n\x04\x64nrh\x18\x12 \x03(\x0b\x32\x13.comphealth.DNRHist\x12#\n\x05pziph\x18\x13 \x03(\x0b\x32\x14.comphealth.PZipHist\x12\x1f\n\x05\x61gedh\x18\x15 \x03(\x0b\x32\x10.comphealth.KVII\x12\x1f\n\x05yearh\x18\x16 \x03(\x0b\x32\x10.comphealth.KVII\x12%\n\x06vtypeh\x18\x17 \x03(\x0b\x32\x15.comphealth.EtypeHist\x12\x11\n\tfacilityh\x18\x18 \x03(\t\x12\x0f\n\x07\x64\x61taset\x18\x19 \x01(\t\"S\n\x06Policy\x12\x11\n\tmin_count\x18\x01 \x02(\x05\x12\x14\n\x0cmin_hospital\x18\x02 \x02(\x05\x12\x0c\n\x04\x62\x61se\x18\x03 \x02(\x05\x12\x12\n\nmin_subset\x18\x04 \x02(\x05\"\\\n\x07IntHist\x12\x1b\n\x01h\x18\x01 \x03(\x0b\x32\x10.comphealth.KVII\x12\x0e\n\x06median\x18\x02 \x01(\x05\x12\n\n\x02\x66q\x18\x03 \x01(\x05\x12\n\n\x02tq\x18\x04 \x01(\x05\x12\x0c\n\x04mean\x18\x05 \x01(\x02\"\'\n\x04KVII\x12\t\n\x01k\x18\x01 \x02(\x05\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"Q\n\x03\x44XI\x12\t\n\x01k\x18\x01 \x02(\t\x12\x0f\n\x07primary\x18\x02 \x01(\x05\x12\x0b\n\x03poa\x18\x03 \x01(\x05\x12\x0b\n\x03\x61ll\x18\x04 \x01(\x05\x12\t\n\x01\x63\x18\x05 \x01(\t\x12\t\n\x01s\x18\x06 \x01(\t\"K\n\x0f\x44ispositionHist\x12\"\n\x01k\x18\x01 \x02(\x0e\x32\x17.comphealth.DISPOSITION\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"?\n\tEtypeHist\x12\x1c\n\x01k\x18\x01 \x02(\x0e\x32\x11.comphealth.ETYPE\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"P\n\x0e\x45typeCountHist\x12\x0e\n\x06linked\x18\x05 \x02(\x08\x12\n\n\x02ip\x18\x01 \x02(\x05\x12\n\n\x02\x65\x64\x18\x02 \x02(\x05\x12\x0b\n\x03\x61sg\x18\x03 \x02(\x05\x12\t\n\x01v\x18\x04 \x02(\x05\"A\n\nSourceHist\x12\x1d\n\x01k\x18\x01 \x02(\x0e\x32\x12.comphealth.SOURCE\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"?\n\tPayerHist\x12\x1c\n\x01k\x18\x01 \x02(\x0e\x32\x11.comphealth.PAYER\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"=\n\x08RaceHist\x12\x1b\n\x01k\x18\x01 \x02(\x0e\x32\x10.comphealth.RACE\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"?\n\tDeathHist\x12\x1c\n\x01k\x18\x01 \x02(\x0e\x32\x11.comphealth.DEATH\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\";\n\x07SexHist\x12\x1a\n\x01k\x18\x01 \x02(\x0e\x32\x0f.comphealth.SEX\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\";\n\x07\x44NRHist\x12\x1a\n\x01k\x18\x01 \x02(\x0e\x32\x0f.comphealth.DNR\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t\"=\n\x08PZipHist\x12\x1b\n\x01k\x18\x01 \x02(\x0e\x32\x10.comphealth.PZIP\x12\t\n\x01v\x18\x02 \x02(\x05\x12\t\n\x01s\x18\x03 \x01(\t')
   ,
   dependencies=[penums_pb2.DESCRIPTOR,pvisit_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -50,93 +50,142 @@ _PAGG = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='linked', full_name='comphealth.PAGG.linked', index=2,
-      number=3, type=8, cpp_type=7, label=2,
-      has_default_value=False, default_value=False,
+      name='policy', full_name='comphealth.PAGG.policy', index=2,
+      number=3, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='unlinked', full_name='comphealth.PAGG.unlinked', index=3,
-      number=4, type=8, cpp_type=7, label=2,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='patient_count', full_name='comphealth.PAGG.patient_count', index=4,
-      number=6, type=5, cpp_type=1, label=2,
+      name='patient_count', full_name='comphealth.PAGG.patient_count', index=3,
+      number=4, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='visit_count', full_name='comphealth.PAGG.visit_count', index=5,
-      number=7, type=5, cpp_type=1, label=2,
+      name='negative_delta_count', full_name='comphealth.PAGG.negative_delta_count', index=4,
+      number=9, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='linked_count', full_name='comphealth.PAGG.linked_count', index=6,
-      number=8, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='unlinked_count', full_name='comphealth.PAGG.unlinked_count', index=7,
-      number=9, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='subsets', full_name='comphealth.PAGG.subsets', index=8,
-      number=10, type=11, cpp_type=10, label=3,
+      name='vtypeh', full_name='comphealth.PAGG.vtypeh', index=5,
+      number=6, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='delta_hist', full_name='comphealth.PAGG.delta_hist', index=9,
-      number=11, type=11, cpp_type=10, label=3,
+      name='edgeh', full_name='comphealth.PAGG.edgeh', index=6,
+      number=24, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='delta_error_hist', full_name='comphealth.PAGG.delta_error_hist', index=10,
-      number=13, type=11, cpp_type=10, label=3,
+      name='deltah', full_name='comphealth.PAGG.deltah', index=7,
+      number=7, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='count_hist', full_name='comphealth.PAGG.count_hist', index=11,
+      name='detaerrorh', full_name='comphealth.PAGG.detaerrorh', index=8,
+      number=8, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='ageh', full_name='comphealth.PAGG.ageh', index=9,
+      number=11, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='sexh', full_name='comphealth.PAGG.sexh', index=10,
       number=12, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='edge_count', full_name='comphealth.PAGG.edge_count', index=12,
-      number=14, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      name='raceh', full_name='comphealth.PAGG.raceh', index=11,
+      number=13, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='negative_delta_count', full_name='comphealth.PAGG.negative_delta_count', index=13,
-      number=15, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
+      name='deathh', full_name='comphealth.PAGG.deathh', index=12,
+      number=25, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='policy', full_name='comphealth.PAGG.policy', index=14,
-      number=16, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
+      name='payerh', full_name='comphealth.PAGG.payerh', index=13,
+      number=14, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='disph', full_name='comphealth.PAGG.disph', index=14,
+      number=23, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='dxh', full_name='comphealth.PAGG.dxh', index=15,
+      number=15, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='pdxh', full_name='comphealth.PAGG.pdxh', index=16,
+      number=16, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='prh', full_name='comphealth.PAGG.prh', index=17,
+      number=17, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='exh', full_name='comphealth.PAGG.exh', index=18,
+      number=18, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='drgh', full_name='comphealth.PAGG.drgh', index=19,
+      number=19, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='agedh', full_name='comphealth.PAGG.agedh', index=20,
+      number=21, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='yearh', full_name='comphealth.PAGG.yearh', index=21,
+      number=22, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -152,7 +201,7 @@ _PAGG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=56,
-  serialized_end=491,
+  serialized_end=796,
 )
 
 
@@ -202,8 +251,8 @@ _PSUBSETS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=493,
-  serialized_end=597,
+  serialized_start=798,
+  serialized_end=902,
 )
 
 
@@ -253,8 +302,52 @@ _VISITDELTAHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=599,
-  serialized_end=709,
+  serialized_start=904,
+  serialized_end=1014,
+)
+
+
+_EDGEHIST = _descriptor.Descriptor(
+  name='EdgeHist',
+  full_name='comphealth.EdgeHist',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='initial', full_name='comphealth.EdgeHist.initial', index=0,
+      number=1, type=14, cpp_type=8, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='sub', full_name='comphealth.EdgeHist.sub', index=1,
+      number=2, type=14, cpp_type=8, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='v', full_name='comphealth.EdgeHist.v', index=2,
+      number=4, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1016,
+  serialized_end=1105,
 )
 
 
@@ -458,8 +551,8 @@ _AGG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=712,
-  serialized_end=1524,
+  serialized_start=1108,
+  serialized_end=1920,
 )
 
 
@@ -509,8 +602,8 @@ _POLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1526,
-  serialized_end=1609,
+  serialized_start=1922,
+  serialized_end=2005,
 )
 
 
@@ -567,8 +660,8 @@ _INTHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1611,
-  serialized_end=1703,
+  serialized_start=2007,
+  serialized_end=2099,
 )
 
 
@@ -611,8 +704,8 @@ _KVII = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1705,
-  serialized_end=1744,
+  serialized_start=2101,
+  serialized_end=2140,
 )
 
 
@@ -676,8 +769,8 @@ _DXI = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1746,
-  serialized_end=1827,
+  serialized_start=2142,
+  serialized_end=2223,
 )
 
 
@@ -720,8 +813,8 @@ _DISPOSITIONHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1829,
-  serialized_end=1904,
+  serialized_start=2225,
+  serialized_end=2300,
 )
 
 
@@ -764,8 +857,8 @@ _ETYPEHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1906,
-  serialized_end=1969,
+  serialized_start=2302,
+  serialized_end=2365,
 )
 
 
@@ -822,8 +915,8 @@ _ETYPECOUNTHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1971,
-  serialized_end=2051,
+  serialized_start=2367,
+  serialized_end=2447,
 )
 
 
@@ -866,8 +959,8 @@ _SOURCEHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2053,
-  serialized_end=2118,
+  serialized_start=2449,
+  serialized_end=2514,
 )
 
 
@@ -910,8 +1003,8 @@ _PAYERHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2120,
-  serialized_end=2183,
+  serialized_start=2516,
+  serialized_end=2579,
 )
 
 
@@ -954,8 +1047,8 @@ _RACEHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2185,
-  serialized_end=2246,
+  serialized_start=2581,
+  serialized_end=2642,
 )
 
 
@@ -998,8 +1091,8 @@ _DEATHHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2248,
-  serialized_end=2311,
+  serialized_start=2644,
+  serialized_end=2707,
 )
 
 
@@ -1042,8 +1135,8 @@ _SEXHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2313,
-  serialized_end=2372,
+  serialized_start=2709,
+  serialized_end=2768,
 )
 
 
@@ -1086,8 +1179,8 @@ _DNRHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2374,
-  serialized_end=2433,
+  serialized_start=2770,
+  serialized_end=2829,
 )
 
 
@@ -1130,19 +1223,34 @@ _PZIPHIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2435,
-  serialized_end=2496,
+  serialized_start=2831,
+  serialized_end=2892,
 )
 
-_PAGG.fields_by_name['subsets'].message_type = _PSUBSETS
-_PAGG.fields_by_name['delta_hist'].message_type = _VISITDELTAHIST
-_PAGG.fields_by_name['delta_error_hist'].message_type = _VISITDELTAHIST
-_PAGG.fields_by_name['count_hist'].message_type = _ETYPECOUNTHIST
 _PAGG.fields_by_name['policy'].message_type = _POLICY
+_PAGG.fields_by_name['vtypeh'].message_type = _ETYPEHIST
+_PAGG.fields_by_name['edgeh'].message_type = _EDGEHIST
+_PAGG.fields_by_name['deltah'].message_type = _VISITDELTAHIST
+_PAGG.fields_by_name['detaerrorh'].message_type = _VISITDELTAHIST
+_PAGG.fields_by_name['ageh'].message_type = _INTHIST
+_PAGG.fields_by_name['sexh'].message_type = _SEXHIST
+_PAGG.fields_by_name['raceh'].message_type = _RACEHIST
+_PAGG.fields_by_name['deathh'].message_type = _DEATHHIST
+_PAGG.fields_by_name['payerh'].message_type = _PAYERHIST
+_PAGG.fields_by_name['disph'].message_type = _DISPOSITIONHIST
+_PAGG.fields_by_name['dxh'].message_type = pvisit_pb2._KVI
+_PAGG.fields_by_name['pdxh'].message_type = pvisit_pb2._KVI
+_PAGG.fields_by_name['prh'].message_type = pvisit_pb2._KVI
+_PAGG.fields_by_name['exh'].message_type = pvisit_pb2._KVI
+_PAGG.fields_by_name['drgh'].message_type = pvisit_pb2._KVI
+_PAGG.fields_by_name['agedh'].message_type = _KVII
+_PAGG.fields_by_name['yearh'].message_type = _KVII
 _PSUBSETS.fields_by_name['vtype'].enum_type = penums_pb2._ETYPE
 _PSUBSETS.fields_by_name['subset'].message_type = _AGG
 _VISITDELTAHIST.fields_by_name['initial'].enum_type = penums_pb2._ETYPE
 _VISITDELTAHIST.fields_by_name['sub'].enum_type = penums_pb2._ETYPE
+_EDGEHIST.fields_by_name['initial'].enum_type = penums_pb2._ETYPE
+_EDGEHIST.fields_by_name['sub'].enum_type = penums_pb2._ETYPE
 _AGG.fields_by_name['policy'].message_type = _POLICY
 _AGG.fields_by_name['ageh'].message_type = _INTHIST
 _AGG.fields_by_name['sexh'].message_type = _SEXHIST
@@ -1175,6 +1283,7 @@ _PZIPHIST.fields_by_name['k'].enum_type = penums_pb2._PZIP
 DESCRIPTOR.message_types_by_name['PAGG'] = _PAGG
 DESCRIPTOR.message_types_by_name['PSubsets'] = _PSUBSETS
 DESCRIPTOR.message_types_by_name['VisitDeltaHist'] = _VISITDELTAHIST
+DESCRIPTOR.message_types_by_name['EdgeHist'] = _EDGEHIST
 DESCRIPTOR.message_types_by_name['AGG'] = _AGG
 DESCRIPTOR.message_types_by_name['Policy'] = _POLICY
 DESCRIPTOR.message_types_by_name['IntHist'] = _INTHIST
@@ -1211,6 +1320,13 @@ VisitDeltaHist = _reflection.GeneratedProtocolMessageType('VisitDeltaHist', (_me
   # @@protoc_insertion_point(class_scope:comphealth.VisitDeltaHist)
   ))
 _sym_db.RegisterMessage(VisitDeltaHist)
+
+EdgeHist = _reflection.GeneratedProtocolMessageType('EdgeHist', (_message.Message,), dict(
+  DESCRIPTOR = _EDGEHIST,
+  __module__ = 'pstat_pb2'
+  # @@protoc_insertion_point(class_scope:comphealth.EdgeHist)
+  ))
+_sym_db.RegisterMessage(EdgeHist)
 
 AGG = _reflection.GeneratedProtocolMessageType('AGG', (_message.Message,), dict(
   DESCRIPTOR = _AGG,

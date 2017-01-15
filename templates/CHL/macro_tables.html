@@ -175,6 +175,85 @@
     </div>
 {%- endmacro %}
 
+{% macro simple_table(table_title,field_name,table_data,coder) -%}
+    <div class="box m-b">
+        <div class="box-body">
+            <table class="table table-striped m-clear table-hover">
+                <thead>
+                    <tr>
+                        <th>{{ field_name }}</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for k in table_data %}
+                <tr>
+                    <td> {{ coder[k.k] }}</td>
+                    <td class="text-right"> {{ k.v }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro edge_simple_table(table_title,first_field_name,second_field_name,table_data,coder) -%}
+    <div class="box m-b">
+        <div class="box-header">
+            {{ table_title }}
+        </div>
+        <div class="box-body">
+            <table class="table table-striped m-clear table-hover dataTables-full">
+                <thead>
+                    <tr>
+                        <th>{{ first_field_name }}</th>
+                        <th>{{ second_field_name }}</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for k in table_data %}
+                <tr>
+                    <td> {{ coder[k.initial] }}</td>
+                    <td> {{ coder[k.sub] }}</td>
+                    <td class="text-right"> {{ k.v }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro edge_delta_simple_table(table_title,first_field_name,second_field_name,table_data,coder) -%}
+    <div class="box m-b">
+        <div class="box-body">
+            <table class="table table-striped m-clear table-hover dataTables-full">
+                <thead>
+                    <tr>
+                        <th>{{ first_field_name }}</th>
+                        <th>{{ second_field_name }}</th>
+                        <th>Delta</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for k in table_data %}
+                <tr>
+                    <td> {{ coder[k.initial] }}</td>
+                    <td> {{ coder[k.sub] }}</td>
+                    <td class="text-right"> {{ k.delta }}</td>
+                    <td class="text-right"> {{ k.v }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{%- endmacro %}
+
+
 {% macro exclusion_table(table_title,exdict) -%}
     <div class="box m-b">
         <div class="box-header with-border">
@@ -748,6 +827,34 @@
                 </table>
             </div>
         </div>
+{%- endmacro %}
+
+{% macro dxall(data,coder) -%}
+<div class="box">
+    <div class="box-header with-border">
+        <h5>Diagnosis Distribution</h5>
+    </div>
+    <div class="box-body">
+        <table class="table  dataTables-full">
+            <thead>
+                <tr>
+                    <th>Diagnosis Code</th>
+                    <th>Description</th>
+                    <th>All</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for k in data %}
+            <tr>
+                <td> {{ k.k }}</td>
+                <td> {{ coder[k.k] }}</td>
+                <td class="text-right"> {{ k.v }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {%- endmacro %}
 
 

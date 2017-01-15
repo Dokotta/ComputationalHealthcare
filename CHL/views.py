@@ -95,7 +95,15 @@ def aggregate_visits_viewer(request):
 
 def aggregate_patients_viewer(request):
     path = urllib.unquote(base64.decodestring(request.GET.get('q')))
-    entry = aggregate.Aggregate()
+    entry = aggregate.PatientAggregate()
     entry.ParseFromString(file(path).read())
-    context = {'payload':{'entry':entry.obj,'humanize':humanize,'Coder':codes.Coder(),'path':path}}
+    context = {'payload':
+        {
+        'entry': entry.obj,
+        'humanize': humanize,
+        'Coder': codes.Coder(),
+        'path': path,
+        'age_plot_data': json.dumps(entry.age_plot())
+        }
+    }
     return render(request,'aggregate_patients_viewer.html', context=context, using='jtlte')

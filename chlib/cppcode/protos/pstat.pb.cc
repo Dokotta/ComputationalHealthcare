@@ -29,6 +29,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* VisitDeltaHist_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   VisitDeltaHist_reflection_ = NULL;
+const ::google::protobuf::Descriptor* EdgeHist_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  EdgeHist_reflection_ = NULL;
 const ::google::protobuf::Descriptor* AGG_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   AGG_reflection_ = NULL;
@@ -85,22 +88,29 @@ void protobuf_AssignDesc_pstat_2eproto() {
       "pstat.proto");
   GOOGLE_CHECK(file != NULL);
   PAGG_descriptor_ = file->message_type(0);
-  static const int PAGG_offsets_[15] = {
+  static const int PAGG_offsets_[22] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, key_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, dataset_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, linked_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, unlinked_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, patient_count_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, visit_count_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, linked_count_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, unlinked_count_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, subsets_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, delta_hist_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, delta_error_hist_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, count_hist_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, edge_count_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, negative_delta_count_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, policy_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, patient_count_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, negative_delta_count_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, vtypeh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, edgeh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, deltah_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, detaerrorh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, ageh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, sexh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, raceh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, deathh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, payerh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, disph_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, dxh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, pdxh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, prh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, exh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, drgh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, agedh_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PAGG, yearh_),
   };
   PAGG_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -149,7 +159,24 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(VisitDeltaHist));
-  AGG_descriptor_ = file->message_type(3);
+  EdgeHist_descriptor_ = file->message_type(3);
+  static const int EdgeHist_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EdgeHist, initial_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EdgeHist, sub_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EdgeHist, v_),
+  };
+  EdgeHist_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      EdgeHist_descriptor_,
+      EdgeHist::default_instance_,
+      EdgeHist_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EdgeHist, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EdgeHist, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(EdgeHist));
+  AGG_descriptor_ = file->message_type(4);
   static const int AGG_offsets_[26] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AGG, key_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AGG, mini_),
@@ -189,7 +216,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(AGG));
-  Policy_descriptor_ = file->message_type(4);
+  Policy_descriptor_ = file->message_type(5);
   static const int Policy_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Policy, min_count_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Policy, min_hospital_),
@@ -207,7 +234,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Policy));
-  IntHist_descriptor_ = file->message_type(5);
+  IntHist_descriptor_ = file->message_type(6);
   static const int IntHist_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(IntHist, h_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(IntHist, median_),
@@ -226,7 +253,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(IntHist));
-  KVII_descriptor_ = file->message_type(6);
+  KVII_descriptor_ = file->message_type(7);
   static const int KVII_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KVII, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KVII, v_),
@@ -243,7 +270,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(KVII));
-  DXI_descriptor_ = file->message_type(7);
+  DXI_descriptor_ = file->message_type(8);
   static const int DXI_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DXI, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DXI, primary_),
@@ -263,7 +290,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DXI));
-  DispositionHist_descriptor_ = file->message_type(8);
+  DispositionHist_descriptor_ = file->message_type(9);
   static const int DispositionHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DispositionHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DispositionHist, v_),
@@ -280,7 +307,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DispositionHist));
-  EtypeHist_descriptor_ = file->message_type(9);
+  EtypeHist_descriptor_ = file->message_type(10);
   static const int EtypeHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EtypeHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EtypeHist, v_),
@@ -297,7 +324,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(EtypeHist));
-  EtypeCountHist_descriptor_ = file->message_type(10);
+  EtypeCountHist_descriptor_ = file->message_type(11);
   static const int EtypeCountHist_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EtypeCountHist, linked_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(EtypeCountHist, ip_),
@@ -316,7 +343,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(EtypeCountHist));
-  SourceHist_descriptor_ = file->message_type(11);
+  SourceHist_descriptor_ = file->message_type(12);
   static const int SourceHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SourceHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SourceHist, v_),
@@ -333,7 +360,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SourceHist));
-  PayerHist_descriptor_ = file->message_type(12);
+  PayerHist_descriptor_ = file->message_type(13);
   static const int PayerHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PayerHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PayerHist, v_),
@@ -350,7 +377,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(PayerHist));
-  RaceHist_descriptor_ = file->message_type(13);
+  RaceHist_descriptor_ = file->message_type(14);
   static const int RaceHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RaceHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RaceHist, v_),
@@ -367,7 +394,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(RaceHist));
-  DeathHist_descriptor_ = file->message_type(14);
+  DeathHist_descriptor_ = file->message_type(15);
   static const int DeathHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeathHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DeathHist, v_),
@@ -384,7 +411,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DeathHist));
-  SexHist_descriptor_ = file->message_type(15);
+  SexHist_descriptor_ = file->message_type(16);
   static const int SexHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SexHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SexHist, v_),
@@ -401,7 +428,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(SexHist));
-  DNRHist_descriptor_ = file->message_type(16);
+  DNRHist_descriptor_ = file->message_type(17);
   static const int DNRHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DNRHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(DNRHist, v_),
@@ -418,7 +445,7 @@ void protobuf_AssignDesc_pstat_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(DNRHist));
-  PZipHist_descriptor_ = file->message_type(17);
+  PZipHist_descriptor_ = file->message_type(18);
   static const int PZipHist_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PZipHist, k_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PZipHist, v_),
@@ -453,6 +480,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
     PSubsets_descriptor_, &PSubsets::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     VisitDeltaHist_descriptor_, &VisitDeltaHist::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    EdgeHist_descriptor_, &EdgeHist::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     AGG_descriptor_, &AGG::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -494,6 +523,8 @@ void protobuf_ShutdownFile_pstat_2eproto() {
   delete PSubsets_reflection_;
   delete VisitDeltaHist::default_instance_;
   delete VisitDeltaHist_reflection_;
+  delete EdgeHist::default_instance_;
+  delete EdgeHist_reflection_;
   delete AGG::default_instance_;
   delete AGG_reflection_;
   delete Policy::default_instance_;
@@ -536,73 +567,84 @@ void protobuf_AddDesc_pstat_2eproto() {
   ::comphealth::protobuf_AddDesc_pvisit_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\013pstat.proto\022\ncomphealth\032\014penums.proto\032"
-    "\014pvisit.proto\"\263\003\n\004PAGG\022\013\n\003key\030\001 \002(\t\022\017\n\007d"
-    "ataset\030\002 \001(\t\022\016\n\006linked\030\003 \002(\010\022\020\n\010unlinked"
-    "\030\004 \002(\010\022\025\n\rpatient_count\030\006 \002(\005\022\023\n\013visit_c"
-    "ount\030\007 \002(\005\022\024\n\014linked_count\030\010 \002(\005\022\026\n\016unli"
-    "nked_count\030\t \002(\005\022%\n\007subsets\030\n \003(\0132\024.comp"
-    "health.PSubsets\022.\n\ndelta_hist\030\013 \003(\0132\032.co"
-    "mphealth.VisitDeltaHist\0224\n\020delta_error_h"
-    "ist\030\r \003(\0132\032.comphealth.VisitDeltaHist\022.\n"
-    "\ncount_hist\030\014 \003(\0132\032.comphealth.EtypeCoun"
-    "tHist\022\022\n\nedge_count\030\016 \001(\005\022\034\n\024negative_de"
-    "lta_count\030\017 \001(\005\022\"\n\006policy\030\020 \002(\0132\022.comphe"
-    "alth.Policy\"h\n\010PSubsets\022\016\n\006linked\030\001 \002(\010\022"
-    " \n\005vtype\030\002 \002(\0162\021.comphealth.ETYPE\022\037\n\006sub"
-    "set\030\003 \002(\0132\017.comphealth.AGG\022\t\n\001k\030\004 \001(\t\"n\n"
-    "\016VisitDeltaHist\022\"\n\007initial\030\001 \002(\0162\021.comph"
-    "ealth.ETYPE\022\036\n\003sub\030\002 \002(\0162\021.comphealth.ET"
-    "YPE\022\r\n\005delta\030\003 \002(\005\022\t\n\001v\030\004 \002(\005\"\254\006\n\003AGG\022\013\n"
-    "\003key\030\001 \002(\t\022\023\n\004mini\030\032 \002(\010:\005false\022\020\n\005count"
-    "\030\002 \001(\005:\0010\022\"\n\006policy\030! \002(\0132\022.comphealth.P"
-    "olicy\022\023\n\013charges_num\030\037 \001(\003\022\023\n\013charges_de"
-    "n\030  \001(\003\022!\n\004ageh\030\003 \001(\0132\023.comphealth.IntHi"
-    "st\022!\n\004sexh\030\004 \003(\0132\023.comphealth.SexHist\022#\n"
-    "\005raceh\030\005 \003(\0132\024.comphealth.RaceHist\022\'\n\007so"
-    "urceh\030\006 \003(\0132\026.comphealth.SourceHist\022*\n\005d"
-    "isph\030\007 \003(\0132\033.comphealth.DispositionHist\022"
-    "%\n\006payerh\030\010 \003(\0132\025.comphealth.PayerHist\022%"
-    "\n\006deathh\030\t \003(\0132\025.comphealth.DeathHist\022\034\n"
-    "\003dxh\030\n \003(\0132\017.comphealth.DXI\022$\n\013primary_p"
-    "rh\030\013 \003(\0132\017.comphealth.KVI\022\034\n\003prh\030\r \003(\0132\017"
-    ".comphealth.KVI\022\034\n\003exh\030\016 \003(\0132\017.comphealt"
-    "h.KVI\022\035\n\004drgh\030\017 \003(\0132\017.comphealth.KVI\022!\n\004"
-    "losh\030\020 \001(\0132\023.comphealth.IntHist\022!\n\004dnrh\030"
-    "\022 \003(\0132\023.comphealth.DNRHist\022#\n\005pziph\030\023 \003("
-    "\0132\024.comphealth.PZipHist\022\037\n\005agedh\030\025 \003(\0132\020"
-    ".comphealth.KVII\022\037\n\005yearh\030\026 \003(\0132\020.comphe"
-    "alth.KVII\022%\n\006vtypeh\030\027 \003(\0132\025.comphealth.E"
-    "typeHist\022\021\n\tfacilityh\030\030 \003(\t\022\017\n\007dataset\030\031"
-    " \001(\t\"S\n\006Policy\022\021\n\tmin_count\030\001 \002(\005\022\024\n\014min"
-    "_hospital\030\002 \002(\005\022\014\n\004base\030\003 \002(\005\022\022\n\nmin_sub"
-    "set\030\004 \002(\005\"\\\n\007IntHist\022\033\n\001h\030\001 \003(\0132\020.comphe"
-    "alth.KVII\022\016\n\006median\030\002 \001(\005\022\n\n\002fq\030\003 \001(\005\022\n\n"
-    "\002tq\030\004 \001(\005\022\014\n\004mean\030\005 \001(\002\"\'\n\004KVII\022\t\n\001k\030\001 \002"
-    "(\005\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"Q\n\003DXI\022\t\n\001k\030\001 \002"
-    "(\t\022\017\n\007primary\030\002 \001(\005\022\013\n\003poa\030\003 \001(\005\022\013\n\003all\030"
-    "\004 \001(\005\022\t\n\001c\030\005 \001(\t\022\t\n\001s\030\006 \001(\t\"K\n\017Dispositi"
-    "onHist\022\"\n\001k\030\001 \002(\0162\027.comphealth.DISPOSITI"
-    "ON\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"\?\n\tEtypeHist\022\034\n"
-    "\001k\030\001 \002(\0162\021.comphealth.ETYPE\022\t\n\001v\030\002 \002(\005\022\t"
-    "\n\001s\030\003 \001(\t\"P\n\016EtypeCountHist\022\016\n\006linked\030\005 "
-    "\002(\010\022\n\n\002ip\030\001 \002(\005\022\n\n\002ed\030\002 \002(\005\022\013\n\003asg\030\003 \002(\005"
-    "\022\t\n\001v\030\004 \002(\005\"A\n\nSourceHist\022\035\n\001k\030\001 \002(\0162\022.c"
-    "omphealth.SOURCE\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"\?"
-    "\n\tPayerHist\022\034\n\001k\030\001 \002(\0162\021.comphealth.PAYE"
-    "R\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"=\n\010RaceHist\022\033\n\001k"
-    "\030\001 \002(\0162\020.comphealth.RACE\022\t\n\001v\030\002 \002(\005\022\t\n\001s"
-    "\030\003 \001(\t\"\?\n\tDeathHist\022\034\n\001k\030\001 \002(\0162\021.comphea"
-    "lth.DEATH\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\";\n\007SexHi"
-    "st\022\032\n\001k\030\001 \002(\0162\017.comphealth.SEX\022\t\n\001v\030\002 \002("
-    "\005\022\t\n\001s\030\003 \001(\t\";\n\007DNRHist\022\032\n\001k\030\001 \002(\0162\017.com"
-    "phealth.DNR\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"=\n\010PZi"
-    "pHist\022\033\n\001k\030\001 \002(\0162\020.comphealth.PZIP\022\t\n\001v\030"
-    "\002 \002(\005\022\t\n\001s\030\003 \001(\t", 2496);
+    "\014pvisit.proto\"\344\005\n\004PAGG\022\013\n\003key\030\001 \002(\t\022\017\n\007d"
+    "ataset\030\002 \001(\t\022\"\n\006policy\030\003 \002(\0132\022.comphealt"
+    "h.Policy\022\025\n\rpatient_count\030\004 \002(\005\022\034\n\024negat"
+    "ive_delta_count\030\t \001(\005\022%\n\006vtypeh\030\006 \003(\0132\025."
+    "comphealth.EtypeHist\022#\n\005edgeh\030\030 \003(\0132\024.co"
+    "mphealth.EdgeHist\022*\n\006deltah\030\007 \003(\0132\032.comp"
+    "health.VisitDeltaHist\022.\n\ndetaerrorh\030\010 \003("
+    "\0132\032.comphealth.VisitDeltaHist\022!\n\004ageh\030\013 "
+    "\001(\0132\023.comphealth.IntHist\022!\n\004sexh\030\014 \003(\0132\023"
+    ".comphealth.SexHist\022#\n\005raceh\030\r \003(\0132\024.com"
+    "phealth.RaceHist\022%\n\006deathh\030\031 \003(\0132\025.comph"
+    "ealth.DeathHist\022%\n\006payerh\030\016 \003(\0132\025.comphe"
+    "alth.PayerHist\022*\n\005disph\030\027 \003(\0132\033.compheal"
+    "th.DispositionHist\022\034\n\003dxh\030\017 \003(\0132\017.comphe"
+    "alth.KVI\022\035\n\004pdxh\030\020 \003(\0132\017.comphealth.KVI\022"
+    "\034\n\003prh\030\021 \003(\0132\017.comphealth.KVI\022\034\n\003exh\030\022 \003"
+    "(\0132\017.comphealth.KVI\022\035\n\004drgh\030\023 \003(\0132\017.comp"
+    "health.KVI\022\037\n\005agedh\030\025 \003(\0132\020.comphealth.K"
+    "VII\022\037\n\005yearh\030\026 \003(\0132\020.comphealth.KVII\"h\n\010"
+    "PSubsets\022\016\n\006linked\030\001 \002(\010\022 \n\005vtype\030\002 \002(\0162"
+    "\021.comphealth.ETYPE\022\037\n\006subset\030\003 \002(\0132\017.com"
+    "phealth.AGG\022\t\n\001k\030\004 \001(\t\"n\n\016VisitDeltaHist"
+    "\022\"\n\007initial\030\001 \002(\0162\021.comphealth.ETYPE\022\036\n\003"
+    "sub\030\002 \002(\0162\021.comphealth.ETYPE\022\r\n\005delta\030\003 "
+    "\002(\005\022\t\n\001v\030\004 \002(\005\"Y\n\010EdgeHist\022\"\n\007initial\030\001 "
+    "\002(\0162\021.comphealth.ETYPE\022\036\n\003sub\030\002 \002(\0162\021.co"
+    "mphealth.ETYPE\022\t\n\001v\030\004 \002(\005\"\254\006\n\003AGG\022\013\n\003key"
+    "\030\001 \002(\t\022\023\n\004mini\030\032 \002(\010:\005false\022\020\n\005count\030\002 \001"
+    "(\005:\0010\022\"\n\006policy\030! \002(\0132\022.comphealth.Polic"
+    "y\022\023\n\013charges_num\030\037 \001(\003\022\023\n\013charges_den\030  "
+    "\001(\003\022!\n\004ageh\030\003 \001(\0132\023.comphealth.IntHist\022!"
+    "\n\004sexh\030\004 \003(\0132\023.comphealth.SexHist\022#\n\005rac"
+    "eh\030\005 \003(\0132\024.comphealth.RaceHist\022\'\n\007source"
+    "h\030\006 \003(\0132\026.comphealth.SourceHist\022*\n\005disph"
+    "\030\007 \003(\0132\033.comphealth.DispositionHist\022%\n\006p"
+    "ayerh\030\010 \003(\0132\025.comphealth.PayerHist\022%\n\006de"
+    "athh\030\t \003(\0132\025.comphealth.DeathHist\022\034\n\003dxh"
+    "\030\n \003(\0132\017.comphealth.DXI\022$\n\013primary_prh\030\013"
+    " \003(\0132\017.comphealth.KVI\022\034\n\003prh\030\r \003(\0132\017.com"
+    "phealth.KVI\022\034\n\003exh\030\016 \003(\0132\017.comphealth.KV"
+    "I\022\035\n\004drgh\030\017 \003(\0132\017.comphealth.KVI\022!\n\004losh"
+    "\030\020 \001(\0132\023.comphealth.IntHist\022!\n\004dnrh\030\022 \003("
+    "\0132\023.comphealth.DNRHist\022#\n\005pziph\030\023 \003(\0132\024."
+    "comphealth.PZipHist\022\037\n\005agedh\030\025 \003(\0132\020.com"
+    "phealth.KVII\022\037\n\005yearh\030\026 \003(\0132\020.comphealth"
+    ".KVII\022%\n\006vtypeh\030\027 \003(\0132\025.comphealth.Etype"
+    "Hist\022\021\n\tfacilityh\030\030 \003(\t\022\017\n\007dataset\030\031 \001(\t"
+    "\"S\n\006Policy\022\021\n\tmin_count\030\001 \002(\005\022\024\n\014min_hos"
+    "pital\030\002 \002(\005\022\014\n\004base\030\003 \002(\005\022\022\n\nmin_subset\030"
+    "\004 \002(\005\"\\\n\007IntHist\022\033\n\001h\030\001 \003(\0132\020.comphealth"
+    ".KVII\022\016\n\006median\030\002 \001(\005\022\n\n\002fq\030\003 \001(\005\022\n\n\002tq\030"
+    "\004 \001(\005\022\014\n\004mean\030\005 \001(\002\"\'\n\004KVII\022\t\n\001k\030\001 \002(\005\022\t"
+    "\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"Q\n\003DXI\022\t\n\001k\030\001 \002(\t\022\017"
+    "\n\007primary\030\002 \001(\005\022\013\n\003poa\030\003 \001(\005\022\013\n\003all\030\004 \001("
+    "\005\022\t\n\001c\030\005 \001(\t\022\t\n\001s\030\006 \001(\t\"K\n\017DispositionHi"
+    "st\022\"\n\001k\030\001 \002(\0162\027.comphealth.DISPOSITION\022\t"
+    "\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"\?\n\tEtypeHist\022\034\n\001k\030\001"
+    " \002(\0162\021.comphealth.ETYPE\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030"
+    "\003 \001(\t\"P\n\016EtypeCountHist\022\016\n\006linked\030\005 \002(\010\022"
+    "\n\n\002ip\030\001 \002(\005\022\n\n\002ed\030\002 \002(\005\022\013\n\003asg\030\003 \002(\005\022\t\n\001"
+    "v\030\004 \002(\005\"A\n\nSourceHist\022\035\n\001k\030\001 \002(\0162\022.comph"
+    "ealth.SOURCE\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"\?\n\tPa"
+    "yerHist\022\034\n\001k\030\001 \002(\0162\021.comphealth.PAYER\022\t\n"
+    "\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"=\n\010RaceHist\022\033\n\001k\030\001 \002"
+    "(\0162\020.comphealth.RACE\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001"
+    "(\t\"\?\n\tDeathHist\022\034\n\001k\030\001 \002(\0162\021.comphealth."
+    "DEATH\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\";\n\007SexHist\022\032"
+    "\n\001k\030\001 \002(\0162\017.comphealth.SEX\022\t\n\001v\030\002 \002(\005\022\t\n"
+    "\001s\030\003 \001(\t\";\n\007DNRHist\022\032\n\001k\030\001 \002(\0162\017.comphea"
+    "lth.DNR\022\t\n\001v\030\002 \002(\005\022\t\n\001s\030\003 \001(\t\"=\n\010PZipHis"
+    "t\022\033\n\001k\030\001 \002(\0162\020.comphealth.PZIP\022\t\n\001v\030\002 \002("
+    "\005\022\t\n\001s\030\003 \001(\t", 2892);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "pstat.proto", &protobuf_RegisterTypes);
   PAGG::default_instance_ = new PAGG();
   PSubsets::default_instance_ = new PSubsets();
   VisitDeltaHist::default_instance_ = new VisitDeltaHist();
+  EdgeHist::default_instance_ = new EdgeHist();
   AGG::default_instance_ = new AGG();
   Policy::default_instance_ = new Policy();
   IntHist::default_instance_ = new IntHist();
@@ -621,6 +663,7 @@ void protobuf_AddDesc_pstat_2eproto() {
   PAGG::default_instance_->InitAsDefaultInstance();
   PSubsets::default_instance_->InitAsDefaultInstance();
   VisitDeltaHist::default_instance_->InitAsDefaultInstance();
+  EdgeHist::default_instance_->InitAsDefaultInstance();
   AGG::default_instance_->InitAsDefaultInstance();
   Policy::default_instance_->InitAsDefaultInstance();
   IntHist::default_instance_->InitAsDefaultInstance();
@@ -651,19 +694,26 @@ struct StaticDescriptorInitializer_pstat_2eproto {
 #ifndef _MSC_VER
 const int PAGG::kKeyFieldNumber;
 const int PAGG::kDatasetFieldNumber;
-const int PAGG::kLinkedFieldNumber;
-const int PAGG::kUnlinkedFieldNumber;
-const int PAGG::kPatientCountFieldNumber;
-const int PAGG::kVisitCountFieldNumber;
-const int PAGG::kLinkedCountFieldNumber;
-const int PAGG::kUnlinkedCountFieldNumber;
-const int PAGG::kSubsetsFieldNumber;
-const int PAGG::kDeltaHistFieldNumber;
-const int PAGG::kDeltaErrorHistFieldNumber;
-const int PAGG::kCountHistFieldNumber;
-const int PAGG::kEdgeCountFieldNumber;
-const int PAGG::kNegativeDeltaCountFieldNumber;
 const int PAGG::kPolicyFieldNumber;
+const int PAGG::kPatientCountFieldNumber;
+const int PAGG::kNegativeDeltaCountFieldNumber;
+const int PAGG::kVtypehFieldNumber;
+const int PAGG::kEdgehFieldNumber;
+const int PAGG::kDeltahFieldNumber;
+const int PAGG::kDetaerrorhFieldNumber;
+const int PAGG::kAgehFieldNumber;
+const int PAGG::kSexhFieldNumber;
+const int PAGG::kRacehFieldNumber;
+const int PAGG::kDeathhFieldNumber;
+const int PAGG::kPayerhFieldNumber;
+const int PAGG::kDisphFieldNumber;
+const int PAGG::kDxhFieldNumber;
+const int PAGG::kPdxhFieldNumber;
+const int PAGG::kPrhFieldNumber;
+const int PAGG::kExhFieldNumber;
+const int PAGG::kDrghFieldNumber;
+const int PAGG::kAgedhFieldNumber;
+const int PAGG::kYearhFieldNumber;
 #endif  // !_MSC_VER
 
 PAGG::PAGG()
@@ -674,6 +724,7 @@ PAGG::PAGG()
 
 void PAGG::InitAsDefaultInstance() {
   policy_ = const_cast< ::comphealth::Policy*>(&::comphealth::Policy::default_instance());
+  ageh_ = const_cast< ::comphealth::IntHist*>(&::comphealth::IntHist::default_instance());
 }
 
 PAGG::PAGG(const PAGG& from)
@@ -688,15 +739,10 @@ void PAGG::SharedCtor() {
   _cached_size_ = 0;
   key_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   dataset_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  linked_ = false;
-  unlinked_ = false;
-  patient_count_ = 0;
-  visit_count_ = 0;
-  linked_count_ = 0;
-  unlinked_count_ = 0;
-  edge_count_ = 0;
-  negative_delta_count_ = 0;
   policy_ = NULL;
+  patient_count_ = 0;
+  negative_delta_count_ = 0;
+  ageh_ = NULL;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -714,6 +760,7 @@ void PAGG::SharedDtor() {
   }
   if (this != default_instance_) {
     delete policy_;
+    delete ageh_;
   }
 }
 
@@ -749,8 +796,8 @@ void PAGG::Clear() {
     ::memset(&first, 0, n);                                \
   } while (0)
 
-  if (_has_bits_[0 / 32] & 255) {
-    ZR_(linked_, linked_count_);
+  if (_has_bits_[0 / 32] & 31) {
+    ZR_(patient_count_, negative_delta_count_);
     if (has_key()) {
       if (key_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
         key_->clear();
@@ -761,23 +808,33 @@ void PAGG::Clear() {
         dataset_->clear();
       }
     }
-    unlinked_count_ = 0;
-  }
-  if (_has_bits_[8 / 32] & 28672) {
-    edge_count_ = 0;
-    negative_delta_count_ = 0;
     if (has_policy()) {
       if (policy_ != NULL) policy_->::comphealth::Policy::Clear();
     }
+  }
+  if (has_ageh()) {
+    if (ageh_ != NULL) ageh_->::comphealth::IntHist::Clear();
   }
 
 #undef OFFSET_OF_FIELD_
 #undef ZR_
 
-  subsets_.Clear();
-  delta_hist_.Clear();
-  delta_error_hist_.Clear();
-  count_hist_.Clear();
+  vtypeh_.Clear();
+  edgeh_.Clear();
+  deltah_.Clear();
+  detaerrorh_.Clear();
+  sexh_.Clear();
+  raceh_.Clear();
+  deathh_.Clear();
+  payerh_.Clear();
+  disph_.Clear();
+  dxh_.Clear();
+  pdxh_.Clear();
+  prh_.Clear();
+  exh_.Clear();
+  drgh_.Clear();
+  agedh_.Clear();
+  yearh_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -821,43 +878,26 @@ bool PAGG::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(24)) goto parse_linked;
+        if (input->ExpectTag(26)) goto parse_policy;
         break;
       }
 
-      // required bool linked = 3;
+      // required .comphealth.Policy policy = 3;
       case 3: {
-        if (tag == 24) {
-         parse_linked:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &linked_)));
-          set_has_linked();
+        if (tag == 26) {
+         parse_policy:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_policy()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_unlinked;
+        if (input->ExpectTag(32)) goto parse_patient_count;
         break;
       }
 
-      // required bool unlinked = 4;
+      // required int32 patient_count = 4;
       case 4: {
         if (tag == 32) {
-         parse_unlinked:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &unlinked_)));
-          set_has_unlinked();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(48)) goto parse_patient_count;
-        break;
-      }
-
-      // required int32 patient_count = 6;
-      case 6: {
-        if (tag == 48) {
          parse_patient_count:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -866,129 +906,55 @@ bool PAGG::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(56)) goto parse_visit_count;
+        if (input->ExpectTag(50)) goto parse_vtypeh;
         break;
       }
 
-      // required int32 visit_count = 7;
+      // repeated .comphealth.EtypeHist vtypeh = 6;
+      case 6: {
+        if (tag == 50) {
+         parse_vtypeh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_vtypeh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(50)) goto parse_vtypeh;
+        if (input->ExpectTag(58)) goto parse_deltah;
+        break;
+      }
+
+      // repeated .comphealth.VisitDeltaHist deltah = 7;
       case 7: {
-        if (tag == 56) {
-         parse_visit_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &visit_count_)));
-          set_has_visit_count();
+        if (tag == 58) {
+         parse_deltah:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_deltah()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(64)) goto parse_linked_count;
+        if (input->ExpectTag(58)) goto parse_deltah;
+        if (input->ExpectTag(66)) goto parse_detaerrorh;
         break;
       }
 
-      // required int32 linked_count = 8;
+      // repeated .comphealth.VisitDeltaHist detaerrorh = 8;
       case 8: {
-        if (tag == 64) {
-         parse_linked_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &linked_count_)));
-          set_has_linked_count();
+        if (tag == 66) {
+         parse_detaerrorh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_detaerrorh()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(72)) goto parse_unlinked_count;
+        if (input->ExpectTag(66)) goto parse_detaerrorh;
+        if (input->ExpectTag(72)) goto parse_negative_delta_count;
         break;
       }
 
-      // required int32 unlinked_count = 9;
+      // optional int32 negative_delta_count = 9;
       case 9: {
         if (tag == 72) {
-         parse_unlinked_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &unlinked_count_)));
-          set_has_unlinked_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(82)) goto parse_subsets;
-        break;
-      }
-
-      // repeated .comphealth.PSubsets subsets = 10;
-      case 10: {
-        if (tag == 82) {
-         parse_subsets:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_subsets()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(82)) goto parse_subsets;
-        if (input->ExpectTag(90)) goto parse_delta_hist;
-        break;
-      }
-
-      // repeated .comphealth.VisitDeltaHist delta_hist = 11;
-      case 11: {
-        if (tag == 90) {
-         parse_delta_hist:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_delta_hist()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(90)) goto parse_delta_hist;
-        if (input->ExpectTag(98)) goto parse_count_hist;
-        break;
-      }
-
-      // repeated .comphealth.EtypeCountHist count_hist = 12;
-      case 12: {
-        if (tag == 98) {
-         parse_count_hist:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_count_hist()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(98)) goto parse_count_hist;
-        if (input->ExpectTag(106)) goto parse_delta_error_hist;
-        break;
-      }
-
-      // repeated .comphealth.VisitDeltaHist delta_error_hist = 13;
-      case 13: {
-        if (tag == 106) {
-         parse_delta_error_hist:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_delta_error_hist()));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(106)) goto parse_delta_error_hist;
-        if (input->ExpectTag(112)) goto parse_edge_count;
-        break;
-      }
-
-      // optional int32 edge_count = 14;
-      case 14: {
-        if (tag == 112) {
-         parse_edge_count:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &edge_count_)));
-          set_has_edge_count();
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(120)) goto parse_negative_delta_count;
-        break;
-      }
-
-      // optional int32 negative_delta_count = 15;
-      case 15: {
-        if (tag == 120) {
          parse_negative_delta_count:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -997,19 +963,201 @@ bool PAGG::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(130)) goto parse_policy;
+        if (input->ExpectTag(90)) goto parse_ageh;
         break;
       }
 
-      // required .comphealth.Policy policy = 16;
-      case 16: {
-        if (tag == 130) {
-         parse_policy:
+      // optional .comphealth.IntHist ageh = 11;
+      case 11: {
+        if (tag == 90) {
+         parse_ageh:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-               input, mutable_policy()));
+               input, mutable_ageh()));
         } else {
           goto handle_unusual;
         }
+        if (input->ExpectTag(98)) goto parse_sexh;
+        break;
+      }
+
+      // repeated .comphealth.SexHist sexh = 12;
+      case 12: {
+        if (tag == 98) {
+         parse_sexh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_sexh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(98)) goto parse_sexh;
+        if (input->ExpectTag(106)) goto parse_raceh;
+        break;
+      }
+
+      // repeated .comphealth.RaceHist raceh = 13;
+      case 13: {
+        if (tag == 106) {
+         parse_raceh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_raceh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(106)) goto parse_raceh;
+        if (input->ExpectTag(114)) goto parse_payerh;
+        break;
+      }
+
+      // repeated .comphealth.PayerHist payerh = 14;
+      case 14: {
+        if (tag == 114) {
+         parse_payerh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_payerh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(114)) goto parse_payerh;
+        if (input->ExpectTag(122)) goto parse_dxh;
+        break;
+      }
+
+      // repeated .comphealth.KVI dxh = 15;
+      case 15: {
+        if (tag == 122) {
+         parse_dxh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_dxh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(122)) goto parse_dxh;
+        if (input->ExpectTag(130)) goto parse_pdxh;
+        break;
+      }
+
+      // repeated .comphealth.KVI pdxh = 16;
+      case 16: {
+        if (tag == 130) {
+         parse_pdxh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_pdxh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(130)) goto parse_pdxh;
+        if (input->ExpectTag(138)) goto parse_prh;
+        break;
+      }
+
+      // repeated .comphealth.KVI prh = 17;
+      case 17: {
+        if (tag == 138) {
+         parse_prh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_prh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(138)) goto parse_prh;
+        if (input->ExpectTag(146)) goto parse_exh;
+        break;
+      }
+
+      // repeated .comphealth.KVI exh = 18;
+      case 18: {
+        if (tag == 146) {
+         parse_exh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_exh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(146)) goto parse_exh;
+        if (input->ExpectTag(154)) goto parse_drgh;
+        break;
+      }
+
+      // repeated .comphealth.KVI drgh = 19;
+      case 19: {
+        if (tag == 154) {
+         parse_drgh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_drgh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(154)) goto parse_drgh;
+        if (input->ExpectTag(170)) goto parse_agedh;
+        break;
+      }
+
+      // repeated .comphealth.KVII agedh = 21;
+      case 21: {
+        if (tag == 170) {
+         parse_agedh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_agedh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(170)) goto parse_agedh;
+        if (input->ExpectTag(178)) goto parse_yearh;
+        break;
+      }
+
+      // repeated .comphealth.KVII yearh = 22;
+      case 22: {
+        if (tag == 178) {
+         parse_yearh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_yearh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(178)) goto parse_yearh;
+        if (input->ExpectTag(186)) goto parse_disph;
+        break;
+      }
+
+      // repeated .comphealth.DispositionHist disph = 23;
+      case 23: {
+        if (tag == 186) {
+         parse_disph:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_disph()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(186)) goto parse_disph;
+        if (input->ExpectTag(194)) goto parse_edgeh;
+        break;
+      }
+
+      // repeated .comphealth.EdgeHist edgeh = 24;
+      case 24: {
+        if (tag == 194) {
+         parse_edgeh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_edgeh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(194)) goto parse_edgeh;
+        if (input->ExpectTag(202)) goto parse_deathh;
+        break;
+      }
+
+      // repeated .comphealth.DeathHist deathh = 25;
+      case 25: {
+        if (tag == 202) {
+         parse_deathh:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_deathh()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(202)) goto parse_deathh;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -1059,74 +1207,122 @@ void PAGG::SerializeWithCachedSizes(
       2, this->dataset(), output);
   }
 
-  // required bool linked = 3;
-  if (has_linked()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(3, this->linked(), output);
-  }
-
-  // required bool unlinked = 4;
-  if (has_unlinked()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(4, this->unlinked(), output);
-  }
-
-  // required int32 patient_count = 6;
-  if (has_patient_count()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->patient_count(), output);
-  }
-
-  // required int32 visit_count = 7;
-  if (has_visit_count()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->visit_count(), output);
-  }
-
-  // required int32 linked_count = 8;
-  if (has_linked_count()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->linked_count(), output);
-  }
-
-  // required int32 unlinked_count = 9;
-  if (has_unlinked_count()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->unlinked_count(), output);
-  }
-
-  // repeated .comphealth.PSubsets subsets = 10;
-  for (int i = 0; i < this->subsets_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      10, this->subsets(i), output);
-  }
-
-  // repeated .comphealth.VisitDeltaHist delta_hist = 11;
-  for (int i = 0; i < this->delta_hist_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      11, this->delta_hist(i), output);
-  }
-
-  // repeated .comphealth.EtypeCountHist count_hist = 12;
-  for (int i = 0; i < this->count_hist_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      12, this->count_hist(i), output);
-  }
-
-  // repeated .comphealth.VisitDeltaHist delta_error_hist = 13;
-  for (int i = 0; i < this->delta_error_hist_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      13, this->delta_error_hist(i), output);
-  }
-
-  // optional int32 edge_count = 14;
-  if (has_edge_count()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(14, this->edge_count(), output);
-  }
-
-  // optional int32 negative_delta_count = 15;
-  if (has_negative_delta_count()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(15, this->negative_delta_count(), output);
-  }
-
-  // required .comphealth.Policy policy = 16;
+  // required .comphealth.Policy policy = 3;
   if (has_policy()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      16, this->policy(), output);
+      3, this->policy(), output);
+  }
+
+  // required int32 patient_count = 4;
+  if (has_patient_count()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->patient_count(), output);
+  }
+
+  // repeated .comphealth.EtypeHist vtypeh = 6;
+  for (int i = 0; i < this->vtypeh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      6, this->vtypeh(i), output);
+  }
+
+  // repeated .comphealth.VisitDeltaHist deltah = 7;
+  for (int i = 0; i < this->deltah_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      7, this->deltah(i), output);
+  }
+
+  // repeated .comphealth.VisitDeltaHist detaerrorh = 8;
+  for (int i = 0; i < this->detaerrorh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      8, this->detaerrorh(i), output);
+  }
+
+  // optional int32 negative_delta_count = 9;
+  if (has_negative_delta_count()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->negative_delta_count(), output);
+  }
+
+  // optional .comphealth.IntHist ageh = 11;
+  if (has_ageh()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      11, this->ageh(), output);
+  }
+
+  // repeated .comphealth.SexHist sexh = 12;
+  for (int i = 0; i < this->sexh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      12, this->sexh(i), output);
+  }
+
+  // repeated .comphealth.RaceHist raceh = 13;
+  for (int i = 0; i < this->raceh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      13, this->raceh(i), output);
+  }
+
+  // repeated .comphealth.PayerHist payerh = 14;
+  for (int i = 0; i < this->payerh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      14, this->payerh(i), output);
+  }
+
+  // repeated .comphealth.KVI dxh = 15;
+  for (int i = 0; i < this->dxh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      15, this->dxh(i), output);
+  }
+
+  // repeated .comphealth.KVI pdxh = 16;
+  for (int i = 0; i < this->pdxh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      16, this->pdxh(i), output);
+  }
+
+  // repeated .comphealth.KVI prh = 17;
+  for (int i = 0; i < this->prh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      17, this->prh(i), output);
+  }
+
+  // repeated .comphealth.KVI exh = 18;
+  for (int i = 0; i < this->exh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      18, this->exh(i), output);
+  }
+
+  // repeated .comphealth.KVI drgh = 19;
+  for (int i = 0; i < this->drgh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      19, this->drgh(i), output);
+  }
+
+  // repeated .comphealth.KVII agedh = 21;
+  for (int i = 0; i < this->agedh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      21, this->agedh(i), output);
+  }
+
+  // repeated .comphealth.KVII yearh = 22;
+  for (int i = 0; i < this->yearh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      22, this->yearh(i), output);
+  }
+
+  // repeated .comphealth.DispositionHist disph = 23;
+  for (int i = 0; i < this->disph_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      23, this->disph(i), output);
+  }
+
+  // repeated .comphealth.EdgeHist edgeh = 24;
+  for (int i = 0; i < this->edgeh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      24, this->edgeh(i), output);
+  }
+
+  // repeated .comphealth.DeathHist deathh = 25;
+  for (int i = 0; i < this->deathh_size(); i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      25, this->deathh(i), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1161,79 +1357,140 @@ void PAGG::SerializeWithCachedSizes(
         2, this->dataset(), target);
   }
 
-  // required bool linked = 3;
-  if (has_linked()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(3, this->linked(), target);
-  }
-
-  // required bool unlinked = 4;
-  if (has_unlinked()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(4, this->unlinked(), target);
-  }
-
-  // required int32 patient_count = 6;
-  if (has_patient_count()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->patient_count(), target);
-  }
-
-  // required int32 visit_count = 7;
-  if (has_visit_count()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->visit_count(), target);
-  }
-
-  // required int32 linked_count = 8;
-  if (has_linked_count()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->linked_count(), target);
-  }
-
-  // required int32 unlinked_count = 9;
-  if (has_unlinked_count()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->unlinked_count(), target);
-  }
-
-  // repeated .comphealth.PSubsets subsets = 10;
-  for (int i = 0; i < this->subsets_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        10, this->subsets(i), target);
-  }
-
-  // repeated .comphealth.VisitDeltaHist delta_hist = 11;
-  for (int i = 0; i < this->delta_hist_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        11, this->delta_hist(i), target);
-  }
-
-  // repeated .comphealth.EtypeCountHist count_hist = 12;
-  for (int i = 0; i < this->count_hist_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        12, this->count_hist(i), target);
-  }
-
-  // repeated .comphealth.VisitDeltaHist delta_error_hist = 13;
-  for (int i = 0; i < this->delta_error_hist_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        13, this->delta_error_hist(i), target);
-  }
-
-  // optional int32 edge_count = 14;
-  if (has_edge_count()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(14, this->edge_count(), target);
-  }
-
-  // optional int32 negative_delta_count = 15;
-  if (has_negative_delta_count()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(15, this->negative_delta_count(), target);
-  }
-
-  // required .comphealth.Policy policy = 16;
+  // required .comphealth.Policy policy = 3;
   if (has_policy()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        16, this->policy(), target);
+        3, this->policy(), target);
+  }
+
+  // required int32 patient_count = 4;
+  if (has_patient_count()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->patient_count(), target);
+  }
+
+  // repeated .comphealth.EtypeHist vtypeh = 6;
+  for (int i = 0; i < this->vtypeh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        6, this->vtypeh(i), target);
+  }
+
+  // repeated .comphealth.VisitDeltaHist deltah = 7;
+  for (int i = 0; i < this->deltah_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        7, this->deltah(i), target);
+  }
+
+  // repeated .comphealth.VisitDeltaHist detaerrorh = 8;
+  for (int i = 0; i < this->detaerrorh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        8, this->detaerrorh(i), target);
+  }
+
+  // optional int32 negative_delta_count = 9;
+  if (has_negative_delta_count()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->negative_delta_count(), target);
+  }
+
+  // optional .comphealth.IntHist ageh = 11;
+  if (has_ageh()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        11, this->ageh(), target);
+  }
+
+  // repeated .comphealth.SexHist sexh = 12;
+  for (int i = 0; i < this->sexh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        12, this->sexh(i), target);
+  }
+
+  // repeated .comphealth.RaceHist raceh = 13;
+  for (int i = 0; i < this->raceh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        13, this->raceh(i), target);
+  }
+
+  // repeated .comphealth.PayerHist payerh = 14;
+  for (int i = 0; i < this->payerh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        14, this->payerh(i), target);
+  }
+
+  // repeated .comphealth.KVI dxh = 15;
+  for (int i = 0; i < this->dxh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        15, this->dxh(i), target);
+  }
+
+  // repeated .comphealth.KVI pdxh = 16;
+  for (int i = 0; i < this->pdxh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        16, this->pdxh(i), target);
+  }
+
+  // repeated .comphealth.KVI prh = 17;
+  for (int i = 0; i < this->prh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        17, this->prh(i), target);
+  }
+
+  // repeated .comphealth.KVI exh = 18;
+  for (int i = 0; i < this->exh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        18, this->exh(i), target);
+  }
+
+  // repeated .comphealth.KVI drgh = 19;
+  for (int i = 0; i < this->drgh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        19, this->drgh(i), target);
+  }
+
+  // repeated .comphealth.KVII agedh = 21;
+  for (int i = 0; i < this->agedh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        21, this->agedh(i), target);
+  }
+
+  // repeated .comphealth.KVII yearh = 22;
+  for (int i = 0; i < this->yearh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        22, this->yearh(i), target);
+  }
+
+  // repeated .comphealth.DispositionHist disph = 23;
+  for (int i = 0; i < this->disph_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        23, this->disph(i), target);
+  }
+
+  // repeated .comphealth.EdgeHist edgeh = 24;
+  for (int i = 0; i < this->edgeh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        24, this->edgeh(i), target);
+  }
+
+  // repeated .comphealth.DeathHist deathh = 25;
+  for (int i = 0; i < this->deathh_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        25, this->deathh(i), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1262,98 +1519,163 @@ int PAGG::ByteSize() const {
           this->dataset());
     }
 
-    // required bool linked = 3;
-    if (has_linked()) {
-      total_size += 1 + 1;
+    // required .comphealth.Policy policy = 3;
+    if (has_policy()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->policy());
     }
 
-    // required bool unlinked = 4;
-    if (has_unlinked()) {
-      total_size += 1 + 1;
-    }
-
-    // required int32 patient_count = 6;
+    // required int32 patient_count = 4;
     if (has_patient_count()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->patient_count());
     }
 
-    // required int32 visit_count = 7;
-    if (has_visit_count()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->visit_count());
-    }
-
-    // required int32 linked_count = 8;
-    if (has_linked_count()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->linked_count());
-    }
-
-    // required int32 unlinked_count = 9;
-    if (has_unlinked_count()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->unlinked_count());
-    }
-
-  }
-  if (_has_bits_[12 / 32] & (0xffu << (12 % 32))) {
-    // optional int32 edge_count = 14;
-    if (has_edge_count()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->edge_count());
-    }
-
-    // optional int32 negative_delta_count = 15;
+    // optional int32 negative_delta_count = 9;
     if (has_negative_delta_count()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->negative_delta_count());
     }
 
-    // required .comphealth.Policy policy = 16;
-    if (has_policy()) {
-      total_size += 2 +
+  }
+  if (_has_bits_[9 / 32] & (0xffu << (9 % 32))) {
+    // optional .comphealth.IntHist ageh = 11;
+    if (has_ageh()) {
+      total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-          this->policy());
+          this->ageh());
     }
 
   }
-  // repeated .comphealth.PSubsets subsets = 10;
-  total_size += 1 * this->subsets_size();
-  for (int i = 0; i < this->subsets_size(); i++) {
+  // repeated .comphealth.EtypeHist vtypeh = 6;
+  total_size += 1 * this->vtypeh_size();
+  for (int i = 0; i < this->vtypeh_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->subsets(i));
+        this->vtypeh(i));
   }
 
-  // repeated .comphealth.VisitDeltaHist delta_hist = 11;
-  total_size += 1 * this->delta_hist_size();
-  for (int i = 0; i < this->delta_hist_size(); i++) {
+  // repeated .comphealth.EdgeHist edgeh = 24;
+  total_size += 2 * this->edgeh_size();
+  for (int i = 0; i < this->edgeh_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->delta_hist(i));
+        this->edgeh(i));
   }
 
-  // repeated .comphealth.VisitDeltaHist delta_error_hist = 13;
-  total_size += 1 * this->delta_error_hist_size();
-  for (int i = 0; i < this->delta_error_hist_size(); i++) {
+  // repeated .comphealth.VisitDeltaHist deltah = 7;
+  total_size += 1 * this->deltah_size();
+  for (int i = 0; i < this->deltah_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->delta_error_hist(i));
+        this->deltah(i));
   }
 
-  // repeated .comphealth.EtypeCountHist count_hist = 12;
-  total_size += 1 * this->count_hist_size();
-  for (int i = 0; i < this->count_hist_size(); i++) {
+  // repeated .comphealth.VisitDeltaHist detaerrorh = 8;
+  total_size += 1 * this->detaerrorh_size();
+  for (int i = 0; i < this->detaerrorh_size(); i++) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->count_hist(i));
+        this->detaerrorh(i));
+  }
+
+  // repeated .comphealth.SexHist sexh = 12;
+  total_size += 1 * this->sexh_size();
+  for (int i = 0; i < this->sexh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->sexh(i));
+  }
+
+  // repeated .comphealth.RaceHist raceh = 13;
+  total_size += 1 * this->raceh_size();
+  for (int i = 0; i < this->raceh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->raceh(i));
+  }
+
+  // repeated .comphealth.DeathHist deathh = 25;
+  total_size += 2 * this->deathh_size();
+  for (int i = 0; i < this->deathh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->deathh(i));
+  }
+
+  // repeated .comphealth.PayerHist payerh = 14;
+  total_size += 1 * this->payerh_size();
+  for (int i = 0; i < this->payerh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->payerh(i));
+  }
+
+  // repeated .comphealth.DispositionHist disph = 23;
+  total_size += 2 * this->disph_size();
+  for (int i = 0; i < this->disph_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->disph(i));
+  }
+
+  // repeated .comphealth.KVI dxh = 15;
+  total_size += 1 * this->dxh_size();
+  for (int i = 0; i < this->dxh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->dxh(i));
+  }
+
+  // repeated .comphealth.KVI pdxh = 16;
+  total_size += 2 * this->pdxh_size();
+  for (int i = 0; i < this->pdxh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->pdxh(i));
+  }
+
+  // repeated .comphealth.KVI prh = 17;
+  total_size += 2 * this->prh_size();
+  for (int i = 0; i < this->prh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->prh(i));
+  }
+
+  // repeated .comphealth.KVI exh = 18;
+  total_size += 2 * this->exh_size();
+  for (int i = 0; i < this->exh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->exh(i));
+  }
+
+  // repeated .comphealth.KVI drgh = 19;
+  total_size += 2 * this->drgh_size();
+  for (int i = 0; i < this->drgh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->drgh(i));
+  }
+
+  // repeated .comphealth.KVII agedh = 21;
+  total_size += 2 * this->agedh_size();
+  for (int i = 0; i < this->agedh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->agedh(i));
+  }
+
+  // repeated .comphealth.KVII yearh = 22;
+  total_size += 2 * this->yearh_size();
+  for (int i = 0; i < this->yearh_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->yearh(i));
   }
 
   if (!unknown_fields().empty()) {
@@ -1381,10 +1703,22 @@ void PAGG::MergeFrom(const ::google::protobuf::Message& from) {
 
 void PAGG::MergeFrom(const PAGG& from) {
   GOOGLE_CHECK_NE(&from, this);
-  subsets_.MergeFrom(from.subsets_);
-  delta_hist_.MergeFrom(from.delta_hist_);
-  delta_error_hist_.MergeFrom(from.delta_error_hist_);
-  count_hist_.MergeFrom(from.count_hist_);
+  vtypeh_.MergeFrom(from.vtypeh_);
+  edgeh_.MergeFrom(from.edgeh_);
+  deltah_.MergeFrom(from.deltah_);
+  detaerrorh_.MergeFrom(from.detaerrorh_);
+  sexh_.MergeFrom(from.sexh_);
+  raceh_.MergeFrom(from.raceh_);
+  deathh_.MergeFrom(from.deathh_);
+  payerh_.MergeFrom(from.payerh_);
+  disph_.MergeFrom(from.disph_);
+  dxh_.MergeFrom(from.dxh_);
+  pdxh_.MergeFrom(from.pdxh_);
+  prh_.MergeFrom(from.prh_);
+  exh_.MergeFrom(from.exh_);
+  drgh_.MergeFrom(from.drgh_);
+  agedh_.MergeFrom(from.agedh_);
+  yearh_.MergeFrom(from.yearh_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_key()) {
       set_key(from.key());
@@ -1392,34 +1726,19 @@ void PAGG::MergeFrom(const PAGG& from) {
     if (from.has_dataset()) {
       set_dataset(from.dataset());
     }
-    if (from.has_linked()) {
-      set_linked(from.linked());
-    }
-    if (from.has_unlinked()) {
-      set_unlinked(from.unlinked());
+    if (from.has_policy()) {
+      mutable_policy()->::comphealth::Policy::MergeFrom(from.policy());
     }
     if (from.has_patient_count()) {
       set_patient_count(from.patient_count());
     }
-    if (from.has_visit_count()) {
-      set_visit_count(from.visit_count());
-    }
-    if (from.has_linked_count()) {
-      set_linked_count(from.linked_count());
-    }
-    if (from.has_unlinked_count()) {
-      set_unlinked_count(from.unlinked_count());
-    }
-  }
-  if (from._has_bits_[12 / 32] & (0xffu << (12 % 32))) {
-    if (from.has_edge_count()) {
-      set_edge_count(from.edge_count());
-    }
     if (from.has_negative_delta_count()) {
       set_negative_delta_count(from.negative_delta_count());
     }
-    if (from.has_policy()) {
-      mutable_policy()->::comphealth::Policy::MergeFrom(from.policy());
+  }
+  if (from._has_bits_[9 / 32] & (0xffu << (9 % 32))) {
+    if (from.has_ageh()) {
+      mutable_ageh()->::comphealth::IntHist::MergeFrom(from.ageh());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1438,15 +1757,30 @@ void PAGG::CopyFrom(const PAGG& from) {
 }
 
 bool PAGG::IsInitialized() const {
-  if ((_has_bits_[0] & 0x000040fd) != 0x000040fd) return false;
+  if ((_has_bits_[0] & 0x0000000d) != 0x0000000d) return false;
 
-  if (!::google::protobuf::internal::AllAreInitialized(this->subsets())) return false;
-  if (!::google::protobuf::internal::AllAreInitialized(this->delta_hist())) return false;
-  if (!::google::protobuf::internal::AllAreInitialized(this->delta_error_hist())) return false;
-  if (!::google::protobuf::internal::AllAreInitialized(this->count_hist())) return false;
   if (has_policy()) {
     if (!this->policy().IsInitialized()) return false;
   }
+  if (!::google::protobuf::internal::AllAreInitialized(this->vtypeh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->edgeh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->deltah())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->detaerrorh())) return false;
+  if (has_ageh()) {
+    if (!this->ageh().IsInitialized()) return false;
+  }
+  if (!::google::protobuf::internal::AllAreInitialized(this->sexh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->raceh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->deathh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->payerh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->disph())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->dxh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->pdxh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->prh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->exh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->drgh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->agedh())) return false;
+  if (!::google::protobuf::internal::AllAreInitialized(this->yearh())) return false;
   return true;
 }
 
@@ -1454,19 +1788,26 @@ void PAGG::Swap(PAGG* other) {
   if (other != this) {
     std::swap(key_, other->key_);
     std::swap(dataset_, other->dataset_);
-    std::swap(linked_, other->linked_);
-    std::swap(unlinked_, other->unlinked_);
-    std::swap(patient_count_, other->patient_count_);
-    std::swap(visit_count_, other->visit_count_);
-    std::swap(linked_count_, other->linked_count_);
-    std::swap(unlinked_count_, other->unlinked_count_);
-    subsets_.Swap(&other->subsets_);
-    delta_hist_.Swap(&other->delta_hist_);
-    delta_error_hist_.Swap(&other->delta_error_hist_);
-    count_hist_.Swap(&other->count_hist_);
-    std::swap(edge_count_, other->edge_count_);
-    std::swap(negative_delta_count_, other->negative_delta_count_);
     std::swap(policy_, other->policy_);
+    std::swap(patient_count_, other->patient_count_);
+    std::swap(negative_delta_count_, other->negative_delta_count_);
+    vtypeh_.Swap(&other->vtypeh_);
+    edgeh_.Swap(&other->edgeh_);
+    deltah_.Swap(&other->deltah_);
+    detaerrorh_.Swap(&other->detaerrorh_);
+    std::swap(ageh_, other->ageh_);
+    sexh_.Swap(&other->sexh_);
+    raceh_.Swap(&other->raceh_);
+    deathh_.Swap(&other->deathh_);
+    payerh_.Swap(&other->payerh_);
+    disph_.Swap(&other->disph_);
+    dxh_.Swap(&other->dxh_);
+    pdxh_.Swap(&other->pdxh_);
+    prh_.Swap(&other->prh_);
+    exh_.Swap(&other->exh_);
+    drgh_.Swap(&other->drgh_);
+    agedh_.Swap(&other->agedh_);
+    yearh_.Swap(&other->yearh_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -2229,6 +2570,331 @@ void VisitDeltaHist::Swap(VisitDeltaHist* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = VisitDeltaHist_descriptor_;
   metadata.reflection = VisitDeltaHist_reflection_;
+  return metadata;
+}
+
+
+// ===================================================================
+
+#ifndef _MSC_VER
+const int EdgeHist::kInitialFieldNumber;
+const int EdgeHist::kSubFieldNumber;
+const int EdgeHist::kVFieldNumber;
+#endif  // !_MSC_VER
+
+EdgeHist::EdgeHist()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:comphealth.EdgeHist)
+}
+
+void EdgeHist::InitAsDefaultInstance() {
+}
+
+EdgeHist::EdgeHist(const EdgeHist& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:comphealth.EdgeHist)
+}
+
+void EdgeHist::SharedCtor() {
+  _cached_size_ = 0;
+  initial_ = 0;
+  sub_ = 0;
+  v_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+EdgeHist::~EdgeHist() {
+  // @@protoc_insertion_point(destructor:comphealth.EdgeHist)
+  SharedDtor();
+}
+
+void EdgeHist::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void EdgeHist::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* EdgeHist::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return EdgeHist_descriptor_;
+}
+
+const EdgeHist& EdgeHist::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_pstat_2eproto();
+  return *default_instance_;
+}
+
+EdgeHist* EdgeHist::default_instance_ = NULL;
+
+EdgeHist* EdgeHist::New() const {
+  return new EdgeHist;
+}
+
+void EdgeHist::Clear() {
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
+  &reinterpret_cast<EdgeHist*>(16)->f) - \
+   reinterpret_cast<char*>(16))
+
+#define ZR_(first, last) do {                              \
+    size_t f = OFFSET_OF_FIELD_(first);                    \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
+    ::memset(&first, 0, n);                                \
+  } while (0)
+
+  ZR_(initial_, v_);
+
+#undef OFFSET_OF_FIELD_
+#undef ZR_
+
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool EdgeHist::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:comphealth.EdgeHist)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required .comphealth.ETYPE initial = 1;
+      case 1: {
+        if (tag == 8) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::comphealth::ETYPE_IsValid(value)) {
+            set_initial(static_cast< ::comphealth::ETYPE >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(1, value);
+          }
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_sub;
+        break;
+      }
+
+      // required .comphealth.ETYPE sub = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_sub:
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::comphealth::ETYPE_IsValid(value)) {
+            set_sub(static_cast< ::comphealth::ETYPE >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(2, value);
+          }
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse_v;
+        break;
+      }
+
+      // required int32 v = 4;
+      case 4: {
+        if (tag == 32) {
+         parse_v:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &v_)));
+          set_has_v();
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:comphealth.EdgeHist)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:comphealth.EdgeHist)
+  return false;
+#undef DO_
+}
+
+void EdgeHist::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:comphealth.EdgeHist)
+  // required .comphealth.ETYPE initial = 1;
+  if (has_initial()) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->initial(), output);
+  }
+
+  // required .comphealth.ETYPE sub = 2;
+  if (has_sub()) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      2, this->sub(), output);
+  }
+
+  // required int32 v = 4;
+  if (has_v()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->v(), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:comphealth.EdgeHist)
+}
+
+::google::protobuf::uint8* EdgeHist::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:comphealth.EdgeHist)
+  // required .comphealth.ETYPE initial = 1;
+  if (has_initial()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->initial(), target);
+  }
+
+  // required .comphealth.ETYPE sub = 2;
+  if (has_sub()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      2, this->sub(), target);
+  }
+
+  // required int32 v = 4;
+  if (has_v()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->v(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:comphealth.EdgeHist)
+  return target;
+}
+
+int EdgeHist::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required .comphealth.ETYPE initial = 1;
+    if (has_initial()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->initial());
+    }
+
+    // required .comphealth.ETYPE sub = 2;
+    if (has_sub()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->sub());
+    }
+
+    // required int32 v = 4;
+    if (has_v()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->v());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void EdgeHist::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const EdgeHist* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const EdgeHist*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void EdgeHist::MergeFrom(const EdgeHist& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_initial()) {
+      set_initial(from.initial());
+    }
+    if (from.has_sub()) {
+      set_sub(from.sub());
+    }
+    if (from.has_v()) {
+      set_v(from.v());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void EdgeHist::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void EdgeHist::CopyFrom(const EdgeHist& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool EdgeHist::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
+
+  return true;
+}
+
+void EdgeHist::Swap(EdgeHist* other) {
+  if (other != this) {
+    std::swap(initial_, other->initial_);
+    std::swap(sub_, other->sub_);
+    std::swap(v_, other->v_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata EdgeHist::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = EdgeHist_descriptor_;
+  metadata.reflection = EdgeHist_reflection_;
   return metadata;
 }
 

@@ -5,20 +5,26 @@ import "pvisit.proto";
 message PAGG{
     required string key = 1;
     optional string dataset = 2;
-    required bool linked = 3;
-    required bool unlinked = 4;
-    required int32 patient_count = 6;
-    required int32 visit_count = 7;
-    required int32 linked_count = 8;
-    required int32 unlinked_count = 9;
-    repeated PSubsets subsets = 10;
-    repeated VisitDeltaHist delta_hist = 11;
-    repeated VisitDeltaHist delta_error_hist = 13;
-    repeated EtypeCountHist count_hist = 12;
-    optional int32 edge_count = 14;
-    optional int32 negative_delta_count = 15;
-    required Policy policy = 16;
-
+    required Policy policy = 3;
+    required int32 patient_count = 4;
+    optional int32 negative_delta_count = 9;
+    repeated EtypeHist vtypeh = 6;
+    repeated EdgeHist edgeh = 24;
+    repeated VisitDeltaHist deltah = 7;
+    repeated VisitDeltaHist detaerrorh = 8;
+    optional IntHist ageh = 11;
+    repeated SexHist sexh = 12;
+    repeated RaceHist raceh = 13;
+    repeated DeathHist deathh = 25;
+    repeated PayerHist payerh = 14;
+    repeated DispositionHist disph = 23;
+    repeated KVI dxh = 15;
+    repeated KVI pdxh = 16;
+    repeated KVI prh = 17;
+    repeated KVI exh = 18;
+    repeated KVI drgh = 19;
+    repeated KVII agedh = 21;
+    repeated KVII yearh = 22;
 }
 
 message PSubsets{
@@ -34,6 +40,13 @@ message VisitDeltaHist{
     required int32 delta = 3;
     required int32 v = 4;
 }
+
+message EdgeHist{
+    required ETYPE initial = 1;
+    required ETYPE sub = 2;
+    required int32 v = 4;
+}
+
 
 message AGG {
     required string key = 1;
