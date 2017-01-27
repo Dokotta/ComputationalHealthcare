@@ -15,7 +15,7 @@ import os, sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-BROKER_URL = 'amqp://{}:{}@localhost//'.format('chuser','chpass')
+BROKER_URL = 'amqp://{}:{}@rabbit//'.format('chuser','chpass')
 
 #: Only add pickle to this list if your broker is secured
 #: from unwanted access (see userguide/security.html)
@@ -103,11 +103,11 @@ WSGI_APPLICATION = 'CH.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'chpglocal',
-        'USER': 'chpguser',
-        'PASSWORD': 'chpgdb',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
