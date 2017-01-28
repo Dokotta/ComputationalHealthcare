@@ -9,7 +9,7 @@
        - RABBITMQ_DEFAULT_PASS=chpass
    web:
      build: .
-     image: ComputationalHealthcare:latest
+     image: computationalhealthcare:latest
      command: bash -c "git pull && fab start_server_container"
      ports:
        - "8888:8888"

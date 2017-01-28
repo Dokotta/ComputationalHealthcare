@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-set -xe
-docker build --build-arg CACHE_DATE=$(date +%Y-%m-%d:%H:%M:%S) -t computationalhealthcare .
+set -x
+docker rm $(docker ps -qa --no-trunc --filter "status=exited")
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+docker-compose build web
