@@ -1,4 +1,4 @@
- version: '2'
+ version: '3'
  services:
    db:
      image: postgres
@@ -18,3 +18,8 @@
      depends_on:
        - db
        - rabbit
+     volumes:
+       - chdata:/root/data
+ volumes:
+  chdata:
+

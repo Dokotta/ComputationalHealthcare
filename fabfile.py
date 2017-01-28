@@ -33,6 +33,8 @@ def clear_logs():
 
 @task
 def start_server():
+    import time
+    time.sleep(60) # wait for other containers to come online
     local("python manage.py makemigrations")
     local("python manage.py migrate")
     local("python manage.py runserver 0.0.0.0:8000")
