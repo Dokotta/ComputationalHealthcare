@@ -64,7 +64,7 @@ COPY CH.zip /root/data/CH.zip
 RUN unzip /root/data/CH.zip -d /root/data/
 RUN  git clone https://github.com/akshayubhat/ComputationalHealthcare /root/ComputationalHealthcare
 WORKDIR "/root/ComputationalHealthcare"
-COPY container_scripts/start_django_docker.sh start_server.sh
+COPY config.json .
 RUN fab compile_protocols
 RUN fab compile_cpp_code
 VOLUME  ["/root/data"]

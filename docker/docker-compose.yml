@@ -7,12 +7,13 @@
      environment:
        - RABBITMQ_DEFAULT_USER=chuser
        - RABBITMQ_DEFAULT_PASS=chpass
-   web:
+   ch:
      build: .
+     container_name: computational-healthcare
      image: computationalhealthcare:latest
-     command: bash -c "git pull && fab start_server_container"
+     command: bash -c "git pull && fab start_server"
      ports:
-       - "8888:8888"
+       - "8188:8888"
        - "8111:8000"
      depends_on:
        - db

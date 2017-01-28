@@ -31,7 +31,11 @@ def clear_logs():
     local('rm logs/cpp* &')
 
 
-
+@task
+def start_server():
+    local("python manage.py makemigrations")
+    local("python manage.py migrate")
+    local("python manage.py runserver 0.0.0.0:8000")
 
 
 
