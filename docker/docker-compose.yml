@@ -2,11 +2,15 @@
  services:
    db:
      image: postgres
+     volumes:
+      - chpgdata:var/lib/postgresql/data
    rabbit:
      image: rabbitmq
      environment:
        - RABBITMQ_DEFAULT_USER=chuser
        - RABBITMQ_DEFAULT_PASS=chpass
+     volumes:
+       - chrabbit:/var/lib/rabbitmq
    ch:
      build: .
      container_name: computational-healthcare
@@ -22,4 +26,7 @@
        - chdata:/root/data
  volumes:
   chdata:
-
+  chpgetc:
+  chpglog:
+  chpglib:
+  chrabbit:
