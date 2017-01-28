@@ -26,7 +26,5 @@
        - chdata:/root/data
  volumes:
   chdata:
-  chpgetc:
-  chpglog:
-  chpglib:
+  chpgdata:
   chrabbit:
