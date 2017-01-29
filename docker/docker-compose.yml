@@ -3,7 +3,7 @@
    db:
      image: postgres
      volumes:
-      - chpgdata:var/lib/postgresql/data
+      - chpgdata:/var/lib/postgresql/data
    rabbit:
      image: rabbitmq
      environment:
