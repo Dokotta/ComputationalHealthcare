@@ -19,9 +19,12 @@ import tasks
 from django.shortcuts import render
 import json
 # Create your views here.
-
-JCONFIG = json.loads(file('config.json').read())
-ML_PATH = JCONFIG["DATASETS"]["HCUPNRD"]['ROOT']+"ML/"
+try:
+    JCONFIG = json.loads(file('../config.json').read())
+    ML_PATH = JCONFIG["DATASETS"]["HCUPNRD"]['ROOT']+"ML/"
+except:
+    JCONFIG = ""
+    ML_PATH = ""
 
 def app(request):
     context = {}

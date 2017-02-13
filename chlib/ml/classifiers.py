@@ -6,20 +6,22 @@ from chlib.entity.enums import ALIVE,DEAD,D_HOSPITAL
 from chlib.entity.pvisit_pb2 import Patient
 from chlib.entity.pml_pb2 import PDXCLASSIFIER
 Coder = chlib.codes.Coder()
-import numpy as np
-from scipy.sparse import lil_matrix
-from sklearn import preprocessing
-from collections import defaultdict
-from .features import VisitToFeature
-from sklearn.ensemble import RandomForestClassifier
-from scipy import interp
-from itertools import cycle
-from sklearn.metrics import roc_curve, auc
-from sklearn.model_selection import StratifiedKFold
-import matplotlib.pyplot as plt
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
-
+try:
+    import numpy as np
+    from scipy.sparse import lil_matrix
+    from sklearn import preprocessing
+    from collections import defaultdict
+    from .features import VisitToFeature
+    from sklearn.ensemble import RandomForestClassifier
+    from scipy import interp
+    from itertools import cycle
+    from sklearn.metrics import roc_curve, auc
+    from sklearn.model_selection import StratifiedKFold
+    import matplotlib.pyplot as plt
+    from sklearn.feature_selection import SelectKBest
+    from sklearn.feature_selection import chi2
+except ImportError:
+    pass
 
 EXCLUDED = {'DV3000','DV3001','D64511','D66411','D66401','D64891','D65971','D650','D27801','D29181','D65811','D65811','D66331','D64421','D65961','D29633'}
 
@@ -138,8 +140,8 @@ class PrimaryDiagnosisReadmission(object):
                     for delta_thresh in [7, 30]:
                         if delta <= delta_thresh:
                             self.labels[v.key].add('Readmit within {} days'.format(delta_thresh))
-                    if delta_thresh > 30:
-                        self.labels[v.key].add('Readmit after {} days'.format(delta_thresh))
+                    if delta > 30:
+                        self.labels[v.key].add('Readmit after 30 days')
                     for pr in sub.prs:
                         self.labels[v.key].add(pr.pcode)
                     for ex in sub.exs:
@@ -232,7 +234,7 @@ class PrimaryDiagnosisReadmission(object):
                 self.train_random_forest(label=k)
                 logging.info("trained {}".format(k))
 
-    def train_random_forest(self,label,n_estimators=100,feature_selection =False):
+    def train_random_forest(self,label,n_estimators=100,feature_selection=False):
         if label in self.Y:
             X = self.X
             y = self.Y[label]

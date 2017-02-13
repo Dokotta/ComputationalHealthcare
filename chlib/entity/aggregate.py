@@ -350,7 +350,7 @@ class PatientAggregate(object):
                     dxs.add(dx)
                 for pr in v.prs:
                     prs.add(pr.pcode)
-                for ex in v.dxs:
+                for ex in v.exs:
                     exs.add(ex)
                 self.vtype_hist[v.vtype] += 1
                 if i+1 != len(p.visits):

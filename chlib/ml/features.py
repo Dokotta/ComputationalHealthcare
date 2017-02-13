@@ -1,8 +1,11 @@
 import os,gzip
-import numpy as np
+try:
+    import numpy as np
+except ImportError:
+    pass
+
 from collections import defaultdict
 from ..entity import enums
-from sklearn.feature_extraction.text import CountVectorizer
 
 class VisitToFeature(object):
 
@@ -39,6 +42,8 @@ class VisitToFeature(object):
             self.add_feature('Source_{}'.format(i))
         for i in enums.DISPOSITION.values():
             self.add_feature('Disp_{}'.format(i))
+        for i in enums.SEX.values():
+            self.add_feature('Sex_{}'.format(i))
         with open(self.features_path,'w') as out:
             for k,v in self.feature_to_index.iteritems():
                 out.write("{}\t{}\n".format(k,v))
@@ -89,71 +94,13 @@ class VisitToFeature(object):
             indexes.append(self.get_feature(ex))
         if v.age >= 0:
             indexes.append(self.get_feature('Age_{}'.format(int(v.age)/10)))
-        if v.los >= 0 and v.los < self.max_los:
+        if 0 <= v.los < self.max_los:
             indexes.append(self.get_feature('LOS_{}'.format(v.los)))
         elif v.los >= self.max_los:
             indexes.append(self.get_feature('LOS_{}'.format(self.max_los-1)))
+        indexes.append(self.get_feature('Sex_{}'.format(v.sex)))
         indexes.append(self.get_feature('Source_{}'.format(v.source)))
         indexes.append(self.get_feature('Payer_{}'.format(v.payer)))
         indexes.append(self.get_feature('Disp_{}'.format(v.disposition)))
         return filter(None,indexes)
 
-
-    # def get_form_features(self, form_data):
-    #     indexes = []
-    #     for k in form_data:
-    #         if k.startswith('D') or k.startswith('')
-    #     for pr in v.prs:
-    #         indexes.append(self.get_feature(pr.pcode))
-    #     for dx in v.dxs:
-    #         indexes.append(self.get_feature(dx))
-    #     for ex in v.exs:
-    #         indexes.append(self.get_feature(ex))
-    #     if v.age >= 0:
-    #         indexes.append(self.get_feature('Age_{}'.format(int(v.age) / 10)))
-    #     if v.los >= 0 and v.los < self.max_los:
-    #         indexes.append(self.get_feature('LOS_{}'.format(v.los)))
-    #     elif v.los >= self.max_los:
-    #         indexes.append(self.get_feature('LOS_{}'.format(self.max_los - 1)))
-    #     indexes.append(self.get_feature('Source_{}'.format(v.source)))
-    #     indexes.append(self.get_feature('Payer_{}'.format(v.payer)))
-    #     indexes.append(self.get_feature('Disp_{}'.format(v.disposition)))
-    #     return filter(None, indexes)
-
-
-class Embeddings(object):
-
-    def __init__(self):
-        self.vectors = {}
-        self.prefixes = defaultdict(int)
-
-    def load_precomputed(self):
-        with gzip.open(os.path.dirname(os.path.abspath(__file__)) + '/data/claims_codes_hs_300.txt.gz') as fh:
-            for i, line in enumerate(fh):
-                if i > 2:
-                    entries = line.strip().split()
-                    code = entries[0].replace('IPR_', 'P_').replace('IDX_', 'D_').replace('.','').replace('D_E','E_E')
-                    self.prefixes[code.split('_')[0]] += 1
-                    code = code.replace('_', '')
-                    if code in self.vectors:
-                        print "Warning {} repeated {}".format(code,entries[0])
-                    else:
-                        self.vectors[code] = np.array([float(k) for k in entries[1:]],dtype=np.float)
-
-
-    def get_vectors_from_visit(self,v):
-        procedures = {}
-        diagnoses = {}
-        missing = set()
-        for pr in v.prs:
-            pcode = pr.pcode.split('_')[0]
-            if pcode in self.vectors:
-                procedures[pcode] = self.vectors[pcode]
-            else:
-                missing.add(pcode)
-        for dx in v.dxs:
-            if dx in self.vectors:
-                diagnoses[dx] = self.vectors[dx]
-            else:
-                missing.add(dx)
-        return procedures,diagnoses,missing

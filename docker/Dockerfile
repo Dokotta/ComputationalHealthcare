@@ -56,6 +56,9 @@ RUN pip install --upgrade pip \
                           requests \
                           plyvel \
                           pandas \
+                          numpy \
+                          scipy \
+                          scikit-learn \
                           boto3 \
                           protobuf \
                           humanize

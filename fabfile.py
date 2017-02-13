@@ -1,4 +1,4 @@
-import os,sys,logging,shutil,random,time,boto3,glob,gzip,json
+import os,sys,logging,shutil,random,time,boto3,glob,gzip,json,datetime
 from collections import defaultdict
 import chlib
 import django,plyvel
@@ -103,3 +103,48 @@ def compile_cpp_code():
         except:
             pass
         local("mv cpp bin/Debug/")
+
+
+@task
+def compute_nn():
+    """
+    Compute Nearest neighbour index for HCUP NRD Database
+    :return:
+    """
+    from chlib.ml.similarity import NearestPatients
+    json_config = 'config.json'
+    dataset = chlib.data.Data.get_from_config(json_config_path=json_config, dataset_id='HCUPNRD')
+    nn = NearestPatients(dataset)
+    nn.compute_index()
+
+
+@task
+def query_nn():
+    from chlib.ml.similarity import NearestPatients
+    import webbrowser
+    json_config = 'config.json'
+    dataset = chlib.data.Data.get_from_config(json_config_path=json_config, dataset_id='HCUPNRD')
+    nn = NearestPatients(dataset)
+    vweights = {'D486':1,'P9604':1,'P9904':1,'P9904_2':1,'Age_5':1,'D340':4}
+    print "using following input"
+    print vweights
+    ar, pstats, fstats , istats = nn.find_k_nearest_match(vweights,1000)
+    webbrowser.open(fstats.visualize(host='127.0.0.1',port=8000,prefix='local/'))
+    webbrowser.open(istats.visualize(host='127.0.0.1',port=8000,prefix='local/'))
+    webbrowser.open(pstats.visualize(host='127.0.0.1',port=8000,prefix='local/'))
+
+
+@task
+def ci():
+    try:
+        os.mkdir('test_reports')
+    except:
+        pass
+    now = str(datetime.datetime.utcnow())
+    os.mkdir("test_reports/{}".format(now))
+    local("fab build && sleep 30 && fab start && sleep 30 && fab test")
+    with lcd("test_reports/{}".format(now)):
+        local('docker cp $(docker ps -l -q):/root/CH/logs/fab.log .')
+    local('fab server')
+    with lcd("test_reports/{}".format(now)):
+        time.sleep(120)
