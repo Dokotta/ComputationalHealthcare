@@ -47,19 +47,19 @@ class N3Coder(codes.Coder):
     def __getitem__(self, item):
         if not isinstance(item,int):
             if item.startswith('N3CPT_AS'):
-                return super(N3Coder,self).__getitem__("Procedure during ambulatory surgery visits :"+item.split('N3CPT_AS_')[1])
+                return "Procedure during ambulatory surgery visits :"+super(N3Coder,self).__getitem__(item.split('N3CPT_AS_')[1])
             elif item.startswith('N3CPT_ED'):
-                return super(N3Coder,self).__getitem__("Procedure during ED visits :"+item.split('N3CPT_ED_')[1])
+                return "Procedure during ED visits :"+ super(N3Coder,self).__getitem__(item.split('N3CPT_ED_')[1])
             elif item.startswith('N3C_AS'):
-                return super(N3Coder,self).__getitem__("Procedure during ambulatory surgery visits :"+item.split('N3C_AS_')[1])
+                return "Procedure during ambulatory surgery visits :"+super(N3Coder,self).__getitem__(item.split('N3C_AS_')[1])
             elif item.startswith('N3C_ED'):
-                return super(N3Coder,self).__getitem__("Procedure during ED visits :"+item.split('N3C_ED_')[1])
+                return "Procedure during ED visits :"+ super(N3Coder,self).__getitem__(item.split('N3C_ED_')[1])
             elif item.startswith('N3DX_IP'):
-                return super(N3Coder,self).__getitem__("Primary Diagnosis during inpatient visits :" + item.split('N3DX_IP_')[1])
+                return "Primary Diagnosis during inpatient visits :" +  super(N3Coder,self).__getitem__(item.split('N3DX_IP_')[1])
             elif item.startswith('N3DX_ED'):
-                return super(N3Coder,self).__getitem__("Primary Diagnosis during ED visits :" + item.split('N3DX_ED_')[1])
+                return "Primary Diagnosis during ED visits :" +  super(N3Coder,self).__getitem__(item.split('N3DX_ED_')[1])
             elif item.startswith('N3DX_AS'):
-                return super(N3Coder,self).__getitem__("Primary Diagnosis during ambulatory surgery visits :" + item.split('N3DX_AS_')[1])
+                return "Primary Diagnosis during ambulatory surgery visits :" + super(N3Coder,self).__getitem__(item.split('N3DX_AS_')[1])
         if item in self.STRINGS:
             return self.STRINGS[item]
         else:

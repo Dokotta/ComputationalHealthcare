@@ -141,6 +141,7 @@ class Data(object):
         self.name = name
         self.identifier = identifier
         self.base_dir = base_dir
+        self.ml_dir = os.path.join(self.base_dir, 'ML/')
         self.asc_dir = os.path.join(self.base_dir, 'ASC/')
         self.raw_dir = os.path.join(self.base_dir,'RAW/')
         self.db = os.path.join(self.base_dir,'DB/')
@@ -181,6 +182,8 @@ class Data(object):
             raise ValueError,"{} not a valid directory".format(self.base_dir)
 
     def load(self):
+        if not os.path.isdir(self.ml_dir):
+            os.mkdir(self.ml_dir)
         for line in file(self.base_dir + "/AUDIT"):
             entries = line.strip().split("\t")
             if len(entries) == 3:
@@ -667,15 +670,19 @@ class Data(object):
         else:
             max_year = max(self.years)+1
         if self.aggregate_visits and not code.startswith('C'):
+            logging.info("started aggregate inpatient visits for code {}".format(code))
             aggregate_visits.aggregate_events(code, E.get_inpatient_visits(code), self.identifier, self.result_dir,reduce_mode_mini=reduce_mode_mini)
-        if self.aggregate_readmits:
+        if self.aggregate_readmits and not code.startswith('C'):
+            logging.info("started aggregate readmits for code {}".format(code))
             unlinked_nodes, nodes, edges = E.get_readmit_nodes_edges(code)
             aggregate_edges.readmits.aggregate_readmits(code, unlinked_nodes, nodes, edges, self.identifier, self.result_dir,max_year)
         if self.aggregate_revisits:
+            logging.info("started aggregate revisits for code {}".format(code))
             subsets = E.get_revisit_nodes_edges(code)
             for k, v in subsets.iteritems():
                 aggregate_edges.revisits.aggregate_revisits(k, v['unlinked_nodes'], v['nodes'], v['edges'], self.identifier, self.result_dir, max_year)
-        if self.aggregate_patients:
+        if self.aggregate_patients and code.startswith('D') and not code.startswith('DG'):
+            logging.info("started aggregate patients for code {}".format(code))
             aggregate_patients.aggregate_patients(code,E.get_patients(code),self.identifier,self.result_dir,self.patients)
 
     def pre_compute(self):

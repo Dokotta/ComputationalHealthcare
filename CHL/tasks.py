@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from celery import shared_task
 import chlib,base64,logging
+from chlib.ml import classifiers
 
 try:
     import plyvel
@@ -11,7 +12,7 @@ except ImportError:
 DATASETS = {}
 DB,DBS,DB_EXAMPLES = {},{},{}
 Q_DATA = 'qdata'
-
+CLASSIFER_MODELS = {}
 
 def load_db():
     DATASETS.update(chlib.data.Data.load_from_config('config.json'))
@@ -54,3 +55,8 @@ def data_get_patient(db,key):
     else:
         coded = ""
     return {'key':key.encode("utf-8"),'data':coded,'next':next_key.encode("utf-8")}
+
+
+@shared_task
+def get_similar_patient(dataset,primary_diangosis,patient_features):
+    pass

@@ -13,11 +13,15 @@ from chlib.entity import aggregate
 from chlib import codes
 from chlib.entity import enums
 from chlib.entity.visit import Patient
+from chlib.entity.pml_pb2 import PDXCLASSIFIER
 import google
 import tasks
 from django.shortcuts import render
+import json
 # Create your views here.
 
+JCONFIG = json.loads(file('config.json').read())
+ML_PATH = JCONFIG["DATASETS"]["HCUPNRD"]['ROOT']+"ML/"
 
 def app(request):
     context = {}
@@ -29,6 +33,16 @@ def app(request):
     }
     context['payload'] = payload
     return render(request, 'app.html',context,using='jtlte')
+
+def ml(request):
+    context = {}
+    context['payload'] = {}
+    payload = {
+        'dx_list':json.loads(file('{}/list.json'.format(ML_PATH)).read()),
+        'selected_list':json.loads(file('{}/selected_list.json'.format(ML_PATH)).read())
+    }
+    context['payload'] = payload
+    return render(request, 'ml.html',context,using='jtlte')
 
 
 def codelist(request):
@@ -75,6 +89,22 @@ def patient_viewer(request):
         payload['patient'] = {'patient_id':patient_id,'db':db,'data':str(temp),'raw_string':raw_string}
     context = {'payload':payload}
     return render(request,'patient_viewer.html', context=context, using='jtlte')
+
+
+def ml_stats_viewer(request,code):
+    stats = PDXCLASSIFIER()
+    stats.ParseFromString(file(ML_PATH+"/stats/{}.stats".format(code)).read())
+    context = {'payload':
+        {
+        'stats': stats,
+        'humanize': humanize,
+        'Coder': codes.Coder(),
+        'path': "",
+        # 'los_plot_data': json.dumps(index.los_plot()),
+        # 'age_plot_data': json.dumps(index.age_plot())
+        }
+    }
+    return render(request,'ml_stats_viewer.html', context=context, using='jtlte')
 
 def aggregate_visits_viewer(request):
     path = urllib.unquote(base64.decodestring(request.GET.get('q')))

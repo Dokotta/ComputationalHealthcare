@@ -697,8 +697,12 @@ class Aggregate(object):
                 temp.primary = v['primary']
                 temp.poa = v['poa']
                 temp.all = v['all']
+            self.counter.clear()
+            self.counter_hospitals.clear()
             return True
         else:
+            self.counter.clear()
+            self.counter_hospitals.clear()
             return False
 
     def age_plot(self):
