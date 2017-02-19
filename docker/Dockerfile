@@ -68,7 +68,9 @@ RUN unzip /root/data/CH.zip -d /root/data/
 RUN  git clone https://github.com/akshayubhat/ComputationalHealthcare /root/ComputationalHealthcare
 WORKDIR "/root/ComputationalHealthcare"
 COPY config.json .
-RUN fab compile_protocols
+WORKDIR "/root/ComputationalHealthcare/chlib/entity/protocols
+RUN protoc --python_out=../ --cpp_out=../../cppcode/protos/ *.proto
+WORKDIR "/root/ComputationalHealthcare"
 RUN fab compile_cpp_code
 VOLUME  ["/root/data"]
 

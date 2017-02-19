@@ -4,7 +4,7 @@ import "pvisit.proto";
 import "pstat.proto";
 import "pn1.proto";
 
-enum KEYTYPE{
+enum N3KEYTYPE{
     N3_ICDPR = 720;
     N3_DX = 722;
     N3_DRG = 723;
@@ -24,14 +24,14 @@ message VEntry{
  required IntHist deltah = 6;
  required IntHist deltaweekh = 12;
  repeated Exclusion provenance = 7;
- required KEYTYPE initial_ktype = 9;
- required KEYTYPE sub_ktype = 10;
+ required N3KEYTYPE initial_ktype = 9;
+ required N3KEYTYPE sub_ktype = 10;
 }
 
 
 message VNode{
  required string key = 1;
- required KEYTYPE ktype = 2;
+ required N3KEYTYPE ktype = 2;
  optional string dataset = 3;
  required AGG all = 4;
  optional AGG discharged = 5;
