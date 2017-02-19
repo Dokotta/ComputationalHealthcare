@@ -23,14 +23,14 @@ import pn1_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='pn3.proto',
   package='comphealth',
-  serialized_pb=_b('\n\tpn3.proto\x12\ncomphealth\x1a\x0cpenums.proto\x1a\x0cpvisit.proto\x1a\x0bpstat.proto\x1a\tpn1.proto\"\xe8\x02\n\x06VEntry\x12\x0b\n\x03key\x18\x0b \x02(\t\x12\x13\n\x0binitial_key\x18\x01 \x02(\t\x12\x0f\n\x07sub_key\x18\x02 \x02(\t\x12\x0f\n\x07\x64\x61taset\x18\x03 \x01(\t\x12\r\n\x05\x64\x65lta\x18\x08 \x01(\x05\x12 \n\x07initial\x18\x04 \x02(\x0b\x32\x0f.comphealth.AGG\x12\x1c\n\x03sub\x18\x05 \x02(\x0b\x32\x0f.comphealth.AGG\x12#\n\x06\x64\x65ltah\x18\x06 \x02(\x0b\x32\x13.comphealth.IntHist\x12\'\n\ndeltaweekh\x18\x0c \x02(\x0b\x32\x13.comphealth.IntHist\x12)\n\nprovenance\x18\x07 \x03(\x0b\x32\x15.comphealth.Exclusion\x12*\n\rinitial_ktype\x18\t \x02(\x0e\x32\x13.comphealth.KEYTYPE\x12&\n\tsub_ktype\x18\n \x02(\x0e\x32\x13.comphealth.KEYTYPE\"\x8c\x02\n\x05VNode\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\"\n\x05ktype\x18\x02 \x02(\x0e\x32\x13.comphealth.KEYTYPE\x12\x0f\n\x07\x64\x61taset\x18\x03 \x01(\t\x12\x1c\n\x03\x61ll\x18\x04 \x02(\x0b\x32\x0f.comphealth.AGG\x12#\n\ndischarged\x18\x05 \x01(\x0b\x32\x0f.comphealth.AGG\x12$\n\x0btransferred\x18\x06 \x01(\x0b\x32\x0f.comphealth.AGG\x12\x1d\n\x04\x64ied\x18\x07 \x01(\x0b\x32\x0f.comphealth.AGG\x12)\n\nprovenance\x18\x08 \x03(\x0b\x32\x15.comphealth.Exclusion\x12\x0e\n\x06linked\x18\t \x02(\x08*K\n\x07KEYTYPE\x12\r\n\x08N3_ICDPR\x10\xd0\x05\x12\n\n\x05N3_DX\x10\xd2\x05\x12\x0b\n\x06N3_DRG\x10\xd3\x05\x12\x0b\n\x06N3_CPT\x10\xd4\x05\x12\x0b\n\x06N3_ALL\x10\xd5\x05')
+  serialized_pb=_b('\n\tpn3.proto\x12\ncomphealth\x1a\x0cpenums.proto\x1a\x0cpvisit.proto\x1a\x0bpstat.proto\x1a\tpn1.proto\"\xec\x02\n\x06VEntry\x12\x0b\n\x03key\x18\x0b \x02(\t\x12\x13\n\x0binitial_key\x18\x01 \x02(\t\x12\x0f\n\x07sub_key\x18\x02 \x02(\t\x12\x0f\n\x07\x64\x61taset\x18\x03 \x01(\t\x12\r\n\x05\x64\x65lta\x18\x08 \x01(\x05\x12 \n\x07initial\x18\x04 \x02(\x0b\x32\x0f.comphealth.AGG\x12\x1c\n\x03sub\x18\x05 \x02(\x0b\x32\x0f.comphealth.AGG\x12#\n\x06\x64\x65ltah\x18\x06 \x02(\x0b\x32\x13.comphealth.IntHist\x12\'\n\ndeltaweekh\x18\x0c \x02(\x0b\x32\x13.comphealth.IntHist\x12)\n\nprovenance\x18\x07 \x03(\x0b\x32\x15.comphealth.Exclusion\x12,\n\rinitial_ktype\x18\t \x02(\x0e\x32\x15.comphealth.N3KEYTYPE\x12(\n\tsub_ktype\x18\n \x02(\x0e\x32\x15.comphealth.N3KEYTYPE\"\x8e\x02\n\x05VNode\x12\x0b\n\x03key\x18\x01 \x02(\t\x12$\n\x05ktype\x18\x02 \x02(\x0e\x32\x15.comphealth.N3KEYTYPE\x12\x0f\n\x07\x64\x61taset\x18\x03 \x01(\t\x12\x1c\n\x03\x61ll\x18\x04 \x02(\x0b\x32\x0f.comphealth.AGG\x12#\n\ndischarged\x18\x05 \x01(\x0b\x32\x0f.comphealth.AGG\x12$\n\x0btransferred\x18\x06 \x01(\x0b\x32\x0f.comphealth.AGG\x12\x1d\n\x04\x64ied\x18\x07 \x01(\x0b\x32\x0f.comphealth.AGG\x12)\n\nprovenance\x18\x08 \x03(\x0b\x32\x15.comphealth.Exclusion\x12\x0e\n\x06linked\x18\t \x02(\x08*M\n\tN3KEYTYPE\x12\r\n\x08N3_ICDPR\x10\xd0\x05\x12\n\n\x05N3_DX\x10\xd2\x05\x12\x0b\n\x06N3_DRG\x10\xd3\x05\x12\x0b\n\x06N3_CPT\x10\xd4\x05\x12\x0b\n\x06N3_ALL\x10\xd5\x05')
   ,
   dependencies=[penums_pb2.DESCRIPTOR,pvisit_pb2.DESCRIPTOR,pstat_pb2.DESCRIPTOR,pn1_pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-_KEYTYPE = _descriptor.EnumDescriptor(
-  name='KEYTYPE',
-  full_name='comphealth.KEYTYPE',
+_N3KEYTYPE = _descriptor.EnumDescriptor(
+  name='N3KEYTYPE',
+  full_name='comphealth.N3KEYTYPE',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -57,12 +57,12 @@ _KEYTYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=711,
-  serialized_end=786,
+  serialized_start=717,
+  serialized_end=794,
 )
-_sym_db.RegisterEnumDescriptor(_KEYTYPE)
+_sym_db.RegisterEnumDescriptor(_N3KEYTYPE)
 
-KEYTYPE = enum_type_wrapper.EnumTypeWrapper(_KEYTYPE)
+N3KEYTYPE = enum_type_wrapper.EnumTypeWrapper(_N3KEYTYPE)
 N3_ICDPR = 720
 N3_DX = 722
 N3_DRG = 723
@@ -174,7 +174,7 @@ _VENTRY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=78,
-  serialized_end=438,
+  serialized_end=442,
 )
 
 
@@ -259,8 +259,8 @@ _VNODE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=441,
-  serialized_end=709,
+  serialized_start=445,
+  serialized_end=715,
 )
 
 _VENTRY.fields_by_name['initial'].message_type = pstat_pb2._AGG
@@ -268,9 +268,9 @@ _VENTRY.fields_by_name['sub'].message_type = pstat_pb2._AGG
 _VENTRY.fields_by_name['deltah'].message_type = pstat_pb2._INTHIST
 _VENTRY.fields_by_name['deltaweekh'].message_type = pstat_pb2._INTHIST
 _VENTRY.fields_by_name['provenance'].message_type = pn1_pb2._EXCLUSION
-_VENTRY.fields_by_name['initial_ktype'].enum_type = _KEYTYPE
-_VENTRY.fields_by_name['sub_ktype'].enum_type = _KEYTYPE
-_VNODE.fields_by_name['ktype'].enum_type = _KEYTYPE
+_VENTRY.fields_by_name['initial_ktype'].enum_type = _N3KEYTYPE
+_VENTRY.fields_by_name['sub_ktype'].enum_type = _N3KEYTYPE
+_VNODE.fields_by_name['ktype'].enum_type = _N3KEYTYPE
 _VNODE.fields_by_name['all'].message_type = pstat_pb2._AGG
 _VNODE.fields_by_name['discharged'].message_type = pstat_pb2._AGG
 _VNODE.fields_by_name['transferred'].message_type = pstat_pb2._AGG
@@ -278,7 +278,7 @@ _VNODE.fields_by_name['died'].message_type = pstat_pb2._AGG
 _VNODE.fields_by_name['provenance'].message_type = pn1_pb2._EXCLUSION
 DESCRIPTOR.message_types_by_name['VEntry'] = _VENTRY
 DESCRIPTOR.message_types_by_name['VNode'] = _VNODE
-DESCRIPTOR.enum_types_by_name['KEYTYPE'] = _KEYTYPE
+DESCRIPTOR.enum_types_by_name['N3KEYTYPE'] = _N3KEYTYPE
 
 VEntry = _reflection.GeneratedProtocolMessageType('VEntry', (_message.Message,), dict(
   DESCRIPTOR = _VENTRY,

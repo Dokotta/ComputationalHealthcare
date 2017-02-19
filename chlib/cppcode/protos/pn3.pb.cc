@@ -26,7 +26,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* VNode_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   VNode_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* KEYTYPE_descriptor_ = NULL;
+const ::google::protobuf::EnumDescriptor* N3KEYTYPE_descriptor_ = NULL;
 
 }  // namespace
 
@@ -86,7 +86,7 @@ void protobuf_AssignDesc_pn3_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(VNode));
-  KEYTYPE_descriptor_ = file->enum_type(0);
+  N3KEYTYPE_descriptor_ = file->enum_type(0);
 }
 
 namespace {
@@ -126,25 +126,25 @@ void protobuf_AddDesc_pn3_2eproto() {
   ::comphealth::protobuf_AddDesc_pn1_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\tpn3.proto\022\ncomphealth\032\014penums.proto\032\014p"
-    "visit.proto\032\013pstat.proto\032\tpn1.proto\"\350\002\n\006"
+    "visit.proto\032\013pstat.proto\032\tpn1.proto\"\354\002\n\006"
     "VEntry\022\013\n\003key\030\013 \002(\t\022\023\n\013initial_key\030\001 \002(\t"
     "\022\017\n\007sub_key\030\002 \002(\t\022\017\n\007dataset\030\003 \001(\t\022\r\n\005de"
     "lta\030\010 \001(\005\022 \n\007initial\030\004 \002(\0132\017.comphealth."
     "AGG\022\034\n\003sub\030\005 \002(\0132\017.comphealth.AGG\022#\n\006del"
     "tah\030\006 \002(\0132\023.comphealth.IntHist\022\'\n\ndeltaw"
     "eekh\030\014 \002(\0132\023.comphealth.IntHist\022)\n\nprove"
-    "nance\030\007 \003(\0132\025.comphealth.Exclusion\022*\n\rin"
-    "itial_ktype\030\t \002(\0162\023.comphealth.KEYTYPE\022&"
-    "\n\tsub_ktype\030\n \002(\0162\023.comphealth.KEYTYPE\"\214"
-    "\002\n\005VNode\022\013\n\003key\030\001 \002(\t\022\"\n\005ktype\030\002 \002(\0162\023.c"
-    "omphealth.KEYTYPE\022\017\n\007dataset\030\003 \001(\t\022\034\n\003al"
-    "l\030\004 \002(\0132\017.comphealth.AGG\022#\n\ndischarged\030\005"
-    " \001(\0132\017.comphealth.AGG\022$\n\013transferred\030\006 \001"
-    "(\0132\017.comphealth.AGG\022\035\n\004died\030\007 \001(\0132\017.comp"
-    "health.AGG\022)\n\nprovenance\030\010 \003(\0132\025.comphea"
-    "lth.Exclusion\022\016\n\006linked\030\t \002(\010*K\n\007KEYTYPE"
-    "\022\r\n\010N3_ICDPR\020\320\005\022\n\n\005N3_DX\020\322\005\022\013\n\006N3_DRG\020\323\005"
-    "\022\013\n\006N3_CPT\020\324\005\022\013\n\006N3_ALL\020\325\005", 786);
+    "nance\030\007 \003(\0132\025.comphealth.Exclusion\022,\n\rin"
+    "itial_ktype\030\t \002(\0162\025.comphealth.N3KEYTYPE"
+    "\022(\n\tsub_ktype\030\n \002(\0162\025.comphealth.N3KEYTY"
+    "PE\"\216\002\n\005VNode\022\013\n\003key\030\001 \002(\t\022$\n\005ktype\030\002 \002(\016"
+    "2\025.comphealth.N3KEYTYPE\022\017\n\007dataset\030\003 \001(\t"
+    "\022\034\n\003all\030\004 \002(\0132\017.comphealth.AGG\022#\n\ndischa"
+    "rged\030\005 \001(\0132\017.comphealth.AGG\022$\n\013transferr"
+    "ed\030\006 \001(\0132\017.comphealth.AGG\022\035\n\004died\030\007 \001(\0132"
+    "\017.comphealth.AGG\022)\n\nprovenance\030\010 \003(\0132\025.c"
+    "omphealth.Exclusion\022\016\n\006linked\030\t \002(\010*M\n\tN"
+    "3KEYTYPE\022\r\n\010N3_ICDPR\020\320\005\022\n\n\005N3_DX\020\322\005\022\013\n\006N"
+    "3_DRG\020\323\005\022\013\n\006N3_CPT\020\324\005\022\013\n\006N3_ALL\020\325\005", 794);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "pn3.proto", &protobuf_RegisterTypes);
   VEntry::default_instance_ = new VEntry();
@@ -160,11 +160,11 @@ struct StaticDescriptorInitializer_pn3_2eproto {
     protobuf_AddDesc_pn3_2eproto();
   }
 } static_descriptor_initializer_pn3_2eproto_;
-const ::google::protobuf::EnumDescriptor* KEYTYPE_descriptor() {
+const ::google::protobuf::EnumDescriptor* N3KEYTYPE_descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return KEYTYPE_descriptor_;
+  return N3KEYTYPE_descriptor_;
 }
-bool KEYTYPE_IsValid(int value) {
+bool N3KEYTYPE_IsValid(int value) {
   switch(value) {
     case 720:
     case 722:
@@ -452,7 +452,7 @@ bool VEntry::MergePartialFromCodedStream(
         break;
       }
 
-      // required .comphealth.KEYTYPE initial_ktype = 9;
+      // required .comphealth.N3KEYTYPE initial_ktype = 9;
       case 9: {
         if (tag == 72) {
          parse_initial_ktype:
@@ -460,8 +460,8 @@ bool VEntry::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::comphealth::KEYTYPE_IsValid(value)) {
-            set_initial_ktype(static_cast< ::comphealth::KEYTYPE >(value));
+          if (::comphealth::N3KEYTYPE_IsValid(value)) {
+            set_initial_ktype(static_cast< ::comphealth::N3KEYTYPE >(value));
           } else {
             mutable_unknown_fields()->AddVarint(9, value);
           }
@@ -472,7 +472,7 @@ bool VEntry::MergePartialFromCodedStream(
         break;
       }
 
-      // required .comphealth.KEYTYPE sub_ktype = 10;
+      // required .comphealth.N3KEYTYPE sub_ktype = 10;
       case 10: {
         if (tag == 80) {
          parse_sub_ktype:
@@ -480,8 +480,8 @@ bool VEntry::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::comphealth::KEYTYPE_IsValid(value)) {
-            set_sub_ktype(static_cast< ::comphealth::KEYTYPE >(value));
+          if (::comphealth::N3KEYTYPE_IsValid(value)) {
+            set_sub_ktype(static_cast< ::comphealth::N3KEYTYPE >(value));
           } else {
             mutable_unknown_fields()->AddVarint(10, value);
           }
@@ -606,13 +606,13 @@ void VEntry::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->delta(), output);
   }
 
-  // required .comphealth.KEYTYPE initial_ktype = 9;
+  // required .comphealth.N3KEYTYPE initial_ktype = 9;
   if (has_initial_ktype()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       9, this->initial_ktype(), output);
   }
 
-  // required .comphealth.KEYTYPE sub_ktype = 10;
+  // required .comphealth.N3KEYTYPE sub_ktype = 10;
   if (has_sub_ktype()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       10, this->sub_ktype(), output);
@@ -710,13 +710,13 @@ void VEntry::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->delta(), target);
   }
 
-  // required .comphealth.KEYTYPE initial_ktype = 9;
+  // required .comphealth.N3KEYTYPE initial_ktype = 9;
   if (has_initial_ktype()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       9, this->initial_ktype(), target);
   }
 
-  // required .comphealth.KEYTYPE sub_ktype = 10;
+  // required .comphealth.N3KEYTYPE sub_ktype = 10;
   if (has_sub_ktype()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       10, this->sub_ktype(), target);
@@ -817,13 +817,13 @@ int VEntry::ByteSize() const {
           this->deltaweekh());
     }
 
-    // required .comphealth.KEYTYPE initial_ktype = 9;
+    // required .comphealth.N3KEYTYPE initial_ktype = 9;
     if (has_initial_ktype()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->initial_ktype());
     }
 
-    // required .comphealth.KEYTYPE sub_ktype = 10;
+    // required .comphealth.N3KEYTYPE sub_ktype = 10;
     if (has_sub_ktype()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->sub_ktype());
@@ -1111,7 +1111,7 @@ bool VNode::MergePartialFromCodedStream(
         break;
       }
 
-      // required .comphealth.KEYTYPE ktype = 2;
+      // required .comphealth.N3KEYTYPE ktype = 2;
       case 2: {
         if (tag == 16) {
          parse_ktype:
@@ -1119,8 +1119,8 @@ bool VNode::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
                  input, &value)));
-          if (::comphealth::KEYTYPE_IsValid(value)) {
-            set_ktype(static_cast< ::comphealth::KEYTYPE >(value));
+          if (::comphealth::N3KEYTYPE_IsValid(value)) {
+            set_ktype(static_cast< ::comphealth::N3KEYTYPE >(value));
           } else {
             mutable_unknown_fields()->AddVarint(2, value);
           }
@@ -1264,7 +1264,7 @@ void VNode::SerializeWithCachedSizes(
       1, this->key(), output);
   }
 
-  // required .comphealth.KEYTYPE ktype = 2;
+  // required .comphealth.N3KEYTYPE ktype = 2;
   if (has_ktype()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->ktype(), output);
@@ -1336,7 +1336,7 @@ void VNode::SerializeWithCachedSizes(
         1, this->key(), target);
   }
 
-  // required .comphealth.KEYTYPE ktype = 2;
+  // required .comphealth.N3KEYTYPE ktype = 2;
   if (has_ktype()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->ktype(), target);
@@ -1412,7 +1412,7 @@ int VNode::ByteSize() const {
           this->key());
     }
 
-    // required .comphealth.KEYTYPE ktype = 2;
+    // required .comphealth.N3KEYTYPE ktype = 2;
     if (has_ktype()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::EnumSize(this->ktype());
