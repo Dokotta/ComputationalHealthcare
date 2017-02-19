@@ -67,6 +67,7 @@ def prepare_tx(skip_prepare=False):
 def prepare_nrd(skip_prepare=False):
     HCUPNRD = chlib.data.Data.get_from_config('config.json','HCUPNRD')
     HCUPNRD.setup(skip_prepare,False,False,test=False)
+    compute_nn()
 
 @task
 def precompute(dataset):
@@ -121,7 +122,6 @@ def compute_nn():
 @task
 def query_nn():
     from chlib.ml.similarity import NearestPatients
-    import webbrowser
     json_config = 'config.json'
     dataset = chlib.data.Data.get_from_config(json_config_path=json_config, dataset_id='HCUPNRD')
     nn = NearestPatients(dataset)
@@ -129,9 +129,9 @@ def query_nn():
     print "using following input"
     print vweights
     ar, pstats, fstats , istats = nn.find_k_nearest_match(vweights,1000)
-    webbrowser.open(fstats.visualize(host='127.0.0.1',port=8000,prefix='local/'))
-    webbrowser.open(istats.visualize(host='127.0.0.1',port=8000,prefix='local/'))
-    webbrowser.open(pstats.visualize(host='127.0.0.1',port=8000,prefix='local/'))
+    print fstats.visualize(host='127.0.0.1',port=8000,prefix='local/')
+    print istats.visualize(host='127.0.0.1',port=8000,prefix='local/')
+    print pstats.visualize(host='127.0.0.1',port=8000,prefix='local/')
 
 
 @task
