@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'djcelery',
     'rest_framework',
-    'CHL'
+    'CHL',
+    'CH3'
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -106,3 +106,5 @@ logs/cpp*
 /config.json
 /blog/ML/
 /chlib/ml/data/*.txt.gz
+/CH3/static/custom/typedata.js
+/templates/CH3/neuromine.html

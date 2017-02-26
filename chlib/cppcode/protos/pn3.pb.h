@@ -41,27 +41,27 @@ void protobuf_ShutdownFile_pn3_2eproto();
 class VEntry;
 class VNode;
 
-enum N3KEYTYPE {
+enum KEYTYPE {
   N3_ICDPR = 720,
   N3_DX = 722,
   N3_DRG = 723,
   N3_CPT = 724,
   N3_ALL = 725
 };
-bool N3KEYTYPE_IsValid(int value);
-const N3KEYTYPE N3KEYTYPE_MIN = N3_ICDPR;
-const N3KEYTYPE N3KEYTYPE_MAX = N3_ALL;
-const int N3KEYTYPE_ARRAYSIZE = N3KEYTYPE_MAX + 1;
+bool KEYTYPE_IsValid(int value);
+const KEYTYPE KEYTYPE_MIN = N3_ICDPR;
+const KEYTYPE KEYTYPE_MAX = N3_ALL;
+const int KEYTYPE_ARRAYSIZE = KEYTYPE_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* N3KEYTYPE_descriptor();
-inline const ::std::string& N3KEYTYPE_Name(N3KEYTYPE value) {
+const ::google::protobuf::EnumDescriptor* KEYTYPE_descriptor();
+inline const ::std::string& KEYTYPE_Name(KEYTYPE value) {
   return ::google::protobuf::internal::NameOfEnum(
-    N3KEYTYPE_descriptor(), value);
+    KEYTYPE_descriptor(), value);
 }
-inline bool N3KEYTYPE_Parse(
-    const ::std::string& name, N3KEYTYPE* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<N3KEYTYPE>(
-    N3KEYTYPE_descriptor(), name, value);
+inline bool KEYTYPE_Parse(
+    const ::std::string& name, KEYTYPE* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<KEYTYPE>(
+    KEYTYPE_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -221,19 +221,19 @@ class VEntry : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::comphealth::Exclusion >*
       mutable_provenance();
 
-  // required .comphealth.N3KEYTYPE initial_ktype = 9;
+  // required .comphealth.KEYTYPE initial_ktype = 9;
   inline bool has_initial_ktype() const;
   inline void clear_initial_ktype();
   static const int kInitialKtypeFieldNumber = 9;
-  inline ::comphealth::N3KEYTYPE initial_ktype() const;
-  inline void set_initial_ktype(::comphealth::N3KEYTYPE value);
+  inline ::comphealth::KEYTYPE initial_ktype() const;
+  inline void set_initial_ktype(::comphealth::KEYTYPE value);
 
-  // required .comphealth.N3KEYTYPE sub_ktype = 10;
+  // required .comphealth.KEYTYPE sub_ktype = 10;
   inline bool has_sub_ktype() const;
   inline void clear_sub_ktype();
   static const int kSubKtypeFieldNumber = 10;
-  inline ::comphealth::N3KEYTYPE sub_ktype() const;
-  inline void set_sub_ktype(::comphealth::N3KEYTYPE value);
+  inline ::comphealth::KEYTYPE sub_ktype() const;
+  inline void set_sub_ktype(::comphealth::KEYTYPE value);
 
   // @@protoc_insertion_point(class_scope:comphealth.VEntry)
  private:
@@ -350,12 +350,12 @@ class VNode : public ::google::protobuf::Message {
   inline ::std::string* release_key();
   inline void set_allocated_key(::std::string* key);
 
-  // required .comphealth.N3KEYTYPE ktype = 2;
+  // required .comphealth.KEYTYPE ktype = 2;
   inline bool has_ktype() const;
   inline void clear_ktype();
   static const int kKtypeFieldNumber = 2;
-  inline ::comphealth::N3KEYTYPE ktype() const;
-  inline void set_ktype(::comphealth::N3KEYTYPE value);
+  inline ::comphealth::KEYTYPE ktype() const;
+  inline void set_ktype(::comphealth::KEYTYPE value);
 
   // optional string dataset = 3;
   inline bool has_dataset() const;
@@ -992,7 +992,7 @@ VEntry::mutable_provenance() {
   return &provenance_;
 }
 
-// required .comphealth.N3KEYTYPE initial_ktype = 9;
+// required .comphealth.KEYTYPE initial_ktype = 9;
 inline bool VEntry::has_initial_ktype() const {
   return (_has_bits_[0] & 0x00000400u) != 0;
 }
@@ -1006,18 +1006,18 @@ inline void VEntry::clear_initial_ktype() {
   initial_ktype_ = 720;
   clear_has_initial_ktype();
 }
-inline ::comphealth::N3KEYTYPE VEntry::initial_ktype() const {
+inline ::comphealth::KEYTYPE VEntry::initial_ktype() const {
   // @@protoc_insertion_point(field_get:comphealth.VEntry.initial_ktype)
-  return static_cast< ::comphealth::N3KEYTYPE >(initial_ktype_);
+  return static_cast< ::comphealth::KEYTYPE >(initial_ktype_);
 }
-inline void VEntry::set_initial_ktype(::comphealth::N3KEYTYPE value) {
-  assert(::comphealth::N3KEYTYPE_IsValid(value));
+inline void VEntry::set_initial_ktype(::comphealth::KEYTYPE value) {
+  assert(::comphealth::KEYTYPE_IsValid(value));
   set_has_initial_ktype();
   initial_ktype_ = value;
   // @@protoc_insertion_point(field_set:comphealth.VEntry.initial_ktype)
 }
 
-// required .comphealth.N3KEYTYPE sub_ktype = 10;
+// required .comphealth.KEYTYPE sub_ktype = 10;
 inline bool VEntry::has_sub_ktype() const {
   return (_has_bits_[0] & 0x00000800u) != 0;
 }
@@ -1031,12 +1031,12 @@ inline void VEntry::clear_sub_ktype() {
   sub_ktype_ = 720;
   clear_has_sub_ktype();
 }
-inline ::comphealth::N3KEYTYPE VEntry::sub_ktype() const {
+inline ::comphealth::KEYTYPE VEntry::sub_ktype() const {
   // @@protoc_insertion_point(field_get:comphealth.VEntry.sub_ktype)
-  return static_cast< ::comphealth::N3KEYTYPE >(sub_ktype_);
+  return static_cast< ::comphealth::KEYTYPE >(sub_ktype_);
 }
-inline void VEntry::set_sub_ktype(::comphealth::N3KEYTYPE value) {
-  assert(::comphealth::N3KEYTYPE_IsValid(value));
+inline void VEntry::set_sub_ktype(::comphealth::KEYTYPE value) {
+  assert(::comphealth::KEYTYPE_IsValid(value));
   set_has_sub_ktype();
   sub_ktype_ = value;
   // @@protoc_insertion_point(field_set:comphealth.VEntry.sub_ktype)
@@ -1122,7 +1122,7 @@ inline void VNode::set_allocated_key(::std::string* key) {
   // @@protoc_insertion_point(field_set_allocated:comphealth.VNode.key)
 }
 
-// required .comphealth.N3KEYTYPE ktype = 2;
+// required .comphealth.KEYTYPE ktype = 2;
 inline bool VNode::has_ktype() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1136,12 +1136,12 @@ inline void VNode::clear_ktype() {
   ktype_ = 720;
   clear_has_ktype();
 }
-inline ::comphealth::N3KEYTYPE VNode::ktype() const {
+inline ::comphealth::KEYTYPE VNode::ktype() const {
   // @@protoc_insertion_point(field_get:comphealth.VNode.ktype)
-  return static_cast< ::comphealth::N3KEYTYPE >(ktype_);
+  return static_cast< ::comphealth::KEYTYPE >(ktype_);
 }
-inline void VNode::set_ktype(::comphealth::N3KEYTYPE value) {
-  assert(::comphealth::N3KEYTYPE_IsValid(value));
+inline void VNode::set_ktype(::comphealth::KEYTYPE value) {
+  assert(::comphealth::KEYTYPE_IsValid(value));
   set_has_ktype();
   ktype_ = value;
   // @@protoc_insertion_point(field_set:comphealth.VNode.ktype)
@@ -1450,10 +1450,10 @@ inline void VNode::set_linked(bool value) {
 namespace google {
 namespace protobuf {
 
-template <> struct is_proto_enum< ::comphealth::N3KEYTYPE> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::comphealth::KEYTYPE> : ::google::protobuf::internal::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::comphealth::N3KEYTYPE>() {
-  return ::comphealth::N3KEYTYPE_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::comphealth::KEYTYPE>() {
+  return ::comphealth::KEYTYPE_descriptor();
 }
 
 }  // namespace google
